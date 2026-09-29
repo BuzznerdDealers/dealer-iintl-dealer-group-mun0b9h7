@@ -9,8 +9,7 @@
     "status": "published",
     "seo": {
       "ogImage": null,
-      "noindex": false,
-      "keywords": []
+      "noindex": false
     },
     "templates": {
       "header": null,
