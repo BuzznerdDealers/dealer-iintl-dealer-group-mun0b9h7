@@ -5,5 +5,9 @@
   "status": "published",
   "date": "2026-09-29",
   "coverImage": null,
-  "nodes": []
+  "nodes": [],
+  "seo": {
+    "title": "test 1",
+    "description": "testing 1"
+  }
 }
