@@ -2,7 +2,7 @@
   {
     "slug": "home",
     "title": "Home",
-    "description": "home",
+    "description": "New and used trucks, service and parts from a dealer you can trust.",
     "path": "/",
     "out": "index.html",
     "dir": "home",
