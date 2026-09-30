@@ -17,5 +17,22 @@
       "utilityNav": null
     },
     "pageType": "Home"
+  },
+  {
+    "slug": "about-us",
+    "dir": "about-us",
+    "title": "About Us",
+    "path": "/about-us",
+    "out": "about-us/index.html",
+    "status": "draft",
+    "seo": {
+      "ogImage": null,
+      "noindex": false
+    },
+    "templates": {
+      "header": null,
+      "footer": null,
+      "utilityNav": null
+    }
   }
 ]
