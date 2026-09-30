@@ -8,6 +8,7 @@
   "nodes": [],
   "seo": {
     "title": "test title",
-    "description": "test meta description"
+    "description": "test meta description",
+    "noindex": true
   }
 }
