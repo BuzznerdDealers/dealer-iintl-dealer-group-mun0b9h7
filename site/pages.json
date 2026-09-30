@@ -34,5 +34,22 @@
       "footer": null,
       "utilityNav": null
     }
+  },
+  {
+    "slug": "create-contact-us",
+    "dir": "create-contact-us",
+    "title": "Create Contact Us",
+    "path": "/create-contact-us",
+    "out": "create-contact-us/index.html",
+    "status": "draft",
+    "seo": {
+      "ogImage": null,
+      "noindex": false
+    },
+    "templates": {
+      "header": null,
+      "footer": null,
+      "utilityNav": null
+    }
   }
 ]
