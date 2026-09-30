@@ -2,7 +2,7 @@
   "slug": "test",
   "title": "test",
   "description": "testing",
-  "status": "draft",
+  "status": "published",
   "date": "2026-09-30",
   "coverImage": null,
   "nodes": []
