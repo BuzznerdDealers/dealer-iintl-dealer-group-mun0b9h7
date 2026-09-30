@@ -1,0 +1,83 @@
+{
+  "slug": "create-a-new-blog",
+  "title": "Create A New Blog",
+  "description": "",
+  "status": "draft",
+  "date": "2026-09-30",
+  "coverImage": null,
+  "nodes": [
+    {
+      "id": "section-new-blog",
+      "type": "section",
+      "props": {
+        "width": "boxed",
+        "background": "none",
+        "paddingY": 7
+      },
+      "children": [
+        {
+          "id": "row-new-blog",
+          "type": "row",
+          "props": {
+            "gap": 6,
+            "align": "center",
+            "stackOn": "mobile"
+          },
+          "children": [
+            {
+              "id": "column-new-blog",
+              "type": "column",
+              "props": {
+                "span": 12,
+                "align": "center"
+              },
+              "children": [
+                {
+                  "id": "heading-new-blog",
+                  "type": "heading",
+                  "props": {
+                    "text": "Introducing Our Latest Trailer",
+                    "headingLevel": 1,
+                    "align": "center"
+                  }
+                },
+                {
+                  "id": "text-new-blog",
+                  "type": "text",
+                  "props": {
+                    "text": "Discover the features and benefits of our latest trailer model, designed to meet the needs of modern transportation.",
+                    "align": "center",
+                    "width": "prose"
+                  }
+                },
+                {
+                  "id": "image-new-blog",
+                  "type": "image",
+                  "props": {
+                    "image": {
+                      "src": "/media/trailer.jpg",
+                      "alt": "Image of the latest trailer model"
+                    },
+                    "width": "full"
+                  }
+                },
+                {
+                  "id": "buttons-new-blog",
+                  "type": "buttons",
+                  "props": {
+                    "items": [
+                      {
+                        "ctaId": "browse-inventory"
+                      }
+                    ],
+                    "align": "center"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
