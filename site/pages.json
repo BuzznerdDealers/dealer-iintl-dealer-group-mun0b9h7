@@ -69,5 +69,23 @@
       "footer": null,
       "utilityNav": null
     }
+  },
+  {
+    "slug": "test-page",
+    "dir": "test-page",
+    "title": "test page",
+    "description": "test description",
+    "path": "/test-page",
+    "out": "test-page/index.html",
+    "status": "draft",
+    "seo": {
+      "ogImage": null,
+      "noindex": false
+    },
+    "templates": {
+      "header": null,
+      "footer": null,
+      "utilityNav": null
+    }
   }
 ]
