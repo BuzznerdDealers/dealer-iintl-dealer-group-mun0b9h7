@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "blocks": [
+  "version": 2,
+  "nodes": [
     {
       "id": "hero",
       "type": "hero",
@@ -10,7 +10,15 @@
         "headline": "Your trusted partner on the road.",
         "subhead": "New and used trucks, expert service, and genuine parts — all from one dealer you can rely on.",
         "showSearch": true,
-        "ctas": [{ "ctaId": "browse-inventory" }, { "ctaId": "request-quote", "style": "secondary" }]
+        "ctas": [
+          {
+            "ctaId": "browse-inventory"
+          },
+          {
+            "ctaId": "request-quote",
+            "style": "secondary"
+          }
+        ]
       }
     },
     {
@@ -47,7 +55,10 @@
       "type": "widget",
       "props": {
         "widget": "inventory-carousel",
-        "config": { "heading": "Featured inventory", "limit": 4 }
+        "config": {
+          "heading": "Featured inventory",
+          "limit": 4
+        }
       }
     },
     {
@@ -56,12 +67,28 @@
       "props": {
         "heading": "Keeping your fleet on the road",
         "body": "Every unit we sell is inspected in our own shop. When you buy from us you get a direct line to the people who worked on it.",
-        "ctas": [{ "ctaId": "about-us" }],
+        "ctas": [
+          {
+            "ctaId": "about-us"
+          }
+        ],
         "stats": [
-          { "value": "39", "label": "Years in business" },
-          { "value": "12k+", "label": "Units delivered" },
-          { "value": "4", "label": "Sales & service centers" },
-          { "value": "48hr", "label": "Avg. parts turnaround" }
+          {
+            "value": "39",
+            "label": "Years in business"
+          },
+          {
+            "value": "12k+",
+            "label": "Units delivered"
+          },
+          {
+            "value": "4",
+            "label": "Sales & service centers"
+          },
+          {
+            "value": "48hr",
+            "label": "Avg. parts turnaround"
+          }
         ]
       }
     },
@@ -70,20 +97,34 @@
       "type": "widget",
       "props": {
         "widget": "locations-map",
-        "config": { "heading": "Find a location", "showMap": true }
+        "config": {
+          "heading": "Find a location",
+          "showMap": true
+        }
       }
     },
     {
       "id": "contact-row",
       "type": "row",
       "props": {
-        "align": "start",
-        "columns": [
-          [
+        "gap": 6,
+        "align": "stretch"
+      },
+      "children": [
+        {
+          "id": "contact-row-c1",
+          "type": "column",
+          "props": {
+            "span": 6
+          },
+          "children": [
             {
               "id": "contact-copy",
               "type": "heading",
-              "props": { "text": "Talk to someone who knows the equipment", "headingLevel": 2 }
+              "props": {
+                "text": "Talk to someone who knows the equipment",
+                "headingLevel": 2
+              }
             },
             {
               "id": "contact-text",
@@ -92,16 +133,25 @@
                 "text": "Tell us what the job needs and we will spec it, price it and tell you honestly what is in stock.\n\nPrefer the phone? <a href=\"tel:+15551234567\">Call us</a> during business hours."
               }
             }
-          ],
-          [
+          ]
+        },
+        {
+          "id": "contact-row-c2",
+          "type": "column",
+          "props": {
+            "span": 6
+          },
+          "children": [
             {
               "id": "contact-form",
               "type": "form",
-              "props": { "formId": "request-info" }
+              "props": {
+                "formId": "request-info"
+              }
             }
           ]
-        ]
-      }
+        }
+      ]
     }
   ]
 }
