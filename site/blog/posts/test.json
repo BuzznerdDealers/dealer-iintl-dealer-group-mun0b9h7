@@ -9,6 +9,11 @@
   "seo": {
     "title": "test title",
     "description": "test meta description",
+    "keywords": [
+      "test",
+      "testing",
+      "test-11"
+    ],
     "noindex": true
   }
 }
