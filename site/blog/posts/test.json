@@ -1,9 +1,19 @@
 {
   "slug": "test",
   "title": "test",
-  "description": "test",
+  "description": "testing",
   "status": "published",
   "date": "2026-09-30",
   "coverImage": null,
-  "nodes": []
+  "nodes": [],
+  "seo": {
+    "title": "test title",
+    "description": "test meta description",
+    "keywords": [
+      "test",
+      "testing",
+      "test-11"
+    ],
+    "noindex": true
+  }
 }
