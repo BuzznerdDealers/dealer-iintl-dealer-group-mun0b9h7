@@ -94,7 +94,7 @@
     "title": "Create A New Trailor",
     "path": "/create-a-new-trailor",
     "out": "create-a-new-trailor/index.html",
-    "status": "draft",
+    "status": "published",
     "seo": {
       "ogImage": null,
       "noindex": false
