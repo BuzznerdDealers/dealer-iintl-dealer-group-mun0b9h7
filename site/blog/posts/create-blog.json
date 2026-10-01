@@ -1,0 +1,69 @@
+{
+  "slug": "create-blog",
+  "title": "Create Blog",
+  "description": "",
+  "status": "draft",
+  "date": "2026-10-01",
+  "coverImage": null,
+  "nodes": [
+    {
+      "id": "section-1",
+      "type": "section",
+      "props": {
+        "background": "none",
+        "paddingY": 7
+      },
+      "children": [
+        {
+          "id": "row-1",
+          "type": "row",
+          "props": {
+            "gap": 6,
+            "stackOn": "mobile"
+          },
+          "children": [
+            {
+              "id": "column-1",
+              "type": "column",
+              "props": {
+                "span": 12
+              },
+              "children": [
+                {
+                  "id": "heading-1",
+                  "type": "heading",
+                  "props": {
+                    "text": "Exploring Our Trailers: A Guide to Choosing the Right One",
+                    "headingLevel": 1,
+                    "align": "left"
+                  }
+                },
+                {
+                  "id": "text-1",
+                  "type": "text",
+                  "props": {
+                    "text": "Discover the features and benefits of different trailers available in our inventory. Learn how to select the right trailer for your needs and ensure that your investment is worthwhile.",
+                    "align": "left",
+                    "width": "prose"
+                  }
+                },
+                {
+                  "id": "buttons-1",
+                  "type": "buttons",
+                  "props": {
+                    "items": [
+                      {
+                        "ctaId": "browse-inventory"
+                      }
+                    ],
+                    "align": "left"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
