@@ -41,7 +41,7 @@
     "title": "Create Contact Us",
     "path": "/create-contact-us",
     "out": "create-contact-us/index.html",
-    "status": "draft",
+    "status": "published",
     "seo": {
       "ogImage": null,
       "noindex": false
