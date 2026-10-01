@@ -59,7 +59,7 @@
     "description": "testing",
     "path": "/test",
     "out": "test/index.html",
-    "status": "draft",
+    "status": "archived",
     "seo": {
       "ogImage": null,
       "noindex": false
