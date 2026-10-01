@@ -24,7 +24,7 @@
     "title": "About Us",
     "path": "/about-us",
     "out": "about-us/index.html",
-    "status": "draft",
+    "status": "archived",
     "seo": {
       "ogImage": null,
       "noindex": false
