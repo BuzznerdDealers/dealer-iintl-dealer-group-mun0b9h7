@@ -2,7 +2,7 @@
   "slug": "create-blog",
   "title": "Create Blog",
   "description": "",
-  "status": "draft",
+  "status": "published",
   "date": "2026-10-01",
   "coverImage": null,
   "nodes": [
