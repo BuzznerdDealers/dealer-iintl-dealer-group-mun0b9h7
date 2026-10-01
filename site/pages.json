@@ -61,8 +61,12 @@
     "out": "test/index.html",
     "status": "archived",
     "seo": {
-      "ogImage": null,
-      "noindex": false
+      "ogImage": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/source/86/dms-11046935022__05.jpg",
+      "noindex": true,
+      "keywords": [
+        "used text",
+        "test"
+      ]
     },
     "templates": {
       "header": null,
