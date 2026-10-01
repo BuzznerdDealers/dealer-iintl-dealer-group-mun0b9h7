@@ -87,5 +87,22 @@
       "footer": null,
       "utilityNav": null
     }
+  },
+  {
+    "slug": "create-a-new-trailor",
+    "dir": "create-a-new-trailor",
+    "title": "Create A New Trailor",
+    "path": "/create-a-new-trailor",
+    "out": "create-a-new-trailor/index.html",
+    "status": "draft",
+    "seo": {
+      "ogImage": null,
+      "noindex": false
+    },
+    "templates": {
+      "header": null,
+      "footer": null,
+      "utilityNav": null
+    }
   }
 ]
