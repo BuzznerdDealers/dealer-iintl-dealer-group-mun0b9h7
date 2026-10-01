@@ -108,5 +108,22 @@
       "footer": null,
       "utilityNav": null
     }
+  },
+  {
+    "slug": "create-a-financing",
+    "dir": "create-a-financing",
+    "title": "Create A Financing",
+    "path": "/create-a-financing",
+    "out": "create-a-financing/index.html",
+    "status": "draft",
+    "seo": {
+      "ogImage": null,
+      "noindex": false
+    },
+    "templates": {
+      "header": null,
+      "footer": null,
+      "utilityNav": null
+    }
   }
 ]
