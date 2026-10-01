@@ -115,7 +115,7 @@
     "title": "Create A Financing",
     "path": "/create-a-financing",
     "out": "create-a-financing/index.html",
-    "status": "draft",
+    "status": "published",
     "seo": {
       "ogImage": null,
       "noindex": false
