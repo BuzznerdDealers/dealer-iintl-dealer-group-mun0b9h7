@@ -23,7 +23,7 @@
   "dnsEnabled": false,
   "autoclear": false,
   "logging": false,
-  "layout": "box",
+  "layout": "banner",
   "position": "bottom-right",
   "theme": "light",
   "revisitPosition": "bottom-right",
