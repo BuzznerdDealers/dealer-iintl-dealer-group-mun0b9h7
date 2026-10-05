@@ -3264,3 +3264,496 @@ test('every storefront slot id is a plain kebab-case word', () => {
   for (const id of ICON_SLOT_IDS) assert.match(id, /^[a-z]+(-[a-z]+)*$/);
   assert.equal(new Set(ICON_SLOT_IDS).size, ICON_SLOT_IDS.length);
 });
+
+/* ------------------------------------------------------------ cookie consent */
+
+import vm from 'node:vm';
+import { consentConfig, consentHead, consentCategoryOf } from './consent.mjs';
+
+const withConsent = (consent, providers = [oneProvider]) => ({
+  ...withProviders(providers),
+  platformConsent: consent,
+});
+
+const shellWith = (config) =>
+  renderShell({
+    config,
+    fontsHref: '',
+    analyticsPage: { pageType: 'Home' },
+    chrome: {},
+    title: 'T',
+    description: 'D',
+    canonical: 'https://example.com/',
+    bodyHtml: '<main></main>',
+    storefrontPrefix: 'store',
+  });
+
+test('consent off — no file, or mode off — changes nothing in the built page', () => {
+  const before = shellWith(withProviders([oneProvider]));
+  assert.equal(shellWith(withConsent(null)), before);
+  assert.equal(shellWith(withConsent({ mode: 'off' })), before);
+  assert.equal(/bzConsent|consent\.js|text\/plain/.test(before), false);
+});
+
+test('with consent on, provider tags are held back under their category and activated after', () => {
+  const html = analyticsHead(withConsent({ mode: 'opt-in' }), { pageType: 'Home' });
+  assert.match(html, /<script type="text\/plain" data-bz-consent="analytics">window\.dm=window\.dm\|\|/);
+  assert.match(html, /<script type="text\/plain" data-bz-consent="analytics" data-bz-src="https:\/\/vendor\.example\.com\/dm\.js\?containerId=C1"><\/script>/);
+  assert.equal(/<script>window\.dm=/.test(html), false, 'no provider code may run ungated');
+  assert.equal(/<script src="https:\/\/vendor/.test(html), false, 'no provider script may load ungated');
+  assert.ok(html.lastIndexOf('bzConsent.activate()') > html.lastIndexOf('data-bz-consent='), 'activation comes after every gated tag');
+});
+
+test('the shell defines the gate before the gated tags and loads the banner before analytics', () => {
+  const html = shellWith(withConsent({ mode: 'opt-in' }));
+  const head = html.slice(0, html.indexOf('</head>'));
+  const gate = head.indexOf('window.bzConsent={config:');
+  const gated = head.indexOf('data-bz-consent="analytics"');
+  const activate = head.lastIndexOf('bzConsent.activate()');
+  assert.ok(gate >= 0 && gate < gated && gated < activate, 'gate, then gated tags, then activation');
+  const body = html.slice(html.indexOf('<body'));
+  assert.ok(body.indexOf('/scripts/consent.js') >= 0 && body.indexOf('/scripts/consent.js') < body.indexOf('/scripts/analytics.js'));
+});
+
+test("the platform loader waits for analytics consent and keeps its channel", () => {
+  const config = withConsent({ mode: 'opt-in' }, []);
+  config.analytics = { loaderUrl: 'https://cdn.example.com/loader.js', loaderVersion: '1.2.3' };
+  const html = shellWith(config);
+  assert.match(html, /<script type="text\/plain" data-bz-consent="analytics" data-bz-src="https:\/\/cdn\.example\.com\/loader\.js\?v=1\.2\.3" data-channel="ct"><\/script>/);
+  assert.equal(/<script src="https:\/\/cdn\.example\.com\/loader/.test(html), false);
+});
+
+test('consent settings fail closed and offer every category a provider needs', () => {
+  assert.equal(consentConfig(withConsent({ mode: 'sometimes' })).mode, 'opt-in');
+  assert.equal(consentConfig(withConsent({ mode: 'opt-out' })).mode, 'opt-out');
+  assert.equal(consentCategoryOf({}), 'analytics', 'an unclassified provider is gated, not let through');
+  assert.equal(consentCategoryOf({ consentCategory: 'Bad Value"' }), 'analytics');
+  const c = consentConfig(withConsent({ mode: 'opt-in', categories: ['analytics'] }, [{ ...oneProvider, consentCategory: 'marketing' }]));
+  assert.deepEqual(c.categories, ['analytics', 'marketing']);
+  assert.equal(c.categoryText.marketing.label, 'Marketing');
+  assert.equal(c.expiryDays, 365, 'the BZNrd Consent default');
+  assert.equal(c.version, 1);
+});
+
+test('only a site path or an http(s) URL is used as the policy link', () => {
+  assert.equal(consentConfig(withConsent({ mode: 'opt-in', policyUrl: '/cookie-policy' })).policyUrl, '/cookie-policy');
+  assert.equal(consentConfig(withConsent({ mode: 'opt-in', policyUrl: 'javascript:alert(1)' })).policyUrl, null);
+  assert.equal(consentConfig(withConsent({ mode: 'opt-in', policyUrl: '//evil.example' })).policyUrl, null);
+});
+
+test('dealer copy cannot close the head script', () => {
+  const html = consentHead(withConsent({ mode: 'opt-in', text: { title: '</script><script>alert(1)</script>' } }));
+  assert.equal((html.match(/<\/script>/g) || []).length, 1);
+});
+
+/* The gate itself, run as a browser would run it. */
+function runGate(consent, { cookie = '', gpc = false, providers = [oneProvider], tags = [] } = {}) {
+  const head = consentHead(withConsent(consent, providers));
+  const code = head.slice(head.indexOf('<script>') + 8, head.lastIndexOf('</script>'));
+  const events = [];
+  const doc = {
+    cookie,
+    querySelectorAll: () => tags,
+    createElement: (tag) => {
+      const node = {
+        tagName: String(tag).toUpperCase(),
+        attrs: {},
+        setAttribute(n, v) { node.attrs[n] = String(v); },
+        getAttribute(n) { return n in node.attrs ? node.attrs[n] : null; },
+      };
+      return node;
+    },
+    dispatchEvent: (e) => events.push(e.detail),
+    readyState: 'complete',
+  };
+  // A cookie jar as a browser keeps one: assigning sets or (when expired)
+  // deletes one cookie, and reading joins them all.
+  const jar = new Map();
+  for (const part of cookie ? cookie.split('; ') : []) jar.set(part.slice(0, part.indexOf('=')), part.slice(part.indexOf('=') + 1));
+  const writes = [];
+  Object.defineProperty(doc, 'cookie', {
+    get: () => [...jar].map(([k, v]) => `${k}=${v}`).join('; '),
+    set: (v) => {
+      writes.push(v);
+      const pair = v.split(';')[0];
+      const name = pair.slice(0, pair.indexOf('='));
+      if (/expires=Thu, 01 Jan 1970/.test(v)) jar.delete(name);
+      else jar.set(name, pair.slice(pair.indexOf('=') + 1));
+    },
+  });
+  const win = { document: doc, navigator: { globalPrivacyControl: gpc }, location: { protocol: 'https:', hostname: 'dealer.example.com', pathname: '/', reload() { win.reloaded = true; } } };
+  win.window = win;
+  win.CustomEvent = class { constructor(type, init) { this.detail = init.detail; } };
+  vm.runInNewContext(code, win);
+  return { api: win.bzConsent, events, win, jar: () => doc.cookie, writes, doc };
+}
+
+const stored = (choices, v = 1) => `bz_consent=${encodeURIComponent(JSON.stringify({ v, c: choices, t: 1 }))}`;
+
+test('the gate: opt-in denies until allowed, opt-out allows until rejected, essential always runs', () => {
+  const optIn = runGate({ mode: 'opt-in' }).api;
+  assert.equal(optIn.allowed('analytics'), false);
+  assert.equal(optIn.allowed('essential'), true);
+  assert.equal(optIn.needsChoice(), true);
+  const optOut = runGate({ mode: 'opt-out' }).api;
+  assert.equal(optOut.allowed('analytics'), true);
+});
+
+test('the gate: a stored choice is honoured, and a new settings version asks again', () => {
+  const g = runGate({ mode: 'opt-in' }, { cookie: stored({ analytics: true, marketing: false }) }).api;
+  assert.equal(g.allowed('analytics'), true);
+  assert.equal(g.allowed('marketing'), false);
+  assert.equal(g.needsChoice(), false);
+  const bumped = runGate({ mode: 'opt-in', version: 2 }, { cookie: stored({ analytics: true }) }).api;
+  assert.equal(bumped.allowed('analytics'), false);
+  assert.equal(bumped.needsChoice(), true);
+});
+
+test('the gate: Global Privacy Control opts a new visitor out; a later explicit choice is honoured (as the plugin does)', () => {
+  const fresh = runGate({ mode: 'opt-out' }, { gpc: true }).api;
+  assert.equal(fresh.allowed('analytics'), false);
+  assert.equal(fresh.allowed('essential'), true);
+  assert.equal(fresh.needsChoice(), false, 'the browser already answered; no banner is pushed at the visitor');
+  const chose = runGate({ mode: 'opt-out' }, { gpc: true, cookie: stored({ analytics: true }) }).api;
+  assert.equal(chose.allowed('analytics'), true, 'the visitor accepted after the opt-out was recorded');
+});
+
+test('the gate: set() stores the choice, announces it, and reloads only on a withdrawal', () => {
+  const { api, events, win, jar } = runGate({ mode: 'opt-out' });
+  api.set({ analytics: true, marketing: false });
+  assert.match(decodeURIComponent(jar()), /"c":\{"analytics":true,"marketing":false\}/);
+  assert.equal(api.allowed('marketing'), false);
+  assert.equal(events.at(-1).withdrawn, false);
+  assert.equal(win.reloaded, undefined);
+});
+
+/** A blocked tag, as the gate sees one in the DOM. */
+function fakeTag(category, extra = {}) {
+  const attrs = { type: 'text/plain', 'data-bz-consent': category, ...extra };
+  const inserted = [];
+  return {
+    inserted,
+    text: 'run();',
+    get attributes() { return Object.entries(attrs).map(([name, value]) => ({ name, value })); },
+    getAttribute: (n) => (n in attrs ? attrs[n] : null),
+    setAttribute: (n, v) => { attrs[n] = v; },
+    parentNode: { insertBefore: (node) => inserted.push(node) },
+  };
+}
+
+test('the gate: activate() runs each allowed tag once, and withdrawing a category that ran reloads', () => {
+  const analytics = fakeTag('analytics', { 'data-bz-src': 'https://v.example/a.js', 'data-channel': 'ct' });
+  const marketing = fakeTag('marketing');
+  const { api, win } = runGate({ mode: 'opt-in' }, { tags: [analytics, marketing] });
+
+  api.activate();
+  assert.equal(analytics.inserted.length + marketing.inserted.length, 0, 'nothing runs before consent');
+
+  api.set({ analytics: true });
+  assert.equal(analytics.inserted.length, 1);
+  assert.equal(analytics.inserted[0].src, 'https://v.example/a.js');
+  assert.equal(analytics.inserted[0].async, true);
+  assert.equal(analytics.inserted[0].attrs['data-channel'], 'ct', 'its own attributes travel with it');
+  assert.equal(marketing.inserted.length, 0);
+
+  api.activate();
+  assert.equal(analytics.inserted.length, 1, 'a tag runs at most once');
+
+  api.set({ analytics: false });
+  assert.equal(win.reloaded, true, 'a script that ran cannot be un-run, so the page reloads');
+});
+
+/* -------------------------------------------- cookie consent: BZNrd parity */
+
+import { gateMarkup, DEFAULT_COOKIES } from './consent.mjs';
+
+test('consent defaults follow the BZNrd Consent plugin', () => {
+  const c = consentConfig(withConsent({ mode: 'opt-in' }, []));
+  assert.equal(c.layout, 'box');
+  assert.equal(c.position, 'bottom-left');
+  assert.equal(c.theme, 'light');
+  assert.deepEqual(c.colors, { primary: null, buttonText: null, text: null, background: null }, 'unset colours follow the brand tokens');
+  assert.equal(c.fontSize, 14);
+  assert.equal(c.showReject, true);
+  assert.equal(c.showPreferences, true);
+  assert.equal(c.reloadOnChoice, false);
+  assert.equal(c.revisitPosition, 'bottom-left');
+  assert.deepEqual(c.gcm, { enabled: false, adsDataRedaction: true, urlPassthrough: true });
+  assert.deepEqual(c.gpc, { enabled: true, showConfirmation: true });
+  assert.deepEqual(c.dns, { enabled: true });
+  assert.equal(c.autoclear, true);
+  assert.equal(c.logging, true);
+  assert.equal(c.logUrl, '/store/api/consent-log');
+  assert.equal(c.text.acceptAll, 'Accept All');
+  assert.equal(c.text.preferences, 'Customize');
+  assert.equal(c.text.save, 'Save My Preferences');
+  assert.equal(c.text.preferencesTitle, 'Customize Consent Preferences');
+  assert.equal(c.text.settingsButton, 'Manage consent');
+  assert.match(c.text.prefsIntro, /under each consent category/);
+  assert.equal(c.text.dnsLabel, 'Do Not Sell or Share My Personal Information');
+  assert.deepEqual(c.categories, ['analytics', 'marketing']);
+  assert.equal(c.categoryText.essential.label, 'Essential');
+});
+
+test('consent appearance settings are kept only when safe to write into a style attribute', () => {
+  const c = consentConfig(withConsent({
+    mode: 'opt-in', layout: 'banner', position: 'top', theme: 'dark', revisitPosition: 'bottom-right',
+    primaryColor: '#123ABC', buttonTextColor: '#fff', textColor: 'red;background:url(x)', backgroundColor: '#12',
+    fontFamily: "'Open Sans', Arial, sans-serif", fontSize: 18,
+  }, []));
+  assert.equal(c.layout, 'banner');
+  assert.equal(c.position, 'top');
+  assert.equal(c.theme, 'dark');
+  assert.equal(c.revisitPosition, 'bottom-right');
+  assert.deepEqual(c.colors, { primary: '#123ABC', buttonText: '#fff', text: null, background: null });
+  assert.equal(c.fontFamily, "'Open Sans', Arial, sans-serif");
+  assert.equal(c.fontSize, 18);
+  const bad = consentConfig(withConsent({ mode: 'opt-in', layout: 'popup', position: 'middle', fontFamily: 'x;}body{', fontSize: 99 }, []));
+  assert.equal(bad.layout, 'box');
+  assert.equal(bad.position, 'bottom-left');
+  assert.equal(bad.fontFamily, null);
+  assert.equal(bad.fontSize, 14);
+});
+
+test('the default cookie register declares the consent cookie and blocks the common trackers', () => {
+  const c = consentConfig(withConsent({ mode: 'opt-in' }, []));
+  assert.equal(c.cookies.length, DEFAULT_COOKIES.length);
+  assert.equal(c.cookies.find((k) => k.name === 'bz_consent').category, 'essential');
+  assert.deepEqual(c.providers.map((p) => p.category), ['analytics', 'analytics', 'marketing', 'marketing']);
+  assert.ok(c.providers.some((p) => p.needles.includes('connect.facebook.net')));
+  assert.equal(c.clearMap.some((m) => m.name === 'bz_consent'), false, 'essential is never cleared');
+  assert.equal(c.clearMap.some((m) => m.name === 'bz_vid'), false, 'HttpOnly is never cleared');
+  assert.ok(c.clearMap.some((m) => m.name === '_ga' && m.category === 'analytics'));
+});
+
+test("a dealer's register replaces the default, normalises patterns, and offers its categories", () => {
+  const c = consentConfig(withConsent({
+    mode: 'opt-in',
+    categories: ['analytics'],
+    defaultOn: ['functional', 'nope', 'essential'],
+    cookies: [
+      { id: 'a', name: 'chat_id', category: 'functional', pattern: ' widget.example.com\nwidget.example.com, cdn.chat.example ', enabled: true },
+      { id: 'b', name: 'off', category: 'marketing', pattern: 'ads.example', enabled: false },
+      { id: 'c', name: 'srv', category: 'analytics', httpOnly: true },
+      { id: 'd', name: 'bad', category: 'Not A Category' },
+    ],
+  }, []));
+  assert.deepEqual(c.cookies.map((k) => k.id), ['a', 'b', 'c']);
+  assert.equal(c.cookies[0].pattern, 'widget.example.com|cdn.chat.example');
+  assert.deepEqual(c.categories, ['analytics', 'functional', 'marketing']);
+  assert.deepEqual(c.defaultOn, ['functional']);
+  assert.deepEqual(c.providers, [{ needles: ['widget.example.com', 'cdn.chat.example'], category: 'functional' }], 'a disabled cookie blocks nothing');
+  assert.deepEqual(c.clearMap, [{ name: 'chat_id', domain: '', category: 'functional' }]);
+  assert.deepEqual(consentConfig(withConsent({ mode: 'opt-in', cookies: [] }, [])).providers, [], 'an empty register is allowed');
+});
+
+test('gateMarkup holds back matching scripts and iframes in dealer markup, and nothing else', () => {
+  const config = withConsent({ mode: 'opt-in' }, []);
+  const html =
+    '<script async type="text/javascript" src="https://connect.facebook.net/en_US/fbevents.js"></script>' +
+    "<script src='/scripts/own.js'></script>" +
+    '<iframe width="1" src=https://www.googletagmanager.com/ns.html?id=GTM-1></iframe>' +
+    '<script type="text/plain" data-bz-consent="analytics" data-bz-src="https://www.google-analytics.com/a.js"></script>' +
+    '<script>fbq("init")</script>';
+  const out = gateMarkup(html, config);
+  assert.match(out, /<script type="text\/plain" data-bz-consent="marketing" async data-bz-src="https:\/\/connect\.facebook\.net\/en_US\/fbevents\.js"><\/script>/);
+  assert.match(out, /<script src='\/scripts\/own\.js'><\/script>/, 'our own script is untouched');
+  assert.match(out, /<iframe width="1" src="about:blank" data-bz-consent="analytics" data-bz-src="https:\/\/www\.googletagmanager\.com\/ns\.html\?id=GTM-1"><\/iframe>/);
+  assert.equal((out.match(/data-bz-consent=/g) || []).length, 3, 'an already-gated tag is left as it is');
+  assert.match(out, /<script>fbq\("init"\)<\/script>/, 'inline code is caught at runtime, not rewritten');
+  assert.equal(gateMarkup(html, withConsent(null, [])), html, 'consent off changes nothing');
+  assert.equal(gateMarkup(html, withConsent({ mode: 'opt-in', cookies: [] }, [])), html, 'a register that blocks nothing changes nothing');
+  const dollar = gateMarkup('<script src="https://connect.facebook.net/x.js?a=$&b=$1"></script>', config);
+  assert.match(dollar, /data-bz-src="https:\/\/connect\.facebook\.net\/x\.js\?a=\$&b=\$1"/);
+});
+
+test('the shell runs the gate before any dealer code and gates a pixel pasted into custom code', () => {
+  const config = withConsent({ mode: 'opt-in' }, []);
+  const html = renderShell({
+    config, fontsHref: '', analyticsPage: { pageType: 'Home' }, chrome: { footer: '<footer><a href="#do-not-sell">x</a></footer>' },
+    title: 'T', description: 'D', canonical: 'https://example.com/', bodyHtml: '<p>hi</p>', storefrontPrefix: 'store',
+    custom: {
+      headStart: '<meta name="google-site-verification" content="x" />',
+      headEnd: '<script async src="https://connect.facebook.net/en_US/fbevents.js"></script>',
+    },
+  });
+  assert.ok(html.indexOf('window.bzConsent={config:') < html.indexOf('google-site-verification'), 'gate first in <head>');
+  assert.match(html, /data-bz-consent="marketing" async data-bz-src="https:\/\/connect\.facebook\.net/);
+  assert.equal(/<script async src="https:\/\/connect\.facebook\.net/.test(html), false);
+  const off = renderShell({
+    config: withProviders([]), fontsHref: '', analyticsPage: {}, chrome: {}, title: 'T', description: 'D',
+    canonical: 'https://example.com/', bodyHtml: '', custom: { headEnd: '<script async src="https://connect.facebook.net/x.js"></script>' },
+  });
+  assert.match(off, /<script async src="https:\/\/connect\.facebook\.net\/x\.js"><\/script>/, 'consent off: custom code as written');
+});
+
+test('the gate: a script injected at runtime is held until its category is allowed', () => {
+  const tags = [];
+  const { api, doc } = runGate({ mode: 'opt-in' }, { providers: [], tags });
+  const s = doc.createElement('script');
+  s.src = 'https://connect.facebook.net/en_US/fbevents.js';
+  assert.equal(s.type, 'text/plain', 'set as a property, which a real element reflects');
+  assert.equal(s.attrs['data-bz-consent'], 'marketing');
+  assert.equal(s.attrs.src, undefined, 'the real src is never set');
+  const t = doc.createElement('script');
+  t.setAttribute('src', 'https://www.googletagmanager.com/gtm.js?id=G');
+  assert.equal(t.attrs['data-bz-consent'], 'analytics');
+  const own = doc.createElement('script');
+  own.src = '/scripts/own.js';
+  assert.equal(own.attrs.src, '/scripts/own.js', 'an unmatched script loads normally');
+  api.set({ marketing: true }, 'custom');
+  const later = doc.createElement('script');
+  later.src = 'https://connect.facebook.net/en_US/fbevents.js';
+  assert.equal(later.attrs.src, 'https://connect.facebook.net/en_US/fbevents.js', 'allowed now');
+});
+
+test('the gate: a matched script that ran under opt-out reloads the page when withdrawn', () => {
+  const { api, doc, win } = runGate({ mode: 'opt-out' }, { providers: [] });
+  const s = doc.createElement('script');
+  s.src = 'https://connect.facebook.net/en_US/fbevents.js';
+  assert.equal(s.attrs.src, 'https://connect.facebook.net/en_US/fbevents.js');
+  assert.equal(api.wouldWithdraw({ marketing: false, analytics: true }), true);
+  api.set({ marketing: false, analytics: true }, 'custom');
+  assert.equal(win.reloaded, true);
+});
+
+test('the gate: a held iframe gets its src back when allowed', () => {
+  const frame = fakeTag('marketing', { 'data-bz-src': 'https://www.youtube.com/embed/x' });
+  frame.tagName = 'IFRAME';
+  const { api } = runGate({ mode: 'opt-in' }, { providers: [], tags: [frame] });
+  api.activate();
+  assert.equal(frame.getAttribute('src'), null);
+  api.set({ marketing: true }, 'accept_all');
+  assert.equal(frame.getAttribute('src'), 'https://www.youtube.com/embed/x');
+  assert.equal(frame.inserted.length, 0, 'an iframe is restored in place, not cloned');
+});
+
+test('the gate: Google Consent Mode v2 defaults from the stored choice and updates on a new one', () => {
+  const { api, win } = runGate({ mode: 'opt-in', gcmEnabled: true }, { providers: [], cookie: stored({ analytics: true, marketing: false }) });
+  const calls = win.dataLayer.map((args) => Array.from(args));
+  assert.deepEqual(calls[0], ['set', 'url_passthrough', true]);
+  assert.deepEqual(calls[1], ['set', 'ads_data_redaction', true]);
+  assert.equal(calls[2][0], 'consent');
+  assert.equal(calls[2][1], 'default');
+  assert.equal(calls[2][2].analytics_storage, 'granted');
+  assert.equal(calls[2][2].ad_storage, 'denied');
+  assert.equal(calls[2][2].security_storage, 'granted');
+  assert.equal(calls[2][2].wait_for_update, 500);
+  api.set({ analytics: true, marketing: true }, 'accept_all');
+  const update = Array.from(win.dataLayer.at(-1));
+  assert.deepEqual(update.slice(0, 2), ['consent', 'update']);
+  assert.equal(update[2].ad_user_data, 'granted');
+  assert.equal(runGate({ mode: 'opt-in' }, { providers: [] }).win.dataLayer, undefined, 'off by default: nothing pushed');
+});
+
+test('the gate: cookies of a category that is not allowed are cleared, on load and on a choice', () => {
+  const { api, jar } = runGate({ mode: 'opt-in' }, { providers: [], cookie: '_ga=GA1.1; _fbp=fb.1; keep=1' });
+  assert.equal(/_ga=|_fbp=/.test(jar()), false, 'cleared before any choice under opt-in');
+  assert.match(jar(), /keep=1/, 'an undeclared cookie is not ours to touch');
+  const off = runGate({ mode: 'opt-in', autoclear: false }, { providers: [], cookie: '_ga=GA1.1' });
+  assert.match(off.jar(), /_ga=GA1\.1/, 'auto-clearing can be turned off');
+  const optOut = runGate({ mode: 'opt-out' }, { providers: [], cookie: '_ga=GA1.1; _fbp=fb.1' });
+  assert.match(optOut.jar(), /_ga=GA1\.1/);
+  optOut.api.set({ analytics: true, marketing: false }, 'custom');
+  assert.match(optOut.jar(), /_ga=GA1\.1/);
+  assert.equal(/_fbp=/.test(optOut.jar()), false, 'rejecting marketing clears its cookie');
+  assert.ok(api);
+});
+
+test('the gate: Global Privacy Control can be turned off by the dealer', () => {
+  assert.equal(runGate({ mode: 'opt-out', gpcEnabled: false }, { gpc: true }).api.allowed('analytics'), true);
+  assert.equal(runGate({ mode: 'opt-out' }, { gpc: true }).api.allowed('analytics'), false);
+});
+
+test('the gate: the stored choice carries a stable consent id and the action', () => {
+  const { api, jar } = runGate({ mode: 'opt-in' }, { providers: [] });
+  const id = api.id();
+  assert.match(id, /^bzc-/);
+  api.set({ analytics: true }, 'custom');
+  const record = JSON.parse(decodeURIComponent(jar().match(/bz_consent=([^;]*)/)[1]));
+  assert.equal(record.id, id, 'the id handed out before the choice is the one stored');
+  assert.equal(record.a, 'custom');
+  api.set({ analytics: false }, 'reject_all');
+  assert.equal(api.record().id, id, 'a later choice keeps the id');
+  assert.equal(api.record().a, 'reject_all');
+});
+
+test('the banner runtime ships every parity hook', () => {
+  const src = readFileSync(new URL('./client/consent.js', import.meta.url), 'utf8');
+  for (const hook of [
+    "'accept_all'", "'reject_all'", "'save_prefs'", "'open_prefs'", "'close_prefs'", "'do_not_sell'", "'gpc_optout'",
+    'a[href="#cookie-settings"]', 'a[href="#do-not-sell"]', '[data-bz-cookie-declaration]', 'bzConsentUi',
+    'C.showReject', 'C.showPreferences', 'C.reloadOnChoice', 'C.revisitButton', 'C.defaultOn', 'sessionStorage',
+  ]) assert.ok(src.includes(hook), hook);
+});
+
+/* ------------------------------------- cookie consent: plugin parity, round 2 */
+
+import { consentGateScript } from './consent.mjs';
+
+test('a category the dealer marked necessary is always on, never blocked and never cleared', () => {
+  const c = consentConfig(withConsent({
+    mode: 'opt-in',
+    categories: ['functional', 'analytics'],
+    necessaryCategories: ['functional', 'nope', 'functional'],
+    defaultOn: ['functional', 'analytics'],
+    cookies: [
+      { id: 'a', name: 'chat', category: 'functional', pattern: 'chat.example' },
+      { id: 'b', name: '_ga', category: 'analytics', pattern: 'google-analytics.com' },
+    ],
+  }, []));
+  assert.deepEqual(c.necessaryCategories, ['functional']);
+  assert.deepEqual(c.defaultOn, ['analytics'], 'necessary is on anyway');
+  assert.deepEqual(c.providers.map((p) => p.category), ['analytics']);
+  assert.deepEqual(c.clearMap.map((m) => m.name), ['_ga']);
+  const { api, jar } = runGate({ mode: 'opt-in', categories: ['functional', 'analytics'], necessaryCategories: ['functional'] }, { providers: [] });
+  assert.equal(api.allowed('functional'), true);
+  assert.equal(api.necessary('functional'), true);
+  api.set({}, 'reject_all');
+  assert.match(decodeURIComponent(jar()), /"functional":true/, 'a reject still records a necessary category as on');
+});
+
+test('consent can be remembered for up to ten years, as in the plugin', () => {
+  assert.equal(consentConfig(withConsent({ mode: 'opt-in', expiryDays: 3650 }, [])).expiryDays, 3650);
+  assert.equal(consentConfig(withConsent({ mode: 'opt-in', expiryDays: 3651 }, [])).expiryDays, 365);
+});
+
+test('the gate: revoking a category that was granted reloads, even if nothing of it ran yet', () => {
+  const { api, win } = runGate({ mode: 'opt-in' }, { providers: [], cookie: stored({ analytics: true, marketing: true }) });
+  assert.equal(api.wouldWithdraw({ analytics: true, marketing: true }), false);
+  api.set({ analytics: true, marketing: false }, 'custom');
+  assert.equal(win.reloaded, true);
+});
+
+test("the plugin's manual tagging attributes are honoured", () => {
+  const tag = fakeTag('ignored');
+  const attrs = { type: 'text/plain', 'data-bznrd-category': 'marketing', 'data-bznrd-src': 'https://ads.example/x.js', 'data-id': '7' };
+  const node = { ...tag, get attributes() { return Object.entries(attrs).map(([name, value]) => ({ name, value })); }, getAttribute: (n) => (n in attrs ? attrs[n] : null), setAttribute: (n, v) => { attrs[n] = v; } };
+  const { api } = runGate({ mode: 'opt-in' }, { providers: [], tags: [node] });
+  api.activate();
+  assert.equal(node.inserted.length, 0);
+  api.set({ marketing: true }, 'accept_all');
+  assert.equal(node.inserted.length, 1);
+  assert.equal(node.inserted[0].src, 'https://ads.example/x.js');
+  assert.equal(node.inserted[0].attrs['data-id'], '7');
+  assert.equal(node.inserted[0].attrs['data-bznrd-category'], undefined, 'the gate attributes stay behind');
+  const html = '<script type="text/plain" data-bznrd-category="analytics" data-bznrd-src="https://www.google-analytics.com/a.js"></script>';
+  assert.equal(gateMarkup(html, withConsent({ mode: 'opt-in' }, [])), html, 'already tagged by hand: left alone');
+});
+
+test('the gate is published bare for the storefront, and empty with consent off', () => {
+  const gate = consentGateScript(withConsent({ mode: 'opt-in' }, []));
+  assert.match(gate, /^window\.bzConsent=\{config:/);
+  assert.equal(gate.includes('<script'), false);
+  assert.equal(consentHead(withConsent({ mode: 'opt-in' }, [])), `\n<script>${gate}</script>`);
+  assert.equal(consentGateScript(withConsent(null, [])), '');
+  assert.equal(consentGateScript(withConsent({ mode: 'off' }, [])), '');
+});
+
+test('the banner runtime keeps the plugin hooks, API names and paragraphs', () => {
+  const src = readFileSync(new URL('./client/consent.js', import.meta.url), 'utf8');
+  for (const hook of ['.bznrd-do-not-sell', '[data-bznrd-do-not-sell]', '.bznrd-open-consent', '[data-bznrd-open-consent]',
+    'window.bznrdConsent', 'openPreferences', "a.target = '_blank'", "a.rel = 'noopener'", 'function paragraphs', 'api.necessary(name)']) {
+    assert.ok(src.includes(hook), hook);
+  }
+});

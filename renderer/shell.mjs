@@ -4,6 +4,7 @@
 
 import { esc } from './html.mjs';
 import { analyticsHead } from './analytics.mjs';
+import { ACTIVATE, consentConfig, consentHead, gatedSrc, gateMarkup } from './consent.mjs';
 
 /** Drop keys with nothing in them, so a sparse record does not emit empty nodes. */
 function compact(object) {
@@ -140,6 +141,11 @@ export function analyticsTag(config) {
   const a = config.analytics || {};
   if (!a.loaderUrl) return '';
   const v = a.loaderVersion ? `?v=${encodeURIComponent(a.loaderVersion)}` : '';
+  // The loader is the platform's own tracking, so with consent on it waits for
+  // `analytics` like any provider does.
+  if (consentConfig(config)) {
+    return `\n${gatedSrc('analytics', `${a.loaderUrl}${v}`, esc, ` data-channel="${esc(config.channelToken)}"`)}${ACTIVATE}`;
+  }
   return `\n<script src="${a.loaderUrl}${v}" data-channel="${config.channelToken}" defer></script>`;
 }
 
@@ -215,6 +221,21 @@ export function renderShell({
    */
   custom = {},
 }) {
+  // With consent on, every third-party script or iframe in dealer-authored
+  // markup whose URL the cookie register names is held back until its
+  // category is allowed. With it off this is the identity, byte for byte.
+  const gate = (html) => gateMarkup(html, config);
+  custom = {
+    ...custom,
+    headStart: gate(custom.headStart),
+    headEnd: gate(custom.headEnd),
+    bodyStart: gate(custom.bodyStart),
+    beforeFooter: gate(custom.beforeFooter),
+    bodyEnd: gate(custom.bodyEnd),
+  };
+  chrome = { ...chrome, header: gate(chrome.header), footer: gate(chrome.footer) };
+  bodyHtml = gate(bodyHtml);
+
   const lang = (config.seo.locale || 'en_US').split('_')[0];
   const fullTitle =
     config.seo.titleTemplate && title !== 'Home'
@@ -254,7 +275,7 @@ export function renderShell({
 <html lang="${esc(lang)}">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />${custom.headStart ? `\n${custom.headStart}` : ''}
+<meta name="viewport" content="width=device-width, initial-scale=1" />${consentHead(config)}${custom.headStart ? `\n${custom.headStart}` : ''}
 <title>${esc(fullTitle)}</title>
 <meta name="description" content="${esc(description)}" />${keywordList.length ? `\n<meta name="keywords" content="${esc(keywordList.join(', '))}" />` : ''}
 <link rel="canonical" href="${esc(canonical)}" />${noindex ? '\n<meta name="robots" content="noindex,nofollow" />' : ''}
@@ -289,7 +310,7 @@ ${bodyHtml}
 </main>${custom.beforeFooter ? `\n${custom.beforeFooter}` : ''}
 ${chrome.footer || ''}
 <script src="/scripts/chrome.js" defer></script>
-<script src="/scripts/widgets.js" defer></script>
+<script src="/scripts/widgets.js" defer></script>${consentConfig(config) ? '\n<script src="/scripts/consent.js" defer></script>' : ''}
 <script src="/scripts/analytics.js" defer></script>${custom.hasJs ? `\n<script src="/scripts/custom.js" defer></script>` : ''}${scriptTags}${custom.bodyEnd ? `\n${custom.bodyEnd}` : ''}
 </body>
 </html>

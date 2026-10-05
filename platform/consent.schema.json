@@ -1,0 +1,288 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://buzznerd.com/schemas/platform-consent.json",
+  "title": "platform/consent.json",
+  "description": "This dealer's cookie consent settings, baked by the platform on every publish. Platform-owned and regenerated wholesale. Absent, or mode \"off\", means no banner and no gating: the build is identical to one made before consent existed. A present file with an unknown mode is read as opt-in (fail closed).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mode"
+  ],
+  "properties": {
+    "mode": {
+      "enum": [
+        "off",
+        "opt-out",
+        "opt-in"
+      ],
+      "description": "opt-in (GDPR): non-essential categories are off until the visitor allows them. opt-out (CCPA): they are on until the visitor rejects them. Global Privacy Control opts a visitor with no stored choice out in both modes; a choice they make afterwards is honoured."
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Raise it to ask every visitor again, e.g. after the policy changes. A stored choice from another version is ignored."
+    },
+    "expiryDays": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3650,
+      "description": "How long a choice is remembered, 1 to 3650 days. Defaults to 365."
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]{0,31}$"
+      },
+      "description": "Non-essential categories offered to the visitor. Defaults to analytics and marketing. Every category an enabled analytics provider declares is added automatically, so no provider can become impossible to allow."
+    },
+    "policyUrl": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The cookie policy page: a site path (/cookie-policy) or an http(s) URL. Anything else is dropped."
+    },
+    "revisitButton": {
+      "type": "boolean",
+      "description": "Show the floating \"Cookie settings\" button after a choice. Defaults to true. A link to #cookie-settings anywhere on the page opens the preferences either way."
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Banner copy. Any key left out uses the default English text.",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "acceptAll": {
+          "type": "string"
+        },
+        "rejectAll": {
+          "type": "string"
+        },
+        "preferences": {
+          "type": "string"
+        },
+        "save": {
+          "type": "string"
+        },
+        "close": {
+          "type": "string"
+        },
+        "policyLabel": {
+          "type": "string"
+        },
+        "settingsButton": {
+          "type": "string"
+        },
+        "preferencesTitle": {
+          "type": "string"
+        },
+        "gpcNotice": {
+          "type": "string"
+        },
+        "prefsIntro": {
+          "type": "string"
+        },
+        "gpcConfirmation": {
+          "type": "string"
+        },
+        "dnsLabel": {
+          "type": "string"
+        },
+        "dnsConfirmation": {
+          "type": "string"
+        },
+        "alwaysActive": {
+          "type": "string"
+        }
+      }
+    },
+    "categoryText": {
+      "type": "object",
+      "description": "Label and description per category, keyed by category name (essential included).",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "layout": {
+      "enum": [
+        "box",
+        "banner"
+      ],
+      "description": "box: a floating card. banner: a full-width bar. Defaults to box."
+    },
+    "position": {
+      "enum": [
+        "bottom-left",
+        "bottom-right",
+        "bottom",
+        "top",
+        "center"
+      ],
+      "description": "Where the banner sits. bottom and top are full-width bars whatever the layout. Defaults to bottom-left."
+    },
+    "theme": {
+      "enum": [
+        "light",
+        "dark"
+      ],
+      "description": "Preset text and background colours. Defaults to light."
+    },
+    "primaryColor": {
+      "type": "string",
+      "pattern": "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$",
+      "description": "Buttons, links and switches. Absent follows the site's accent token."
+    },
+    "buttonTextColor": {
+      "type": "string",
+      "pattern": "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$",
+      "description": "Text on the primary button and the revisit button. Defaults to white."
+    },
+    "textColor": {
+      "type": "string",
+      "pattern": "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$",
+      "description": "Overrides the theme's text colour."
+    },
+    "backgroundColor": {
+      "type": "string",
+      "pattern": "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$",
+      "description": "Overrides the theme's background colour."
+    },
+    "fontFamily": {
+      "type": "string",
+      "maxLength": 120,
+      "pattern": "^[A-Za-z0-9 ,'\"-]+$",
+      "description": "A CSS font stack, or inherit. Absent uses the site's body font."
+    },
+    "fontSize": {
+      "type": "integer",
+      "minimum": 10,
+      "maximum": 24,
+      "description": "Base text size in px. Defaults to 14."
+    },
+    "showReject": {
+      "type": "boolean",
+      "description": "Offer Reject All on the banner and in the preferences. Defaults to true."
+    },
+    "showPreferences": {
+      "type": "boolean",
+      "description": "Offer Customize on the banner. Defaults to true."
+    },
+    "reloadOnChoice": {
+      "type": "boolean",
+      "description": "Reload the page after every choice. Defaults to false; a withdrawal always reloads."
+    },
+    "revisitPosition": {
+      "enum": [
+        "bottom-left",
+        "bottom-right"
+      ],
+      "description": "Where the floating revisit button sits. Defaults to bottom-left."
+    },
+    "defaultOn": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]{0,31}$"
+      },
+      "description": "Categories whose switch starts on in the preferences before a visitor has chosen. Starting on is not consent: nothing runs until they save."
+    },
+    "gcmEnabled": {
+      "type": "boolean",
+      "description": "Send Google Consent Mode v2 signals: default from the stored choice, update on every choice. Defaults to false."
+    },
+    "gcmAdsDataRedaction": {
+      "type": "boolean",
+      "description": "With Consent Mode, redact ads data while ad storage is denied. Defaults to true."
+    },
+    "gcmUrlPassthrough": {
+      "type": "boolean",
+      "description": "With Consent Mode, pass click identifiers through URLs. Defaults to true."
+    },
+    "gpcEnabled": {
+      "type": "boolean",
+      "description": "Honour the Global Privacy Control signal as an opt-out. Defaults to true."
+    },
+    "gpcShowConfirmation": {
+      "type": "boolean",
+      "description": "Confirm visibly when a Global Privacy Control opt-out is honoured. Defaults to true."
+    },
+    "dnsEnabled": {
+      "type": "boolean",
+      "description": "Enable the Do Not Sell or Share opt-out: a link to #do-not-sell, or data-bz-do-not-sell. Defaults to true."
+    },
+    "autoclear": {
+      "type": "boolean",
+      "description": "Delete cookies of categories that are not allowed (HttpOnly cookies cannot be). Defaults to true."
+    },
+    "logging": {
+      "type": "boolean",
+      "description": "Record each choice as proof of consent, without an IP address. Defaults to true."
+    },
+    "cookies": {
+      "type": "array",
+      "maxItems": 100,
+      "description": "The cookie register: shown to visitors, and — for a non-essential cookie with a pattern — the script setting it is blocked until its category is allowed. Absent uses the default register.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "category"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,31}$"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "Pipe-separated pieces of script or iframe URLs, matched anywhere in the URL."
+          },
+          "httpOnly": {
+            "type": "boolean"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "necessaryCategories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]{0,31}$"
+      },
+      "description": "Categories that are always active, like Essential: locked on for the visitor, never blocked, never auto-cleared. Each must also be offered."
+    }
+  }
+}

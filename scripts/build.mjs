@@ -47,6 +47,7 @@ import {
   locationPageNodes,
   locationPath,
   fillTokens,
+  consentGateScript,
 } from '../renderer/index.mjs';
 
 const ROOT = process.cwd();
@@ -67,6 +68,11 @@ const config = readJson(join(ROOT, 'dealer.config.json'));
  * the builder's writable path set, so a dealer cannot edit or delete what a
  * provider needs from the Design screen. */
 config.platformAnalytics = readJsonIf(join(ROOT, 'platform', 'analytics.json'), null);
+
+/* This dealer's cookie consent settings, baked the same way. Absent means
+ * consent is off and the build is exactly what it was before consent existed;
+ * see renderer/consent.mjs. */
+config.platformConsent = readJsonIf(join(ROOT, 'platform', 'consent.json'), null);
 const tokens = readJson(join(SITE, 'tokens.json'));
 const menus = readJson(join(SITE, 'menus.json'));
 const pages = readJson(join(SITE, 'pages.json'));
@@ -378,6 +384,7 @@ const resetCss = readText(join(SITE, 'reset.css'));
 const blocksCss = readText(join(RENDERER, 'blocks.css')) + (customCss ? `\n${customCss}\n` : '');
 const widgetsJs = readText(join(RENDERER, 'client', 'widgets.js'));
 const analyticsJs = readText(join(RENDERER, 'client', 'analytics.js'));
+const consentJs = readText(join(RENDERER, 'client', 'consent.js'));
 
 /* ------------------------------------------------------------------ writing */
 
@@ -429,6 +436,7 @@ write('styles/chrome.css', chromeCss);
 write('scripts/chrome.js', chromeJs);
 write('scripts/widgets.js', widgetsJs);
 write('scripts/analytics.js', analyticsJs);
+write('scripts/consent.js', consentJs);
 
 /* -------------------------------------------------------------------- pages */
 // status: published -> emitted, indexed, in sitemap + llms.txt
@@ -605,6 +613,12 @@ write('partials/widgets.js', widgetsJs);
 // route and only needs the runtime here — one script, two mount points, so the
 // brand site and /store/* share a session rather than measuring two visits.
 write('partials/analytics.js', analyticsJs);
+// The consent banner, for the storefront to mount under /store/* the same way.
+write('partials/consent.js', consentJs);
+// This dealer's consent gate (config + code), for the storefront to run first
+// in the <head> of every /store/* page. Empty with consent off, so a storefront
+// that finds it empty mounts nothing.
+write('partials/consent-gate.js', consentGateScript(config));
 write('partials/reset.css', resetCss);
 write('partials/tokens.css', tokensCss);
 write('partials/fonts.txt', FONTS_HREF);
