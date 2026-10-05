@@ -1,5 +1,5 @@
 {
-  "mode": "opt-in",
+  "mode": "opt-out",
   "version": 1,
   "expiryDays": 100,
   "categories": [
