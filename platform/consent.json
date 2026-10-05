@@ -3,15 +3,15 @@
   "version": 1,
   "expiryDays": 100,
   "categories": [
-    "test"
+    "test-2"
   ],
   "text": {
     "settingsButton": "Manage"
   },
   "categoryText": {
-    "test": {
-      "label": "test",
-      "description": "test"
+    "test-2": {
+      "label": "test-2",
+      "description": "Its scripts are never blocked and its cookies never cleared. A necessary category cannot be deleted."
     }
   },
   "revisitButton": false,
@@ -20,11 +20,11 @@
   "gcmUrlPassthrough": false,
   "gpcEnabled": false,
   "gpcShowConfirmation": false,
-  "dnsEnabled": true,
+  "dnsEnabled": false,
   "autoclear": false,
   "logging": false,
-  "layout": "banner",
-  "position": "center",
+  "layout": "box",
+  "position": "bottom-right",
   "theme": "light",
   "revisitPosition": "bottom-right",
   "defaultOn": [],
