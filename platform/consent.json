@@ -5,23 +5,8 @@
   "categories": [
     "test"
   ],
-  "policyUrl": "/cookie-policy",
   "text": {
-    "title": "We value your privacy",
-    "policyLabel": "Cookie Policy",
-    "body": "test",
-    "acceptAll": "Accept",
-    "rejectAll": "Reject",
-    "preferences": "Custom",
-    "save": "Save",
-    "preferencesTitle": "Custom Preference center title",
-    "prefsIntro": "test Preference center intro",
-    "alwaysActive": "ACtive always",
-    "close": "Close this",
-    "gpcNotice": "Test Privacy signal notice in the preference center",
-    "settingsButton": "Manage",
-    "dnsLabel": "Do Not Sell link label",
-    "dnsConfirmation": "Do Not Sell confirmation text"
+    "settingsButton": "Manage"
   },
   "categoryText": {
     "test": {
@@ -35,15 +20,13 @@
   "gcmUrlPassthrough": false,
   "gpcEnabled": false,
   "gpcShowConfirmation": false,
-  "dnsEnabled": false,
+  "dnsEnabled": true,
   "autoclear": false,
   "logging": false,
   "layout": "banner",
   "position": "center",
   "theme": "light",
   "revisitPosition": "bottom-right",
-  "fontFamily": "sans-serif",
-  "fontSize": 14,
   "defaultOn": [],
   "necessaryCategories": [],
   "cookies": [
