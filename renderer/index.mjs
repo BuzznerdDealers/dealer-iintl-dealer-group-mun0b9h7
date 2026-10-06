@@ -185,7 +185,6 @@ export {
 } from './location-pages.mjs';
 export { isValidPageType, pageTypeOptions } from './analytics-vocab.mjs';
 export { analyticsConfig, analyticsHead, missingIdentity } from './analytics.mjs';
-export { consentConfig, consentHead, consentGateScript, consentCategoryOf, gateMarkup, CONSENT_MODES } from './consent.mjs';
 
 export {
   BEHAVIOURS,

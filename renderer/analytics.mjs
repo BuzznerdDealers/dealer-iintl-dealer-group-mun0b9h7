@@ -10,7 +10,6 @@
 
 import { esc } from './html.mjs';
 import { analyticsBlob, bootstrapCode } from './analytics-bootstrap.mjs';
-import { ACTIVATE, consentCategoryOf, consentConfig, gatedInline, gatedSrc } from './consent.mjs';
 
 /**
  * Read the baked analytics file.
@@ -68,21 +67,9 @@ export function missingIdentity(config) {
  * - **Nothing is evaluated.** Values go through `JSON.stringify`; the emitter
  *   interpolates data into a fixed code shape and never interpolates code.
  */
-/*
- * With consent on, the same burst is emitted held back — `type="text/plain"`
- * under the provider's consent category — and the gate in `consent.mjs` turns
- * it into real script, still in document order, once that category is allowed.
- * The code between the tags is unchanged, so the storefront's vendored copy of
- * the bootstrap does not move.
- */
-function providerHead(provider, facts, gated = false) {
+function providerHead(provider, facts) {
   const code = bootstrapCode(provider, facts);
   if (!code) return '';
-  if (gated) {
-    const category = consentCategoryOf(provider);
-    const src = provider.bootstrap?.script;
-    return `\n${gatedInline(category, code)}${src ? `\n${gatedSrc(category, src, esc)}` : ''}`;
-  }
   const script = provider.bootstrap?.script
     ? `\n<script src="${esc(provider.bootstrap.script)}" async></script>`
     : '';
@@ -111,11 +98,8 @@ export function analyticsHead(config, page = {}) {
     providers: analytics.providers,
   });
 
-  const gated = !!consentConfig(config);
-
   return (
     `\n<script>window.__BZ_ANALYTICS__=${blob};</script>` +
-    analytics.providers.map((provider) => providerHead(provider, facts, gated)).join('') +
-    (gated ? ACTIVATE : '')
+    analytics.providers.map((provider) => providerHead(provider, facts)).join('')
   );
 }
