@@ -47,8 +47,8 @@
               "phone": "+15550100010",
               "phoneUrl": "tel:+15550100010",
               "photo": {
-                "src": "",
-                "alt": ""
+                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/preview/db/dms-11014940585__03__preview.jpg",
+                "alt": "Alicia Moore"
               },
               "servingSinceYear": 2017,
               "languages": [],
