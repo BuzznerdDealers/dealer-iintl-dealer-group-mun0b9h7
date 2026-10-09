@@ -12,3 +12,10 @@
 .bz-widget--staff .bz-person__p{margin-top:4px}
 @media (max-width:900px){.bz-widget--staff .bz-people{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:640px){.bz-widget--staff .bz-people{grid-template-columns:repeat(2,1fr)}}
+
+/* Department filter pills (anchor links) and section headings */
+.team-pills{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-5)}
+.team-pills a{padding:6px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:calc(var(--text-small) * .85);font-weight:800;text-transform:uppercase;letter-spacing:.04em;text-decoration:none}
+.team-pills a:hover{background:var(--ink);color:var(--card)}
+[id^="dept-"] h2{text-transform:uppercase;font-weight:800;margin:0}
+[id^="dept-"] p{color:var(--muted)}

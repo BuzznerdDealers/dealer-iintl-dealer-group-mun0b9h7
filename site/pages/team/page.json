@@ -21,26 +21,433 @@
           "id": "team-intro",
           "type": "text",
           "props": {
-            "text": "Sales, parts, service and leadership — one team. This list updates itself from the dealer dashboard."
+            "text": "Sales, parts, service and leadership \u2014 one team. This list updates itself from the dealer dashboard."
+          }
+        },
+        {
+          "id": "team-pills",
+          "type": "text",
+          "props": {
+            "text": "<nav class=\"team-pills\" aria-label=\"Departments\"><a href=\"#dept-sales\">Sales</a><a href=\"#dept-used_sales\">Used Sales</a><a href=\"#dept-service\">Service</a><a href=\"#dept-parts\">Parts</a><a href=\"#dept-body\">Body Shop</a><a href=\"#dept-tire\">Tire</a><a href=\"#dept-rental\">Rental</a><a href=\"#dept-leasing\">Leasing</a><a href=\"#dept-finance\">Finance</a><a href=\"#dept-ecommerce_ops\">Ecommerce Ops</a><a href=\"#dept-office\">Office</a><a href=\"#dept-warehouse\">Warehouse</a></nav>"
           }
         }
       ]
     },
     {
-      "id": "team-list-band",
+      "id": "dept-sales",
       "type": "section",
+      "anchor": "dept-sales",
       "props": {
         "paddingY": 6
       },
       "children": [
         {
-          "id": "team-list",
+          "id": "dept-sales-h",
+          "type": "heading",
+          "props": {
+            "text": "Sales",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-sales-d",
+          "type": "text",
+          "props": {
+            "text": "New trucks, trailers and fleet sales."
+          }
+        },
+        {
+          "id": "dept-sales-list",
           "type": "widget",
           "props": {
             "widget": "staff",
-            "config": {},
-            "snapshot": {
-              "staff": []
+            "config": {
+              "departmentCode": "sales"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-used_sales",
+      "type": "section",
+      "anchor": "dept-used_sales",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-used_sales-h",
+          "type": "heading",
+          "props": {
+            "text": "Used Sales",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-used_sales-d",
+          "type": "text",
+          "props": {
+            "text": "Pre-owned trucks and trailers, inspected and ready to work."
+          }
+        },
+        {
+          "id": "dept-used_sales-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "used_sales"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-service",
+      "type": "section",
+      "anchor": "dept-service",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-service-h",
+          "type": "heading",
+          "props": {
+            "text": "Service",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-service-d",
+          "type": "text",
+          "props": {
+            "text": "Certified technicians and advisors keeping you on the road."
+          }
+        },
+        {
+          "id": "dept-service-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "service"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-parts",
+      "type": "section",
+      "anchor": "dept-parts",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-parts-h",
+          "type": "heading",
+          "props": {
+            "text": "Parts",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-parts-d",
+          "type": "text",
+          "props": {
+            "text": "Genuine and aftermarket parts, counter and online."
+          }
+        },
+        {
+          "id": "dept-parts-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "parts"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-body",
+      "type": "section",
+      "anchor": "dept-body",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-body-h",
+          "type": "heading",
+          "props": {
+            "text": "Body Shop",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-body-d",
+          "type": "text",
+          "props": {
+            "text": "Collision repair and refinishing."
+          }
+        },
+        {
+          "id": "dept-body-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "body"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-tire",
+      "type": "section",
+      "anchor": "dept-tire",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-tire-h",
+          "type": "heading",
+          "props": {
+            "text": "Tire",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-tire-d",
+          "type": "text",
+          "props": {
+            "text": "Tires, alignment and roadside support."
+          }
+        },
+        {
+          "id": "dept-tire-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "tire"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-rental",
+      "type": "section",
+      "anchor": "dept-rental",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-rental-h",
+          "type": "heading",
+          "props": {
+            "text": "Rental",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-rental-d",
+          "type": "text",
+          "props": {
+            "text": "Short and long-term truck and trailer rental."
+          }
+        },
+        {
+          "id": "dept-rental-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "rental"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-leasing",
+      "type": "section",
+      "anchor": "dept-leasing",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-leasing-h",
+          "type": "heading",
+          "props": {
+            "text": "Leasing",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-leasing-d",
+          "type": "text",
+          "props": {
+            "text": "Flexible lease programs for fleets of any size."
+          }
+        },
+        {
+          "id": "dept-leasing-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "leasing"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-finance",
+      "type": "section",
+      "anchor": "dept-finance",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-finance-h",
+          "type": "heading",
+          "props": {
+            "text": "Finance",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-finance-d",
+          "type": "text",
+          "props": {
+            "text": "Financing options built around your business."
+          }
+        },
+        {
+          "id": "dept-finance-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "finance"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-ecommerce_ops",
+      "type": "section",
+      "anchor": "dept-ecommerce_ops",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-ecommerce_ops-h",
+          "type": "heading",
+          "props": {
+            "text": "Ecommerce Ops",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-ecommerce_ops-d",
+          "type": "text",
+          "props": {
+            "text": "Online orders, fulfilment and customer support."
+          }
+        },
+        {
+          "id": "dept-ecommerce_ops-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "ecommerce_ops"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-office",
+      "type": "section",
+      "anchor": "dept-office",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-office-h",
+          "type": "heading",
+          "props": {
+            "text": "Office",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-office-d",
+          "type": "text",
+          "props": {
+            "text": "Administration and customer care behind the scenes."
+          }
+        },
+        {
+          "id": "dept-office-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "office"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dept-warehouse",
+      "type": "section",
+      "anchor": "dept-warehouse",
+      "props": {
+        "paddingY": 6
+      },
+      "children": [
+        {
+          "id": "dept-warehouse-h",
+          "type": "heading",
+          "props": {
+            "text": "Warehouse",
+            "headingLevel": 2
+          }
+        },
+        {
+          "id": "dept-warehouse-d",
+          "type": "text",
+          "props": {
+            "text": "Receiving, stock and shipping."
+          }
+        },
+        {
+          "id": "dept-warehouse-list",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {
+              "departmentCode": "warehouse"
             }
           }
         }
