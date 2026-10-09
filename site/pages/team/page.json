@@ -21,7 +21,7 @@
           "id": "team-intro",
           "type": "text",
           "props": {
-            "text": "Sales, parts, service and leadership \u2014 one team. This list updates itself from the dealer dashboard."
+            "text": "Sales, parts, service and leadership — one team. This list updates itself from the dealer dashboard."
           }
         },
         {
@@ -63,6 +63,44 @@
             "widget": "staff",
             "config": {
               "departmentCode": "sales"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Dana Whitfield",
+                  "title": "Senior Sales Representative",
+                  "bio": "Dana Whitfield is part of the Senior Sales Representative team. (Dummy profile)",
+                  "phone": "+15550100002",
+                  "phoneUrl": "tel:+15550100002",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2017,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "dana-whitfield",
+                  "locations": "INTL Chicago"
+                },
+                {
+                  "name": "Marcus Bell",
+                  "title": "Sales Manager",
+                  "bio": "Marcus Bell is part of the Sales Manager team. (Dummy profile)",
+                  "phone": "+15550100001",
+                  "phoneUrl": "tel:+15550100001",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2016,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "marcus-bell",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -98,6 +136,27 @@
             "widget": "staff",
             "config": {
               "departmentCode": "used_sales"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Tom Reyes",
+                  "title": "Used Truck Sales Representative",
+                  "bio": "Tom Reyes is part of the Used Truck Sales Representative team. (Dummy profile)",
+                  "phone": "+15550100003",
+                  "phoneUrl": "tel:+15550100003",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2018,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "tom-reyes",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -133,6 +192,44 @@
             "widget": "staff",
             "config": {
               "departmentCode": "service"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Luis Ortega",
+                  "title": "Service Advisor",
+                  "bio": "Luis Ortega is part of the Service Advisor team. (Dummy profile)",
+                  "phone": "+15550100005",
+                  "phoneUrl": "tel:+15550100005",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2020,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "luis-ortega",
+                  "locations": "INTL Chicago"
+                },
+                {
+                  "name": "Priya Nair",
+                  "title": "Service Manager",
+                  "bio": "Priya Nair is part of the Service Manager team. (Dummy profile)",
+                  "phone": "+15550100004",
+                  "phoneUrl": "tel:+15550100004",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2019,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "priya-nair",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -168,6 +265,44 @@
             "widget": "staff",
             "config": {
               "departmentCode": "parts"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Gary Holt",
+                  "title": "Parts Manager",
+                  "bio": "Gary Holt is part of the Parts Manager team. (Dummy profile)",
+                  "phone": "+15550100006",
+                  "phoneUrl": "tel:+15550100006",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2021,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "gary-holt",
+                  "locations": "INTL Chicago"
+                },
+                {
+                  "name": "Nina Park",
+                  "title": "Parts Counter Specialist",
+                  "bio": "Nina Park is part of the Parts Counter Specialist team. (Dummy profile)",
+                  "phone": "+15550100007",
+                  "phoneUrl": "tel:+15550100007",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2022,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "nina-park",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -203,6 +338,27 @@
             "widget": "staff",
             "config": {
               "departmentCode": "body"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Walt Kowalski",
+                  "title": "Body Shop Manager",
+                  "bio": "Walt Kowalski is part of the Body Shop Manager team. (Dummy profile)",
+                  "phone": "+15550100008",
+                  "phoneUrl": "tel:+15550100008",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2015,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "walt-kowalski",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -238,6 +394,27 @@
             "widget": "staff",
             "config": {
               "departmentCode": "tire"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Ben Carter",
+                  "title": "Tire Shop Lead",
+                  "bio": "Ben Carter is part of the Tire Shop Lead team. (Dummy profile)",
+                  "phone": "+15550100009",
+                  "phoneUrl": "tel:+15550100009",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2016,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "ben-carter",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -273,6 +450,27 @@
             "widget": "staff",
             "config": {
               "departmentCode": "rental"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Alicia Moore",
+                  "title": "Rental Manager",
+                  "bio": "Alicia Moore is part of the Rental Manager team. (Dummy profile)",
+                  "phone": "+15550100010",
+                  "phoneUrl": "tel:+15550100010",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2017,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "alicia-moore",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -308,6 +506,27 @@
             "widget": "staff",
             "config": {
               "departmentCode": "leasing"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Jared Stone",
+                  "title": "Leasing Specialist",
+                  "bio": "Jared Stone is part of the Leasing Specialist team. (Dummy profile)",
+                  "phone": "+15550100011",
+                  "phoneUrl": "tel:+15550100011",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2018,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "jared-stone",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -343,6 +562,27 @@
             "widget": "staff",
             "config": {
               "departmentCode": "finance"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Rosa Delgado",
+                  "title": "Finance Manager",
+                  "bio": "Rosa Delgado is part of the Finance Manager team. (Dummy profile)",
+                  "phone": "+15550100012",
+                  "phoneUrl": "tel:+15550100012",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2019,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "rosa-delgado",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -378,6 +618,27 @@
             "widget": "staff",
             "config": {
               "departmentCode": "ecommerce_ops"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Kyle Brennan",
+                  "title": "Ecommerce Operations Lead",
+                  "bio": "Kyle Brennan is part of the Ecommerce Operations Lead team. (Dummy profile)",
+                  "phone": "+15550100013",
+                  "phoneUrl": "tel:+15550100013",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2020,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "kyle-brennan",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -413,6 +674,27 @@
             "widget": "staff",
             "config": {
               "departmentCode": "office"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Helen Zhou",
+                  "title": "Office Administrator",
+                  "bio": "Helen Zhou is part of the Office Administrator team. (Dummy profile)",
+                  "phone": "+15550100014",
+                  "phoneUrl": "tel:+15550100014",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2021,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "helen-zhou",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
@@ -448,6 +730,27 @@
             "widget": "staff",
             "config": {
               "departmentCode": "warehouse"
+            },
+            "snapshot": {
+              "staff": [
+                {
+                  "name": "Dmitri Ivanov",
+                  "title": "Warehouse Supervisor",
+                  "bio": "Dmitri Ivanov is part of the Warehouse Supervisor team. (Dummy profile)",
+                  "phone": "+15550100015",
+                  "phoneUrl": "tel:+15550100015",
+                  "photo": {
+                    "src": "",
+                    "alt": ""
+                  },
+                  "servingSinceYear": 2022,
+                  "languages": [],
+                  "locationSlug": "main",
+                  "locationName": "INTL Chicago",
+                  "slug": "dmitri-ivanov",
+                  "locations": "INTL Chicago"
+                }
+              ]
             }
           }
         }
