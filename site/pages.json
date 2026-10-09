@@ -17,44 +17,5 @@
       "utilityNav": null
     },
     "pageType": "Home"
-  },
-  {
-    "slug": "team",
-    "title": "Meet the Team",
-    "description": "The people who sell, service and support you.",
-    "path": "/team",
-    "out": "team/index.html",
-    "dir": "team",
-    "status": "published",
-    "seo": {
-      "ogImage": null,
-      "noindex": false
-    },
-    "templates": {
-      "header": null,
-      "footer": null,
-      "utilityNav": null
-    },
-    "pageType": "About"
-  },
-  {
-    "slug": "team-member",
-    "title": "{{name}} \u2014 {{title}}",
-    "description": "{{name}}, {{title}} at {{locations}}.",
-    "path": "/team/:slug",
-    "forEach": "staff",
-    "dir": "team-member",
-    "status": "published",
-    "seo": {
-      "ogImage": null,
-      "noindex": false
-    },
-    "templates": {
-      "header": null,
-      "footer": null,
-      "utilityNav": null
-    },
-    "pageType": "About",
-    "out": "team/:slug/index.html"
   }
 ]
