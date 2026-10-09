@@ -42,6 +42,8 @@ import {
   dataSource,
   isDataBinding,
   isLocationPage,
+  isStaffPage,
+  staffIndex,
   listMenus,
   locationIndex,
   parseComponentProps,
@@ -375,6 +377,24 @@ if (!existsSync(pagesPath)) {
         // apply — and the two ways of getting it wrong are both silent: a path
         // with no :slug writes every location over the same file, and a page
         // nobody has published yet emits nothing at all.
+        if (isStaffPage(page)) {
+          if (page?.path && !page.path.includes(SLUG_TOKEN)) {
+            fail(
+              'site/pages.json',
+              `${at}.path`,
+              `builds one page per team member but has no "${SLUG_TOKEN}" in "${page.path}", so every person would overwrite the same file`,
+              `Use a path like "/team/${SLUG_TOKEN}".`,
+            );
+          }
+          const doc = readJson(join(SITE, 'pages', page.dir ?? '', 'page.json')).value;
+          if (!staffIndex(doc).length) {
+            note(
+              'site/pages.json',
+              `"${page.slug}" builds one page per team member and has no team members baked into it yet, so it emits nothing. Publishing writes them in.`,
+            );
+          }
+          continue;
+        }
         if (isLocationPage(page)) {
           if (page?.path && !page.path.includes(SLUG_TOKEN)) {
             fail(

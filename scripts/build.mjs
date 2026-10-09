@@ -42,6 +42,10 @@ import {
   documentStyles,
   rooftopFrom,
   isLocationPage,
+  isStaffPage,
+  staffIndex,
+  staffPageNodes,
+  staffPath,
   locationIndex,
   locationOut,
   locationPageNodes,
@@ -225,6 +229,8 @@ const renderCtx = {
   // yet, and making it depend on that turned every unbaked item into a plain
   // heading.
   locationPagePath: locationPagePattern(pages),
+  // Where a team member's own page lives, so a card can link to it.
+  staffPagePath: pages.find(isStaffPage)?.path ?? null,
   warn,
 };
 
@@ -504,6 +510,32 @@ function locationPagePattern(entries) {
 function expandLocationPages(entries) {
   const out = [];
   for (const p of entries) {
+    if (isStaffPage(p)) {
+      // Same rule as a location: the people come from the page's own baked
+      // index, never fetched, and an unpublished repo emits nothing.
+      const document = readJsonIf(join(SITE, 'pages', p.dir, 'page.json'), {});
+      const people = staffIndex(document);
+      if (!people.length) {
+        warn(
+          `page "${p.slug}" builds one page per team member, and no team members have been published yet — no team pages emitted`,
+        );
+        continue;
+      }
+      for (const person of people) {
+        const path = staffPath(p.path, person.slug);
+        out.push({
+          ...p,
+          document,
+          person,
+          slug: `${p.slug}--${person.slug}`,
+          path,
+          out: locationOut(path),
+          title: fillTokens(p.title, person),
+          description: fillTokens(p.description, person),
+        });
+      }
+      continue;
+    }
     if (!isLocationPage(p)) {
       out.push(p);
       continue;
@@ -542,7 +574,9 @@ for (const p of expandLocationPages(pages)) {
   const dir = join(SITE, 'pages', p.dir);
   const nodes = p.location
     ? locationPageNodes(pageNodes(dir, p.slug), p.document, p.location.slug)
-    : pageNodes(dir, p.slug);
+    : p.person
+      ? staffPageNodes(pageNodes(dir, p.slug), p.document, p.person.slug)
+      : pageNodes(dir, p.slug);
   const css = readText(join(dir, 'style.css'));
 
   let pageJs = null;

@@ -1,0 +1,14 @@
+#team-head h1{text-transform:uppercase;letter-spacing:-.01em;font-weight:800}
+#team-head p{color:var(--muted);max-width:60ch}
+
+/* Portrait grid: 4 across, photo, rule, uppercase name, small title */
+.bz-widget--staff .bz-people{grid-template-columns:repeat(4,1fr);gap:var(--space-6) var(--space-4)}
+.bz-widget--staff .bz-person{align-items:stretch;text-align:left;gap:0}
+.bz-widget--staff .bz-person img,
+.bz-widget--staff .bz-person .bz-photo{width:100%;height:auto;aspect-ratio:4/5;border-radius:0;object-fit:cover;object-position:top;background:var(--paper)}
+.bz-widget--staff .bz-person__n{margin-top:var(--space-2);padding-top:var(--space-2);border-top:2px solid var(--ink);text-transform:uppercase;letter-spacing:.04em;font-size:var(--text-small);font-weight:800}
+.bz-widget--staff .bz-person__t,
+.bz-widget--staff .bz-person__l{font-size:calc(var(--text-small) * .85);margin-top:2px}
+.bz-widget--staff .bz-person__p{margin-top:4px}
+@media (max-width:900px){.bz-widget--staff .bz-people{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.bz-widget--staff .bz-people{grid-template-columns:repeat(2,1fr)}}

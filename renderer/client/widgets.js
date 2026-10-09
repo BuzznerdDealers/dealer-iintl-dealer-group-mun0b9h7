@@ -185,7 +185,10 @@
    * the site until a human reopened the page in the editor and saved it.
    */
   function renderStaff(node, staff) {
+    // A single profile is not a list; its snapshot is the whole page.
+    if (node.querySelector('.bz-profile')) return;
     var list = node.querySelector('ul.bz-people');
+    var pattern = list && list.getAttribute('data-bz-staff-path');
     if (!list) {
       list = el('ul', 'bz-people bz-bare');
       var empty = node.querySelector('.bz-widget__empty');
@@ -211,8 +214,15 @@
         blank.setAttribute('aria-hidden', 'true');
         li.appendChild(blank);
       }
-      li.appendChild(el('span', 'bz-person__n', p.name));
+      if (pattern && p.slug) {
+        var link = el('a', 'bz-person__n', p.name);
+        link.href = pattern.split(':slug').join(p.slug);
+        li.appendChild(link);
+      } else {
+        li.appendChild(el('span', 'bz-person__n', p.name));
+      }
       if (p.title) li.appendChild(el('span', 'bz-person__t', p.title));
+      if (p.locations) li.appendChild(el('span', 'bz-person__l', p.locations));
       if (p.phone) {
         var tel = el('a', 'bz-person__p', p.phone);
         tel.href = 'tel:' + String(p.phone).replace(/[^+\d]/g, '');

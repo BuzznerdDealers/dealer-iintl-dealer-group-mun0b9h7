@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "nodes": [
+    { "id": "team-hero", "type": "section", "props": { "paddingY": 8 }, "anchor": "team-head", "children": [
+      { "id": "team-h", "type": "heading", "props": { "text": "Our Team", "headingLevel": 1 } },
+      { "id": "team-intro", "type": "text", "props": { "text": "Sales, parts, service and leadership — one team. This list updates itself from the dealer dashboard." } }
+    ]},
+    { "id": "team-list-band", "type": "section", "props": { "paddingY": 6 }, "children": [
+      { "id": "team-list", "type": "widget", "props": { "widget": "staff", "config": {} } }
+    ]}
+  ]
+}

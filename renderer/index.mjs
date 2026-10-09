@@ -77,6 +77,12 @@
 // 4.14.1 — locations-map draws the OpenStreetMap embed from the snapshot, so
 // the Design canvas and a no-JS first paint show the map. Until now the box
 // was empty until widgets.js ran, which the editor never does.
+// 4.26.0 — team pages. A manifest entry declaring `forEach: "staff"` with `:slug`
+// in its path builds one page per public team member, the way `forEach:
+// "locations"` does per rooftop; the `staff` widget gains `staffSlug` (one
+// person as a profile) and its rows gain `slug`, `bio`, `locations`. Add, edit
+// or remove someone in Admin and the next publish does the same to their page.
+//
 // 4.14.0 — a rooftop page emits its own LocalBusiness. A page naming a
 // `locationSlug` in site/pages.json builds its structured data from that page's
 // own widget snapshots — address, geo, phone, per-department
@@ -168,11 +174,18 @@
 // library the site loads, or onto an image, and the build publishes it in
 // `/partials/manifest.json` as `icons`. Unmapped slots keep the storefront's own
 // characters; a site with no file publishes no `icons` and nothing changes.
-export const RENDERER_VERSION = '4.25.0';
+export const RENDERER_VERSION = '4.26.0';
 
 export {
   LOCATION_SOURCE,
+  STAFF_SOURCE,
   SLUG_TOKEN,
+  applyStaffSlug,
+  isStaffPage,
+  staffIndex,
+  staffPageNodes,
+  staffPath,
+  staffSnapshots,
   applyLocationSlug,
   applyLocationSnapshots,
   fillTokens,

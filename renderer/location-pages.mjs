@@ -123,3 +123,61 @@ export function locationPageNodes(nodes, document, slug) {
   applyLocationSnapshots(copy, locationSnapshots(document, slug));
   return copy;
 }
+
+/* --------------------------------------------------------------------- staff */
+// One authored page, one built page per public team member — the same mechanism
+// as locations, for the same reasons. A manifest entry declares it:
+//
+//   { "slug": "team-member", "path": "/team/:slug", "forEach": "staff" }
+//
+// Publishing bakes the page once per person into `staffSnapshots`, with a `staff`
+// index of what to emit. Someone added, edited or removed in Admin therefore
+// adds, changes or removes their page on the next publish.
+
+/** The `forEach` source for team-member pages. */
+export const STAFF_SOURCE = 'staff';
+
+/** Is this manifest entry one authored page standing for many team members? */
+export function isStaffPage(entry) {
+  return !!entry && entry.forEach === STAFF_SOURCE;
+}
+
+/** The people a baked page will emit; empty before the first bake. */
+export function staffIndex(document) {
+  const list = document && document.staff;
+  return Array.isArray(list) ? list.filter((p) => p && typeof p.slug === 'string' && p.slug) : [];
+}
+
+/** That person's baked snapshots, by node id. */
+export function staffSnapshots(document, slug) {
+  const all = (document && document.staffSnapshots) || {};
+  return (all && all[slug]) || {};
+}
+
+/** `/team/:slug` → `/team/ada-lovelace`. */
+export function staffPath(path, slug) {
+  return locationPath(path, slug);
+}
+
+/** Point every `staff` widget at one person, where the author left it open. */
+export function applyStaffSlug(nodes, slug) {
+  for (const node of nodes || []) {
+    if (node && node.type === 'widget' && node.props && node.props.widget === 'staff') {
+      if (!node.props.config) node.props.config = {};
+      if (!node.props.config.staffSlug) node.props.config.staffSlug = slug;
+    }
+    if (node && node.type === 'sharedSection' && node.props) {
+      if (!node.props.values) node.props.values = {};
+      if (!node.props.values.staffSlug) node.props.values.staffSlug = slug;
+    }
+    if (node && Array.isArray(node.children)) applyStaffSlug(node.children, slug);
+  }
+}
+
+/** One authored team-member page, prepared for one person. Returns a copy. */
+export function staffPageNodes(nodes, document, slug) {
+  const copy = JSON.parse(JSON.stringify(nodes || []));
+  applyStaffSlug(copy, slug);
+  applyLocationSnapshots(copy, staffSnapshots(document, slug));
+  return copy;
+}

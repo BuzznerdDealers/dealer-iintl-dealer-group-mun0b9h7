@@ -17,6 +17,7 @@
 // in Vendure, because plugins register them. This module owns only the markup.
 
 import { attrs, cls, esc, href, image, join, tagAttrs } from './html.mjs';
+import { staffPath } from './location-pages.mjs';
 import { renderForm } from './forms.mjs';
 
 /** Widgets that install behaviour and render nothing a buyer sees. */
@@ -406,26 +407,54 @@ function locationsPinmap(config, snapshot, ctx) {
   );
 }
 
-function staff(config, snapshot) {
+function staff(config, snapshot, ctx) {
   const people = (snapshot && snapshot.staff) || [];
-  const cards = people.map(
-    (p) =>
-      `<li class="bz-person"${SLIDE}>${image(p.photo, { width: 128, height: 128, placeholder: '' })}<span class="bz-person__n">${esc(
+
+  // One person's own page: a profile, not a card in a grid.
+  if (config.staffSlug) {
+    const p = people.find((x) => x.slug === config.staffSlug) || people[0];
+    if (!p) return shell('staff', config, '<p class="bz-widget__empty">Team member loads here.</p>');
+    return shell(
+      'staff',
+      config,
+      `<div class="bz-profile">${image(p.photo, { width: 320, height: 320, placeholder: '', class: 'bz-profile__img' })}<div class="bz-profile__body"><h1 class="bz-profile__n">${esc(
         p.name,
-      )}</span>${p.title ? `<span class="bz-person__t">${esc(p.title)}</span>` : ''}${
+      )}</h1>${p.title ? `<p class="bz-profile__t">${esc(p.title)}</p>` : ''}${
+        p.locations ? `<p class="bz-profile__l">${esc(p.locations)}</p>` : ''
+      }${p.bio ? `<p class="bz-profile__b">${esc(p.bio)}</p>` : ''}${
+        p.servingSinceYear ? `<p class="bz-profile__s">Serving since ${esc(String(p.servingSinceYear))}</p>` : ''
+      }${
         p.phone
           ? `<a class="bz-person__p" href="tel:${esc(p.phone.replace(/[^+\d]/g, ''))}"${attrs(
               tagAttrs('phone', 'call-staff'),
             )}>${esc(p.phone)}</a>`
           : ''
-      }</li>`,
-  );
+      }</div></div>`,
+    );
+  }
+
+  const pattern = ctx && ctx.staffPagePath;
+  const cards = people.map((p) => {
+    const link = pattern && p.slug ? staffPath(pattern, p.slug) : null;
+    const name = link
+      ? `<a class="bz-person__n" href="${esc(link)}">${esc(p.name)}</a>`
+      : `<span class="bz-person__n">${esc(p.name)}</span>`;
+    return `<li class="bz-person"${SLIDE}>${image(p.photo, { width: 128, height: 128, placeholder: '' })}${name}${
+      p.title ? `<span class="bz-person__t">${esc(p.title)}</span>` : ''
+    }${p.locations ? `<span class="bz-person__l">${esc(p.locations)}</span>` : ''}${
+      p.phone
+        ? `<a class="bz-person__p" href="tel:${esc(p.phone.replace(/[^+\d]/g, ''))}"${attrs(
+            tagAttrs('phone', 'call-staff'),
+          )}>${esc(p.phone)}</a>`
+        : ''
+    }</li>`;
+  });
   return shell(
     'staff',
     config,
     `${config.heading ? `<p class="bz-widget__h">${esc(config.heading)}</p>` : ''}${
       cards.length
-        ? `<ul class="bz-people bz-bare"${TRACK}>${join(cards, '')}</ul>`
+        ? `<ul class="bz-people bz-bare"${TRACK}${attrs({ 'data-bz-staff-path': pattern || null })}>${join(cards, '')}</ul>`
         : '<p class="bz-widget__empty">Team members load here.</p>'
     }`,
   );
