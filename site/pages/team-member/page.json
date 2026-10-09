@@ -1,11 +1,41 @@
 {
   "version": 2,
   "nodes": [
-    { "id": "member-band", "type": "section", "props": { "paddingY": 8 }, "children": [
-      { "id": "member-profile", "type": "widget", "props": { "widget": "staff", "config": {} } }
-    ]},
-    { "id": "member-back-band", "type": "section", "props": { "paddingY": 4 }, "children": [
-      { "id": "member-back", "type": "text", "props": { "text": "<a href=\"/team\">← Back to the team</a>" } }
-    ]}
+    {
+      "id": "member-band",
+      "type": "section",
+      "props": {
+        "paddingY": 8
+      },
+      "children": [
+        {
+          "id": "member-profile",
+          "type": "widget",
+          "props": {
+            "widget": "staff",
+            "config": {},
+            "snapshot": {
+              "staff": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "member-back-band",
+      "type": "section",
+      "props": {
+        "paddingY": 4
+      },
+      "children": [
+        {
+          "id": "member-back",
+          "type": "text",
+          "props": {
+            "text": "<a href=\"/team\">← Back to the team</a>"
+          }
+        }
+      ]
+    }
   ]
 }
