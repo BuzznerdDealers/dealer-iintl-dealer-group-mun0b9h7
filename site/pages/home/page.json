@@ -312,33 +312,33 @@
             },
             {
               "day": "Monday",
-              "hours": "Closed",
-              "opensAt": null,
-              "closesAt": null
+              "hours": "6 AM – 11 PM",
+              "opensAt": "06:00",
+              "closesAt": "23:00"
             },
             {
               "day": "Tuesday",
-              "hours": "Closed",
-              "opensAt": null,
-              "closesAt": null
+              "hours": "6 AM – 11 PM",
+              "opensAt": "06:00",
+              "closesAt": "23:00"
             },
             {
               "day": "Wednesday",
-              "hours": "Closed",
-              "opensAt": null,
-              "closesAt": null
+              "hours": "6 AM – 11 PM",
+              "opensAt": "06:00",
+              "closesAt": "23:00"
             },
             {
               "day": "Thursday",
-              "hours": "Closed",
-              "opensAt": null,
-              "closesAt": null
+              "hours": "6 AM – 11 PM",
+              "opensAt": "06:00",
+              "closesAt": "23:00"
             },
             {
               "day": "Friday",
-              "hours": "Closed",
-              "opensAt": null,
-              "closesAt": null
+              "hours": "6 AM – 11 PM",
+              "opensAt": "06:00",
+              "closesAt": "23:00"
             },
             {
               "day": "Saturday",
@@ -359,33 +359,33 @@
                 },
                 {
                   "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
+                  "hours": "6 AM – 11 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
                 },
                 {
                   "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
+                  "hours": "6 AM – 11 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
                 },
                 {
                   "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
+                  "hours": "6 AM – 11 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
                 },
                 {
                   "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
+                  "hours": "6 AM – 11 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
                 },
                 {
                   "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
+                  "hours": "6 AM – 11 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
                 },
                 {
                   "day": "Saturday",
@@ -406,509 +406,39 @@
                 },
                 {
                   "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
+                  "hours": "6 AM – 11 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
                 },
                 {
                   "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
+                  "hours": "6 AM – 11 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
                 },
                 {
                   "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
+                  "hours": "6 AM – 11 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
                 },
                 {
                   "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
+                  "hours": "6 AM – 11 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
                 },
                 {
                   "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
+                  "hours": "6 AM – 11 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
                 },
                 {
                   "day": "Saturday",
                   "hours": "Closed",
                   "opensAt": null,
                   "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Service",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Parts",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Body Shop",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Tire",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Rental",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Leasing",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Finance",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Ecommerce Ops",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Office",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Friday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Warehouse",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "10 AM – 4 PM",
-                  "opensAt": "10:00",
-                  "closesAt": "16:00"
-                },
-                {
-                  "day": "Monday",
-                  "hours": "9 AM – 5 PM",
-                  "opensAt": "09:00",
-                  "closesAt": "17:00"
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "9 AM – 5 PM",
-                  "opensAt": "09:00",
-                  "closesAt": "17:00"
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "9 AM – 5 PM",
-                  "opensAt": "09:00",
-                  "closesAt": "17:00"
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "9 AM – 5 PM",
-                  "opensAt": "09:00",
-                  "closesAt": "17:00"
-                },
-                {
-                  "day": "Friday",
-                  "hours": "9 AM – 5 PM",
-                  "opensAt": "09:00",
-                  "closesAt": "17:00"
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "9 AM – 1 PM",
-                  "opensAt": "09:00",
-                  "closesAt": "13:00"
                 }
               ]
             }
@@ -984,8 +514,8 @@
               "perk1": null,
               "perk2": null,
               "perk3": null,
-              "departments": "Sales · Used Sales · Service · Parts · Body Shop · Tire · Rental · Leasing · Finance · Ecommerce Ops · Office · Warehouse",
-              "hours": "Warehouse: 10 AM – 4 PM Sun, 9 AM – 5 PM Mon–Fri, 9 AM – 1 PM Sat",
+              "departments": "Sales · Used Sales",
+              "hours": "Sales: 6 AM – 11 PM Mon–Fri\n\nUsed Sales: 6 AM – 11 PM Mon–Fri",
               "phone2": null,
               "phone2Url": null,
               "phone3": null,
@@ -1010,7 +540,7 @@
                   "phone": null,
                   "phoneUrl": null,
                   "email": null,
-                  "hours": ""
+                  "hours": "6 AM – 11 PM Mon–Fri"
                 },
                 {
                   "name": "Used Sales",
@@ -1018,94 +548,14 @@
                   "phone": null,
                   "phoneUrl": null,
                   "email": null,
-                  "hours": ""
-                },
-                {
-                  "name": "Service",
-                  "key": "service",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": ""
-                },
-                {
-                  "name": "Parts",
-                  "key": "parts",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": ""
-                },
-                {
-                  "name": "Body Shop",
-                  "key": "body",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": ""
-                },
-                {
-                  "name": "Tire",
-                  "key": "tire",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": ""
-                },
-                {
-                  "name": "Rental",
-                  "key": "rental",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": ""
-                },
-                {
-                  "name": "Leasing",
-                  "key": "leasing",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": ""
-                },
-                {
-                  "name": "Finance",
-                  "key": "finance",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": ""
-                },
-                {
-                  "name": "Ecommerce Ops",
-                  "key": "ecommerce_ops",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": ""
-                },
-                {
-                  "name": "Office",
-                  "key": "office",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": ""
-                },
-                {
-                  "name": "Warehouse",
-                  "key": "warehouse",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": "10 AM – 4 PM Sun, 9 AM – 5 PM Mon–Fri, 9 AM – 1 PM Sat"
+                  "hours": "6 AM – 11 PM Mon–Fri"
                 }
               ],
               "hoursRows": [
                 {
                   "department": "Sales",
                   "key": "sales",
-                  "summary": "",
+                  "summary": "6 AM – 11 PM Mon–Fri",
                   "days": [
                     {
                       "day": "Sunday",
@@ -1116,38 +566,38 @@
                     },
                     {
                       "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
+                      "hours": "6 AM – 11 PM",
+                      "opensAt": "06:00",
+                      "closesAt": "23:00",
+                      "closed": false
                     },
                     {
                       "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
+                      "hours": "6 AM – 11 PM",
+                      "opensAt": "06:00",
+                      "closesAt": "23:00",
+                      "closed": false
                     },
                     {
                       "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
+                      "hours": "6 AM – 11 PM",
+                      "opensAt": "06:00",
+                      "closesAt": "23:00",
+                      "closed": false
                     },
                     {
                       "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
+                      "hours": "6 AM – 11 PM",
+                      "opensAt": "06:00",
+                      "closesAt": "23:00",
+                      "closed": false
                     },
                     {
                       "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
+                      "hours": "6 AM – 11 PM",
+                      "opensAt": "06:00",
+                      "closesAt": "23:00",
+                      "closed": false
                     },
                     {
                       "day": "Saturday",
@@ -1161,7 +611,7 @@
                 {
                   "department": "Used Sales",
                   "key": "used_sales",
-                  "summary": "",
+                  "summary": "6 AM – 11 PM Mon–Fri",
                   "days": [
                     {
                       "day": "Sunday",
@@ -1172,605 +622,45 @@
                     },
                     {
                       "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Service",
-                  "key": "service",
-                  "summary": "",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Parts",
-                  "key": "parts",
-                  "summary": "",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Body Shop",
-                  "key": "body",
-                  "summary": "",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Tire",
-                  "key": "tire",
-                  "summary": "",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Rental",
-                  "key": "rental",
-                  "summary": "",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Leasing",
-                  "key": "leasing",
-                  "summary": "",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Finance",
-                  "key": "finance",
-                  "summary": "",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Ecommerce Ops",
-                  "key": "ecommerce_ops",
-                  "summary": "",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Office",
-                  "key": "office",
-                  "summary": "",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Warehouse",
-                  "key": "warehouse",
-                  "summary": "10 AM – 4 PM Sun, 9 AM – 5 PM Mon–Fri, 9 AM – 1 PM Sat",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "10 AM – 4 PM",
-                      "opensAt": "10:00",
-                      "closesAt": "16:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "9 AM – 5 PM",
-                      "opensAt": "09:00",
-                      "closesAt": "17:00",
+                      "hours": "6 AM – 11 PM",
+                      "opensAt": "06:00",
+                      "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Tuesday",
-                      "hours": "9 AM – 5 PM",
-                      "opensAt": "09:00",
-                      "closesAt": "17:00",
+                      "hours": "6 AM – 11 PM",
+                      "opensAt": "06:00",
+                      "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Wednesday",
-                      "hours": "9 AM – 5 PM",
-                      "opensAt": "09:00",
-                      "closesAt": "17:00",
+                      "hours": "6 AM – 11 PM",
+                      "opensAt": "06:00",
+                      "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Thursday",
-                      "hours": "9 AM – 5 PM",
-                      "opensAt": "09:00",
-                      "closesAt": "17:00",
+                      "hours": "6 AM – 11 PM",
+                      "opensAt": "06:00",
+                      "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Friday",
-                      "hours": "9 AM – 5 PM",
-                      "opensAt": "09:00",
-                      "closesAt": "17:00",
+                      "hours": "6 AM – 11 PM",
+                      "opensAt": "06:00",
+                      "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Saturday",
-                      "hours": "9 AM – 1 PM",
-                      "opensAt": "09:00",
-                      "closesAt": "13:00",
-                      "closed": false
+                      "hours": "Closed",
+                      "opensAt": null,
+                      "closesAt": null,
+                      "closed": true
                     }
                   ]
                 }
