@@ -312,31 +312,31 @@
             },
             {
               "day": "Monday",
-              "hours": "6 AM – 11 PM",
+              "hours": "06:00 AM - 11:00 PM",
               "opensAt": "06:00",
               "closesAt": "23:00"
             },
             {
               "day": "Tuesday",
-              "hours": "6 AM – 11 PM",
+              "hours": "06:00 AM - 11:00 PM",
               "opensAt": "06:00",
               "closesAt": "23:00"
             },
             {
               "day": "Wednesday",
-              "hours": "6 AM – 11 PM",
+              "hours": "06:00 AM - 11:00 PM",
               "opensAt": "06:00",
               "closesAt": "23:00"
             },
             {
               "day": "Thursday",
-              "hours": "6 AM – 11 PM",
+              "hours": "06:00 AM - 11:00 PM",
               "opensAt": "06:00",
               "closesAt": "23:00"
             },
             {
               "day": "Friday",
-              "hours": "6 AM – 11 PM",
+              "hours": "06:00 AM - 11:00 PM",
               "opensAt": "06:00",
               "closesAt": "23:00"
             },
@@ -359,31 +359,31 @@
                 },
                 {
                   "day": "Monday",
-                  "hours": "6 AM – 11 PM",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Tuesday",
-                  "hours": "6 AM – 11 PM",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Wednesday",
-                  "hours": "6 AM – 11 PM",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Thursday",
-                  "hours": "6 AM – 11 PM",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Friday",
-                  "hours": "6 AM – 11 PM",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
@@ -406,31 +406,31 @@
                 },
                 {
                   "day": "Monday",
-                  "hours": "6 AM – 11 PM",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Tuesday",
-                  "hours": "6 AM – 11 PM",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Wednesday",
-                  "hours": "6 AM – 11 PM",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Thursday",
-                  "hours": "6 AM – 11 PM",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Friday",
-                  "hours": "6 AM – 11 PM",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
@@ -515,7 +515,7 @@
               "perk2": null,
               "perk3": null,
               "departments": "Sales · Used Sales",
-              "hours": "Sales: 6 AM – 11 PM Mon–Fri\n\nUsed Sales: 6 AM – 11 PM Mon–Fri",
+              "hours": "Sales: 06:00 AM - 11:00 PM Mon–Fri\n\nUsed Sales: 06:00 AM - 11:00 PM Mon–Fri",
               "phone2": null,
               "phone2Url": null,
               "phone3": null,
@@ -540,7 +540,7 @@
                   "phone": null,
                   "phoneUrl": null,
                   "email": null,
-                  "hours": "6 AM – 11 PM Mon–Fri"
+                  "hours": "06:00 AM - 11:00 PM Mon–Fri"
                 },
                 {
                   "name": "Used Sales",
@@ -548,14 +548,14 @@
                   "phone": null,
                   "phoneUrl": null,
                   "email": null,
-                  "hours": "6 AM – 11 PM Mon–Fri"
+                  "hours": "06:00 AM - 11:00 PM Mon–Fri"
                 }
               ],
               "hoursRows": [
                 {
                   "department": "Sales",
                   "key": "sales",
-                  "summary": "6 AM – 11 PM Mon–Fri",
+                  "summary": "06:00 AM - 11:00 PM Mon–Fri",
                   "days": [
                     {
                       "day": "Sunday",
@@ -566,35 +566,35 @@
                     },
                     {
                       "day": "Monday",
-                      "hours": "6 AM – 11 PM",
+                      "hours": "06:00 AM - 11:00 PM",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Tuesday",
-                      "hours": "6 AM – 11 PM",
+                      "hours": "06:00 AM - 11:00 PM",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Wednesday",
-                      "hours": "6 AM – 11 PM",
+                      "hours": "06:00 AM - 11:00 PM",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Thursday",
-                      "hours": "6 AM – 11 PM",
+                      "hours": "06:00 AM - 11:00 PM",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Friday",
-                      "hours": "6 AM – 11 PM",
+                      "hours": "06:00 AM - 11:00 PM",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
@@ -611,7 +611,7 @@
                 {
                   "department": "Used Sales",
                   "key": "used_sales",
-                  "summary": "6 AM – 11 PM Mon–Fri",
+                  "summary": "06:00 AM - 11:00 PM Mon–Fri",
                   "days": [
                     {
                       "day": "Sunday",
@@ -622,35 +622,35 @@
                     },
                     {
                       "day": "Monday",
-                      "hours": "6 AM – 11 PM",
+                      "hours": "06:00 AM - 11:00 PM",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Tuesday",
-                      "hours": "6 AM – 11 PM",
+                      "hours": "06:00 AM - 11:00 PM",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Wednesday",
-                      "hours": "6 AM – 11 PM",
+                      "hours": "06:00 AM - 11:00 PM",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Thursday",
-                      "hours": "6 AM – 11 PM",
+                      "hours": "06:00 AM - 11:00 PM",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Friday",
-                      "hours": "6 AM – 11 PM",
+                      "hours": "06:00 AM - 11:00 PM",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
