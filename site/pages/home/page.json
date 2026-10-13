@@ -36,13 +36,13 @@
               "num": "01",
               "href": null,
               "streetAddress": null,
-              "city": null,
-              "region": null,
-              "postalCode": null,
+              "city": "",
+              "region": "",
+              "postalCode": "",
               "country": null,
               "latitude": null,
               "longitude": null,
-              "phone": null,
+              "phone": "",
               "phoneUrl": null,
               "mapUrl": null,
               "email": null,
@@ -63,8 +63,8 @@
               "group": "Midwest",
               "groupKey": "midwest",
               "photo": {
-                "src": "",
-                "alt": ""
+                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/source/0f/dms-11014940567__03.jpg",
+                "alt": "dms-11014940567__03.jpg"
               },
               "banner": {
                 "src": "",
