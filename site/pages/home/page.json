@@ -22,470 +22,10 @@
       }
     },
     {
-      "id": "quick",
-      "type": "iconGrid",
-      "props": {
-        "heading": "How can we help?",
-        "items": [
-          {
-            "label": "In-stock inventory",
-            "desc": "New and used trucks and trailers, priced and ready to move.",
-            "url": "/store"
-          },
-          {
-            "label": "Parts counter",
-            "desc": "OEM and aftermarket parts, shipped or ready at the counter.",
-            "url": "/store"
-          },
-          {
-            "label": "Service & repair",
-            "desc": "Factory-trained technicians for inspections, warranty and repair.",
-            "url": "/contact"
-          },
-          {
-            "label": "Financing",
-            "desc": "Flexible terms for owner-operators, with fast pre-approval.",
-            "url": "/contact"
-          }
-        ]
-      }
-    },
-    {
-      "id": "featured",
-      "type": "widget",
-      "props": {
-        "widget": "inventory-carousel",
-        "config": {
-          "heading": "Featured inventory",
-          "limit": 4
-        },
-        "snapshot": {
-          "listings": [
-            {
-              "slug": "1-2024-international-emv",
-              "href": "products/1-2024-international-emv",
-              "title": "2024 INTERNATIONAL EMV",
-              "price": "$0",
-              "facts": [
-                {
-                  "label": "Make",
-                  "value": "INTERNATIONAL"
-                },
-                {
-                  "label": "Model",
-                  "value": "EMV"
-                },
-                {
-                  "label": "Year",
-                  "value": "2024"
-                }
-              ],
-              "image": {
-                "src": "preview/5c/dms-8043066049__05__preview.jpg",
-                "alt": "2024 INTERNATIONAL EMV",
-                "width": 600,
-                "height": 400
-              }
-            },
-            {
-              "slug": "1-2025-hyundai",
-              "href": "products/1-2025-hyundai",
-              "title": "2025 HYUNDAI",
-              "price": "$0",
-              "facts": [
-                {
-                  "label": "Make",
-                  "value": "HYUNDAI"
-                },
-                {
-                  "label": "Year",
-                  "value": "2025"
-                },
-                {
-                  "label": "VIN",
-                  "value": "3H3V402K8SJ403205"
-                }
-              ],
-              "image": {
-                "src": "preview/6f/dms-9070598747__04__preview.jpg",
-                "alt": "2025 HYUNDAI",
-                "width": 600,
-                "height": 400
-              }
-            },
-            {
-              "slug": "1-2026-international-lt",
-              "href": "products/1-2026-international-lt",
-              "title": "2026 INTERNATIONAL LT",
-              "price": "$0",
-              "facts": [
-                {
-                  "label": "Make",
-                  "value": "INTERNATIONAL"
-                },
-                {
-                  "label": "Model",
-                  "value": "LT"
-                },
-                {
-                  "label": "Year",
-                  "value": "2026"
-                }
-              ],
-              "image": {
-                "src": "preview/d5/dms-11009572643__07__preview.jpg",
-                "alt": "2026 INTERNATIONAL LT",
-                "width": 600,
-                "height": 400
-              }
-            },
-            {
-              "slug": "1-2026-international-lt-2",
-              "href": "products/1-2026-international-lt-2",
-              "title": "2026 INTERNATIONAL LT",
-              "price": "$0",
-              "facts": [
-                {
-                  "label": "Make",
-                  "value": "INTERNATIONAL"
-                },
-                {
-                  "label": "Model",
-                  "value": "LT"
-                },
-                {
-                  "label": "Year",
-                  "value": "2026"
-                }
-              ],
-              "image": {
-                "src": "preview/f7/dms-11009586039__04__preview.jpg",
-                "alt": "2026 INTERNATIONAL LT",
-                "width": 600,
-                "height": 400
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
       "id": "widget",
       "type": "widget",
       "props": {
-        "widget": "staff",
-        "snapshot": {
-          "staff": [
-            {
-              "name": "Alicia Moore",
-              "title": "Rental Manager",
-              "phone": "+15550100010",
-              "phoneUrl": "tel:+15550100010",
-              "photo": null
-            },
-            {
-              "name": "Ben Carter",
-              "title": "Tire Shop Lead",
-              "phone": "+15550100009",
-              "phoneUrl": "tel:+15550100009",
-              "photo": null
-            },
-            {
-              "name": "Dana Whitfield",
-              "title": "Senior Sales Representative",
-              "phone": "+15550100002",
-              "phoneUrl": "tel:+15550100002",
-              "photo": null
-            },
-            {
-              "name": "Dmitri Ivanov",
-              "title": "Warehouse Supervisor",
-              "phone": "+15550100015",
-              "phoneUrl": "tel:+15550100015",
-              "photo": null
-            },
-            {
-              "name": "Gary Holt",
-              "title": "Parts Manager",
-              "phone": "+15550100006",
-              "phoneUrl": "tel:+15550100006",
-              "photo": null
-            },
-            {
-              "name": "Helen Zhou",
-              "title": "Office Administrator",
-              "phone": "+15550100014",
-              "phoneUrl": "tel:+15550100014",
-              "photo": null
-            },
-            {
-              "name": "Jared Stone",
-              "title": "Leasing Specialist",
-              "phone": "+15550100011",
-              "phoneUrl": "tel:+15550100011",
-              "photo": null
-            },
-            {
-              "name": "Kyle Brennan",
-              "title": "Ecommerce Operations Lead",
-              "phone": "+15550100013",
-              "phoneUrl": "tel:+15550100013",
-              "photo": null
-            },
-            {
-              "name": "Luis Ortega",
-              "title": "Service Advisor",
-              "phone": "+15550100005",
-              "phoneUrl": "tel:+15550100005",
-              "photo": null
-            },
-            {
-              "name": "Marcus Bell",
-              "title": "Sales Manager",
-              "phone": "+15550100001",
-              "phoneUrl": "tel:+15550100001",
-              "photo": null
-            },
-            {
-              "name": "Nina Park",
-              "title": "Parts Counter Specialist",
-              "phone": "+15550100007",
-              "phoneUrl": "tel:+15550100007",
-              "photo": null
-            },
-            {
-              "name": "Priya Nair",
-              "title": "Service Manager",
-              "phone": "+15550100004",
-              "phoneUrl": "tel:+15550100004",
-              "photo": null
-            },
-            {
-              "name": "Rosa Delgado",
-              "title": "Finance Manager",
-              "phone": "+15550100012",
-              "phoneUrl": "tel:+15550100012",
-              "photo": null
-            },
-            {
-              "name": "Sumit Kumar",
-              "title": null,
-              "phone": "+19198765432",
-              "phoneUrl": "tel:+19198765432",
-              "photo": null
-            },
-            {
-              "name": "Tom Reyes",
-              "title": "Used Truck Sales Representative",
-              "phone": "+15550100003",
-              "phoneUrl": "tel:+15550100003",
-              "photo": null
-            },
-            {
-              "name": "Walt Kowalski",
-              "title": "Body Shop Manager",
-              "phone": "+15550100008",
-              "phoneUrl": "tel:+15550100008",
-              "photo": null
-            }
-          ]
-        },
-        "config": {
-          "heading": "Team"
-        }
-      }
-    },
-    {
-      "id": "widget-2",
-      "type": "widget",
-      "props": {
-        "widget": "hours",
-        "snapshot": {
-          "location": "INTL Chicago",
-          "department": "Sales",
-          "hours": [
-            {
-              "day": "Sunday",
-              "hours": "Closed",
-              "opensAt": null,
-              "closesAt": null
-            },
-            {
-              "day": "Monday",
-              "hours": "06:00 AM - 11:00 PM",
-              "opensAt": "06:00",
-              "closesAt": "23:00"
-            },
-            {
-              "day": "Tuesday",
-              "hours": "06:00 AM - 11:00 PM",
-              "opensAt": "06:00",
-              "closesAt": "23:00"
-            },
-            {
-              "day": "Wednesday",
-              "hours": "06:00 AM - 11:00 PM",
-              "opensAt": "06:00",
-              "closesAt": "23:00"
-            },
-            {
-              "day": "Thursday",
-              "hours": "06:00 AM - 11:00 PM",
-              "opensAt": "06:00",
-              "closesAt": "23:00"
-            },
-            {
-              "day": "Friday",
-              "hours": "06:00 AM - 11:00 PM",
-              "opensAt": "06:00",
-              "closesAt": "23:00"
-            },
-            {
-              "day": "Saturday",
-              "hours": "Closed",
-              "opensAt": null,
-              "closesAt": null
-            }
-          ],
-          "schedules": [
-            {
-              "heading": "Sales",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "06:00 AM - 11:00 PM",
-                  "opensAt": "06:00",
-                  "closesAt": "23:00"
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "06:00 AM - 11:00 PM",
-                  "opensAt": "06:00",
-                  "closesAt": "23:00"
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "06:00 AM - 11:00 PM",
-                  "opensAt": "06:00",
-                  "closesAt": "23:00"
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "06:00 AM - 11:00 PM",
-                  "opensAt": "06:00",
-                  "closesAt": "23:00"
-                },
-                {
-                  "day": "Friday",
-                  "hours": "06:00 AM - 11:00 PM",
-                  "opensAt": "06:00",
-                  "closesAt": "23:00"
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            },
-            {
-              "heading": "Used Sales",
-              "hours": [
-                {
-                  "day": "Sunday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                },
-                {
-                  "day": "Monday",
-                  "hours": "06:00 AM - 11:00 PM",
-                  "opensAt": "06:00",
-                  "closesAt": "23:00"
-                },
-                {
-                  "day": "Tuesday",
-                  "hours": "06:00 AM - 11:00 PM",
-                  "opensAt": "06:00",
-                  "closesAt": "23:00"
-                },
-                {
-                  "day": "Wednesday",
-                  "hours": "06:00 AM - 11:00 PM",
-                  "opensAt": "06:00",
-                  "closesAt": "23:00"
-                },
-                {
-                  "day": "Thursday",
-                  "hours": "06:00 AM - 11:00 PM",
-                  "opensAt": "06:00",
-                  "closesAt": "23:00"
-                },
-                {
-                  "day": "Friday",
-                  "hours": "06:00 AM - 11:00 PM",
-                  "opensAt": "06:00",
-                  "closesAt": "23:00"
-                },
-                {
-                  "day": "Saturday",
-                  "hours": "Closed",
-                  "opensAt": null,
-                  "closesAt": null
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": "band",
-      "type": "statBand",
-      "props": {
-        "heading": "Keeping your fleet on the road",
-        "body": "Every unit we sell is inspected in our own shop. When you buy from us you get a direct line to the people who worked on it.",
-        "ctas": [
-          {
-            "ctaId": "about-us"
-          }
-        ],
-        "stats": [
-          {
-            "value": "39",
-            "label": "Years in business"
-          },
-          {
-            "value": "12k+",
-            "label": "Units delivered"
-          },
-          {
-            "value": "4",
-            "label": "Sales & service centers"
-          },
-          {
-            "value": "48hr",
-            "label": "Avg. parts turnaround"
-          }
-        ]
-      }
-    },
-    {
-      "id": "locations",
-      "type": "widget",
-      "props": {
         "widget": "locations-map",
-        "config": {
-          "heading": "Find a location",
-          "showMap": true
-        },
         "snapshot": {
           "locations": [
             {
@@ -515,7 +55,7 @@
               "perk2": null,
               "perk3": null,
               "departments": "Sales · Used Sales",
-              "hours": "Sales: 06:00 AM - 11:00 PM Mon–Fri\n\nUsed Sales: 06:00 AM - 11:00 PM Mon–Fri",
+              "hours": "Sales: 06:00–23:00 Mon–Fri\n\nUsed Sales: 06:00–23:00 Mon–Fri",
               "phone2": null,
               "phone2Url": null,
               "phone3": null,
@@ -540,7 +80,7 @@
                   "phone": null,
                   "phoneUrl": null,
                   "email": null,
-                  "hours": "06:00 AM - 11:00 PM Mon–Fri"
+                  "hours": "06:00–23:00 Mon–Fri"
                 },
                 {
                   "name": "Used Sales",
@@ -548,14 +88,14 @@
                   "phone": null,
                   "phoneUrl": null,
                   "email": null,
-                  "hours": "06:00 AM - 11:00 PM Mon–Fri"
+                  "hours": "06:00–23:00 Mon–Fri"
                 }
               ],
               "hoursRows": [
                 {
                   "department": "Sales",
                   "key": "sales",
-                  "summary": "06:00 AM - 11:00 PM Mon–Fri",
+                  "summary": "06:00–23:00 Mon–Fri",
                   "days": [
                     {
                       "day": "Sunday",
@@ -566,35 +106,35 @@
                     },
                     {
                       "day": "Monday",
-                      "hours": "06:00 AM - 11:00 PM",
+                      "hours": "06:00–23:00",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Tuesday",
-                      "hours": "06:00 AM - 11:00 PM",
+                      "hours": "06:00–23:00",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Wednesday",
-                      "hours": "06:00 AM - 11:00 PM",
+                      "hours": "06:00–23:00",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Thursday",
-                      "hours": "06:00 AM - 11:00 PM",
+                      "hours": "06:00–23:00",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Friday",
-                      "hours": "06:00 AM - 11:00 PM",
+                      "hours": "06:00–23:00",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
@@ -611,7 +151,7 @@
                 {
                   "department": "Used Sales",
                   "key": "used_sales",
-                  "summary": "06:00 AM - 11:00 PM Mon–Fri",
+                  "summary": "06:00–23:00 Mon–Fri",
                   "days": [
                     {
                       "day": "Sunday",
@@ -622,35 +162,35 @@
                     },
                     {
                       "day": "Monday",
-                      "hours": "06:00 AM - 11:00 PM",
+                      "hours": "06:00–23:00",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Tuesday",
-                      "hours": "06:00 AM - 11:00 PM",
+                      "hours": "06:00–23:00",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Wednesday",
-                      "hours": "06:00 AM - 11:00 PM",
+                      "hours": "06:00–23:00",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Thursday",
-                      "hours": "06:00 AM - 11:00 PM",
+                      "hours": "06:00–23:00",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
                     },
                     {
                       "day": "Friday",
-                      "hours": "06:00 AM - 11:00 PM",
+                      "hours": "06:00–23:00",
                       "opensAt": "06:00",
                       "closesAt": "23:00",
                       "closed": false
@@ -665,62 +205,108 @@
                   ]
                 }
               ]
+            },
+            {
+              "id": "3",
+              "name": "Tampa-1",
+              "subtitle": "",
+              "slug": "tampa-1",
+              "num": "02",
+              "href": null,
+              "streetAddress": null,
+              "city": "",
+              "region": "",
+              "postalCode": "",
+              "country": null,
+              "latitude": null,
+              "longitude": null,
+              "phone": "",
+              "phoneUrl": null,
+              "mapUrl": null,
+              "email": null,
+              "brands": "",
+              "services": "",
+              "perks": "",
+              "brandKeys": "",
+              "perkKeys": "",
+              "perk1": null,
+              "perk2": null,
+              "perk3": null,
+              "departments": "",
+              "hours": "",
+              "phone2": null,
+              "phone2Url": null,
+              "phone3": null,
+              "phone3Url": null,
+              "group": "Midwest",
+              "groupKey": "midwest",
+              "photo": {
+                "src": "",
+                "alt": ""
+              },
+              "banner": {
+                "src": "",
+                "alt": ""
+              },
+              "brandRows": [],
+              "serviceRows": [],
+              "perkRows": [],
+              "departmentRows": [],
+              "hoursRows": []
+            },
+            {
+              "id": "2",
+              "name": "Tampa",
+              "subtitle": "",
+              "slug": "tampa",
+              "num": "03",
+              "href": null,
+              "streetAddress": null,
+              "city": null,
+              "region": null,
+              "postalCode": null,
+              "country": null,
+              "latitude": null,
+              "longitude": null,
+              "phone": null,
+              "phoneUrl": null,
+              "mapUrl": null,
+              "email": null,
+              "brands": "",
+              "services": "",
+              "perks": "",
+              "brandKeys": "",
+              "perkKeys": "",
+              "perk1": null,
+              "perk2": null,
+              "perk3": null,
+              "departments": "",
+              "hours": "",
+              "phone2": null,
+              "phone2Url": null,
+              "phone3": null,
+              "phone3Url": null,
+              "group": "Midwest",
+              "groupKey": "midwest",
+              "photo": {
+                "src": "",
+                "alt": ""
+              },
+              "banner": {
+                "src": "",
+                "alt": ""
+              },
+              "brandRows": [],
+              "serviceRows": [],
+              "perkRows": [],
+              "departmentRows": [],
+              "hoursRows": []
             }
           ],
           "brandFacets": [],
           "perkFacets": []
         }
       }
-    },
-    {
-      "id": "contact-row",
-      "type": "row",
-      "props": {
-        "gap": 6,
-        "align": "stretch"
-      },
-      "children": [
-        {
-          "id": "contact-row-c1",
-          "type": "column",
-          "props": {
-            "span": 6
-          },
-          "children": [
-            {
-              "id": "contact-copy",
-              "type": "heading",
-              "props": {
-                "text": "Talk to someone who knows the equipment",
-                "headingLevel": 2
-              }
-            },
-            {
-              "id": "contact-text",
-              "type": "text",
-              "props": {
-                "text": "Tell us what the job needs and we will spec it, price it and tell you honestly what is in stock.\n\nPrefer the phone? <a href=\"tel:+15551234567\">Call us</a> during business hours."
-              }
-            }
-          ]
-        },
-        {
-          "id": "contact-row-c2",
-          "type": "column",
-          "props": {
-            "span": 6
-          },
-          "children": [
-            {
-              "id": "contact-form",
-              "type": "form",
-              "props": {
-                "formId": "request-info"
-              }
-            }
-          ]
-        }
-      ]
     }
   ]
 }
