@@ -48,7 +48,7 @@
   },
   {
     "id": "apply-for-financing",
-    "label": "Apply for financing",
+    "label": "Transact",
     "url": "https://example.com/apply?vin={vin}&price={price}",
     "style": "primary",
     "intent": "apply-for-financing",
