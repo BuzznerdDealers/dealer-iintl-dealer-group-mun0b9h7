@@ -58,7 +58,7 @@
   {
     "id": "apply-to-finance",
     "label": "Apply To Finance",
-    "url": "https://example.com/apply?vin={vin}&price={price}&city={city}&stock={stockNumber}",
+    "url": "https://example.com/apply?vin={vin}&price={price}",
     "style": "primary",
     "intent": "apply-to-finance",
     "active": true
