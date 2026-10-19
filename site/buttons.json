@@ -49,7 +49,7 @@
   {
     "id": "apply-for-financing",
     "label": "Transact",
-    "url": "https://example.com",
+    "url": "https://example.com/apply?vin={vin}&price={price}",
     "style": "primary",
     "intent": "apply-for-financing",
     "active": true,
