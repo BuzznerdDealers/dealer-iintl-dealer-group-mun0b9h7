@@ -1,0 +1,65 @@
+{
+  "version": 2,
+  "id": "inventory",
+  "name": "Inventory",
+  "conditions": [],
+  "css": "",
+  "js": "",
+  "nodes": [
+    {
+      "id": "header",
+      "type": "section",
+      "props": {
+        "width": "boxed",
+        "paddingY": 4,
+        "background": "card"
+      },
+      "children": [
+        {
+          "id": "header-row",
+          "type": "row",
+          "props": {
+            "gap": 6,
+            "align": "center"
+          },
+          "children": [
+            {
+              "id": "header-brand",
+              "type": "column",
+              "props": {
+                "span": 3
+              },
+              "children": []
+            },
+            {
+              "id": "header-nav",
+              "type": "column",
+              "props": {
+                "span": 9,
+                "align": "center"
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "type": "contentArea",
+      "props": {
+        "label": "Page content"
+      }
+    },
+    {
+      "id": "footer",
+      "type": "section",
+      "props": {
+        "width": "boxed",
+        "paddingY": 7,
+        "background": "ink"
+      },
+      "children": []
+    }
+  ]
+}
