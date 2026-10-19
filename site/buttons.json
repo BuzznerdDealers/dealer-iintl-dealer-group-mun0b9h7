@@ -45,5 +45,13 @@
     "intent": "about",
     "newTab": false,
     "active": true
+  },
+  {
+    "id": "apply-for-financing",
+    "label": "Apply for financing",
+    "url": " https://example.com/apply?vin={vin}&price={price}&city={city}&stock={stockNumber}",
+    "style": "primary",
+    "intent": "apply-for-financing",
+    "active": true
   }
 ]
