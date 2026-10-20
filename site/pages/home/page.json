@@ -38,31 +38,31 @@
             },
             {
               "day": "Monday",
-              "hours": "06:00 - 23:00",
+              "hours": "06:00 AM - 11:00 PM",
               "opensAt": "06:00",
               "closesAt": "23:00"
             },
             {
               "day": "Tuesday",
-              "hours": "06:00 - 23:00",
+              "hours": "06:00 AM - 11:00 PM",
               "opensAt": "06:00",
               "closesAt": "23:00"
             },
             {
               "day": "Wednesday",
-              "hours": "06:00 - 23:00",
+              "hours": "06:00 AM - 11:00 PM",
               "opensAt": "06:00",
               "closesAt": "23:00"
             },
             {
               "day": "Thursday",
-              "hours": "06:00 - 23:00",
+              "hours": "06:00 AM - 11:00 PM",
               "opensAt": "06:00",
               "closesAt": "23:00"
             },
             {
               "day": "Friday",
-              "hours": "06:00 - 23:00",
+              "hours": "06:00 AM - 11:00 PM",
               "opensAt": "06:00",
               "closesAt": "23:00"
             },
@@ -85,31 +85,31 @@
                 },
                 {
                   "day": "Monday",
-                  "hours": "06:00 - 23:00",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Tuesday",
-                  "hours": "06:00 - 23:00",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Wednesday",
-                  "hours": "06:00 - 23:00",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Thursday",
-                  "hours": "06:00 - 23:00",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Friday",
-                  "hours": "06:00 - 23:00",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
@@ -132,31 +132,31 @@
                 },
                 {
                   "day": "Monday",
-                  "hours": "06:00 - 23:00",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Tuesday",
-                  "hours": "06:00 - 23:00",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Wednesday",
-                  "hours": "06:00 - 23:00",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Thursday",
-                  "hours": "06:00 - 23:00",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
                 {
                   "day": "Friday",
-                  "hours": "06:00 - 23:00",
+                  "hours": "06:00 AM - 11:00 PM",
                   "opensAt": "06:00",
                   "closesAt": "23:00"
                 },
@@ -179,37 +179,37 @@
                 },
                 {
                   "day": "Monday",
-                  "hours": "07:00 - 18:00",
+                  "hours": "07:00 AM - 06:00 PM",
                   "opensAt": "07:00",
                   "closesAt": "18:00"
                 },
                 {
                   "day": "Tuesday",
-                  "hours": "07:00 - 18:00",
+                  "hours": "07:00 AM - 06:00 PM",
                   "opensAt": "07:00",
                   "closesAt": "18:00"
                 },
                 {
                   "day": "Wednesday",
-                  "hours": "07:00 - 18:00",
+                  "hours": "07:00 AM - 06:00 PM",
                   "opensAt": "07:00",
                   "closesAt": "18:00"
                 },
                 {
                   "day": "Thursday",
-                  "hours": "07:00 - 18:00",
+                  "hours": "07:00 AM - 06:00 PM",
                   "opensAt": "07:00",
                   "closesAt": "18:00"
                 },
                 {
                   "day": "Friday",
-                  "hours": "07:00 - 18:00",
+                  "hours": "07:00 AM - 06:00 PM",
                   "opensAt": "07:00",
                   "closesAt": "18:00"
                 },
                 {
                   "day": "Saturday",
-                  "hours": "08:00 - 14:00",
+                  "hours": "08:00 AM - 02:00 PM",
                   "opensAt": "08:00",
                   "closesAt": "14:00"
                 }
