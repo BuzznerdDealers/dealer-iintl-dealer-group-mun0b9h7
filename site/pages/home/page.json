@@ -38,10 +38,10 @@
         "snapshot": {
           "locations": [
             {
-              "id": "3",
-              "name": "Tampa-1",
+              "id": "5",
+              "name": "test",
               "subtitle": "",
-              "slug": "tampa-1",
+              "slug": "test",
               "num": "01",
               "href": null,
               "streetAddress": null,
@@ -134,10 +134,10 @@
               "hoursRows": []
             },
             {
-              "id": "5",
-              "name": "test",
+              "id": "3",
+              "name": "Tampa-1",
               "subtitle": "",
-              "slug": "test",
+              "slug": "tampa-1",
               "num": "03",
               "href": null,
               "streetAddress": null,
