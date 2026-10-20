@@ -22,395 +22,163 @@
       }
     },
     {
+      "id": "widget",
+      "type": "widget",
+      "props": {
+        "widget": "hours",
+        "snapshot": {
+          "location": "INTL Chicago",
+          "department": "Sales",
+          "hours": [
+            {
+              "day": "Sunday",
+              "hours": "Closed",
+              "opensAt": null,
+              "closesAt": null
+            },
+            {
+              "day": "Monday",
+              "hours": "06:00 AM - 11:00 PM",
+              "opensAt": "06:00",
+              "closesAt": "23:00"
+            },
+            {
+              "day": "Tuesday",
+              "hours": "06:00 AM - 11:00 PM",
+              "opensAt": "06:00",
+              "closesAt": "23:00"
+            },
+            {
+              "day": "Wednesday",
+              "hours": "06:00 AM - 11:00 PM",
+              "opensAt": "06:00",
+              "closesAt": "23:00"
+            },
+            {
+              "day": "Thursday",
+              "hours": "06:00 AM - 11:00 PM",
+              "opensAt": "06:00",
+              "closesAt": "23:00"
+            },
+            {
+              "day": "Friday",
+              "hours": "06:00 AM - 11:00 PM",
+              "opensAt": "06:00",
+              "closesAt": "23:00"
+            },
+            {
+              "day": "Saturday",
+              "hours": "Closed",
+              "opensAt": null,
+              "closesAt": null
+            }
+          ],
+          "schedules": [
+            {
+              "heading": "Sales",
+              "hours": [
+                {
+                  "day": "Sunday",
+                  "hours": "Closed",
+                  "opensAt": null,
+                  "closesAt": null
+                },
+                {
+                  "day": "Monday",
+                  "hours": "06:00 AM - 11:00 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
+                },
+                {
+                  "day": "Tuesday",
+                  "hours": "06:00 AM - 11:00 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
+                },
+                {
+                  "day": "Wednesday",
+                  "hours": "06:00 AM - 11:00 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
+                },
+                {
+                  "day": "Thursday",
+                  "hours": "06:00 AM - 11:00 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
+                },
+                {
+                  "day": "Friday",
+                  "hours": "06:00 AM - 11:00 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
+                },
+                {
+                  "day": "Saturday",
+                  "hours": "Closed",
+                  "opensAt": null,
+                  "closesAt": null
+                }
+              ]
+            },
+            {
+              "heading": "Used Sales",
+              "hours": [
+                {
+                  "day": "Sunday",
+                  "hours": "Closed",
+                  "opensAt": null,
+                  "closesAt": null
+                },
+                {
+                  "day": "Monday",
+                  "hours": "06:00 AM - 11:00 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
+                },
+                {
+                  "day": "Tuesday",
+                  "hours": "06:00 AM - 11:00 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
+                },
+                {
+                  "day": "Wednesday",
+                  "hours": "06:00 AM - 11:00 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
+                },
+                {
+                  "day": "Thursday",
+                  "hours": "06:00 AM - 11:00 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
+                },
+                {
+                  "day": "Friday",
+                  "hours": "06:00 AM - 11:00 PM",
+                  "opensAt": "06:00",
+                  "closesAt": "23:00"
+                },
+                {
+                  "day": "Saturday",
+                  "hours": "Closed",
+                  "opensAt": null,
+                  "closesAt": null
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "form",
       "type": "form",
       "props": {
         "headingLevel": 2,
         "formId": "request-info",
         "heading": "Request Info Form"
-      }
-    },
-    {
-      "id": "widget",
-      "type": "widget",
-      "props": {
-        "widget": "locations-map",
-        "snapshot": {
-          "locations": [
-            {
-              "id": "5",
-              "name": "test",
-              "subtitle": "",
-              "slug": "test",
-              "num": "01",
-              "href": null,
-              "streetAddress": null,
-              "city": "",
-              "region": "",
-              "postalCode": "",
-              "country": null,
-              "latitude": null,
-              "longitude": null,
-              "phone": "",
-              "phoneUrl": null,
-              "mapUrl": null,
-              "email": null,
-              "brands": "",
-              "services": "",
-              "perks": "",
-              "brandKeys": "",
-              "perkKeys": "",
-              "perk1": null,
-              "perk2": null,
-              "perk3": null,
-              "departments": "",
-              "hours": "",
-              "phone2": null,
-              "phone2Url": null,
-              "phone3": null,
-              "phone3Url": null,
-              "group": "Midwest",
-              "groupKey": "midwest",
-              "photo": {
-                "src": "",
-                "alt": ""
-              },
-              "banner": {
-                "src": "",
-                "alt": ""
-              },
-              "brandRows": [],
-              "serviceRows": [],
-              "perkRows": [],
-              "departmentRows": [],
-              "hoursRows": []
-            },
-            {
-              "id": "2",
-              "name": "Tampa",
-              "subtitle": "",
-              "slug": "tampa",
-              "num": "02",
-              "href": null,
-              "streetAddress": null,
-              "city": "",
-              "region": "",
-              "postalCode": "",
-              "country": null,
-              "latitude": null,
-              "longitude": null,
-              "phone": "",
-              "phoneUrl": null,
-              "mapUrl": null,
-              "email": null,
-              "brands": "",
-              "services": "",
-              "perks": "",
-              "brandKeys": "",
-              "perkKeys": "",
-              "perk1": null,
-              "perk2": null,
-              "perk3": null,
-              "departments": "",
-              "hours": "",
-              "phone2": null,
-              "phone2Url": null,
-              "phone3": null,
-              "phone3Url": null,
-              "group": "Midwest",
-              "groupKey": "midwest",
-              "photo": {
-                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/source/0f/dms-11014940567__03.jpg",
-                "alt": "dms-11014940567__03.jpg"
-              },
-              "banner": {
-                "src": "",
-                "alt": ""
-              },
-              "brandRows": [],
-              "serviceRows": [],
-              "perkRows": [],
-              "departmentRows": [],
-              "hoursRows": []
-            },
-            {
-              "id": "3",
-              "name": "Tampa-1",
-              "subtitle": "",
-              "slug": "tampa-1",
-              "num": "03",
-              "href": null,
-              "streetAddress": null,
-              "city": "",
-              "region": "",
-              "postalCode": "",
-              "country": null,
-              "latitude": null,
-              "longitude": null,
-              "phone": "",
-              "phoneUrl": null,
-              "mapUrl": null,
-              "email": null,
-              "brands": "",
-              "services": "",
-              "perks": "",
-              "brandKeys": "",
-              "perkKeys": "",
-              "perk1": null,
-              "perk2": null,
-              "perk3": null,
-              "departments": "",
-              "hours": "",
-              "phone2": null,
-              "phone2Url": null,
-              "phone3": null,
-              "phone3Url": null,
-              "group": "Midwest",
-              "groupKey": "midwest",
-              "photo": {
-                "src": "",
-                "alt": ""
-              },
-              "banner": {
-                "src": "",
-                "alt": ""
-              },
-              "brandRows": [],
-              "serviceRows": [],
-              "perkRows": [],
-              "departmentRows": [],
-              "hoursRows": []
-            },
-            {
-              "id": "1",
-              "name": "INTL Chicago",
-              "subtitle": "",
-              "slug": "main",
-              "num": "04",
-              "href": null,
-              "streetAddress": "4000 W Diversey Ave, Chicago, IL 60639",
-              "city": "Chicago",
-              "region": "IL",
-              "postalCode": "60639",
-              "country": null,
-              "latitude": null,
-              "longitude": null,
-              "phone": "",
-              "phoneUrl": null,
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=4000%20W%20Diversey%20Ave%2C%20Chicago%2C%20IL%2060639%2C%20Chicago%2C%20IL%2C%2060639",
-              "email": null,
-              "brands": "",
-              "services": "",
-              "perks": "",
-              "brandKeys": "",
-              "perkKeys": "",
-              "perk1": null,
-              "perk2": null,
-              "perk3": null,
-              "departments": "Sales · Used Sales",
-              "hours": "Sales: 06:00–23:00 Mon–Fri\n\nUsed Sales: 06:00–23:00 Mon–Fri",
-              "phone2": null,
-              "phone2Url": null,
-              "phone3": null,
-              "phone3Url": null,
-              "group": null,
-              "groupKey": null,
-              "photo": {
-                "src": "",
-                "alt": ""
-              },
-              "banner": {
-                "src": "",
-                "alt": ""
-              },
-              "brandRows": [],
-              "serviceRows": [],
-              "perkRows": [],
-              "departmentRows": [
-                {
-                  "name": "Sales",
-                  "key": "sales",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": "06:00–23:00 Mon–Fri"
-                },
-                {
-                  "name": "Used Sales",
-                  "key": "used_sales",
-                  "phone": null,
-                  "phoneUrl": null,
-                  "email": null,
-                  "hours": "06:00–23:00 Mon–Fri"
-                }
-              ],
-              "hoursRows": [
-                {
-                  "department": "Sales",
-                  "key": "sales",
-                  "summary": "06:00–23:00 Mon–Fri",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "06:00–23:00",
-                      "opensAt": "06:00",
-                      "closesAt": "23:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "06:00–23:00",
-                      "opensAt": "06:00",
-                      "closesAt": "23:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "06:00–23:00",
-                      "opensAt": "06:00",
-                      "closesAt": "23:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "06:00–23:00",
-                      "opensAt": "06:00",
-                      "closesAt": "23:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "06:00–23:00",
-                      "opensAt": "06:00",
-                      "closesAt": "23:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                },
-                {
-                  "department": "Used Sales",
-                  "key": "used_sales",
-                  "summary": "06:00–23:00 Mon–Fri",
-                  "days": [
-                    {
-                      "day": "Sunday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    },
-                    {
-                      "day": "Monday",
-                      "hours": "06:00–23:00",
-                      "opensAt": "06:00",
-                      "closesAt": "23:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Tuesday",
-                      "hours": "06:00–23:00",
-                      "opensAt": "06:00",
-                      "closesAt": "23:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Wednesday",
-                      "hours": "06:00–23:00",
-                      "opensAt": "06:00",
-                      "closesAt": "23:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Thursday",
-                      "hours": "06:00–23:00",
-                      "opensAt": "06:00",
-                      "closesAt": "23:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Friday",
-                      "hours": "06:00–23:00",
-                      "opensAt": "06:00",
-                      "closesAt": "23:00",
-                      "closed": false
-                    },
-                    {
-                      "day": "Saturday",
-                      "hours": "Closed",
-                      "opensAt": null,
-                      "closesAt": null,
-                      "closed": true
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "4",
-              "name": "tampa",
-              "subtitle": "",
-              "slug": "tampa-2",
-              "num": "05",
-              "href": null,
-              "streetAddress": null,
-              "city": null,
-              "region": null,
-              "postalCode": null,
-              "country": null,
-              "latitude": null,
-              "longitude": null,
-              "phone": null,
-              "phoneUrl": null,
-              "mapUrl": null,
-              "email": null,
-              "brands": "",
-              "services": "",
-              "perks": "",
-              "brandKeys": "",
-              "perkKeys": "",
-              "perk1": null,
-              "perk2": null,
-              "perk3": null,
-              "departments": "",
-              "hours": "",
-              "phone2": null,
-              "phone2Url": null,
-              "phone3": null,
-              "phone3Url": null,
-              "group": null,
-              "groupKey": null,
-              "photo": {
-                "src": "",
-                "alt": ""
-              },
-              "banner": {
-                "src": "",
-                "alt": ""
-              },
-              "brandRows": [],
-              "serviceRows": [],
-              "perkRows": [],
-              "departmentRows": [],
-              "hoursRows": []
-            }
-          ],
-          "brandFacets": [],
-          "perkFacets": []
-        }
       }
     }
   ]
