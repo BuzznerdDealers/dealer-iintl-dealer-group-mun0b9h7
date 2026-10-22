@@ -56,6 +56,12 @@
       "label": "To",
       "required": true,
       "width": "half"
+    },
+    {
+      "id": "rr-message-2",
+      "type": "paragraph",
+      "label": "Your message",
+      "required": false
     }
   ],
   "notifications": [
