@@ -49,7 +49,7 @@
   {
     "id": "apply-to-finance",
     "label": "Apply To Finance",
-    "url": "https://app.trnsact.com/oca/?vendorGUID=c71dd600-0a5d-f111-8173-066ef92796c9&vin={vin}&price={price}&make={make}&model={model}&sku={sku}&city={city}&state={state}",
+    "url": "https://app.trnsact.com/oca/?vendorGUID=c71dd600-0a5d-f111-8173-066ef92796c9&vin={vin}&price={price}&make={make}&model={model}",
     "style": "primary",
     "intent": "apply-to-finance",
     "active": true,
