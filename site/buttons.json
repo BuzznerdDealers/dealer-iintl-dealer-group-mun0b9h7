@@ -52,6 +52,7 @@
     "url": "https://app.trnsact.com/oca/?vendorGUID=c71dd600-0a5d-f111-8173-066ef92796c9&vin={vin}&price={price}",
     "style": "primary",
     "intent": "apply-to-finance",
-    "active": true
+    "active": true,
+    "newTab": true
   }
 ]
