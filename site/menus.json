@@ -41,7 +41,9 @@
               "ref": null,
               "url": "/about#team",
               "newTab": true,
-              "icon": "international",
+              "icon": {
+                "class": "fa-solid fa-globe"
+              },
               "children": []
             },
             {
@@ -51,7 +53,7 @@
               "ref": null,
               "url": "/about#history",
               "newTab": true,
-              "icon": "international",
+              "icon": null,
               "children": []
             }
           ]
