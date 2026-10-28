@@ -5,36 +5,129 @@
       "id": "main",
       "name": "Main menu",
       "items": [
-        { "id": "home", "label": "Home", "type": "page", "ref": "home" },
-        { "id": "inventory", "label": "Inventory", "type": "inventory", "ref": "inventory" },
+        {
+          "id": "home",
+          "label": "Home",
+          "type": "page",
+          "ref": "home",
+          "url": null,
+          "newTab": false,
+          "icon": null,
+          "children": []
+        },
+        {
+          "id": "inventory",
+          "label": "Inventory",
+          "type": "inventory",
+          "ref": "inventory",
+          "url": null,
+          "newTab": false,
+          "icon": null,
+          "children": []
+        },
         {
           "id": "about",
           "label": "About",
           "type": "url",
+          "ref": null,
           "url": "/about",
+          "newTab": false,
+          "icon": null,
           "children": [
-            { "id": "about-team", "label": "Our team", "type": "url", "url": "/about#team" },
-            { "id": "about-history", "label": "History", "type": "url", "url": "/about#history" }
+            {
+              "id": "about-team",
+              "label": "Our team",
+              "type": "url",
+              "ref": null,
+              "url": "/about#team",
+              "newTab": true,
+              "icon": null,
+              "children": []
+            },
+            {
+              "id": "about-history",
+              "label": "History",
+              "type": "url",
+              "ref": null,
+              "url": "/about#history",
+              "newTab": true,
+              "icon": null,
+              "children": []
+            }
           ]
         },
-        { "id": "contact", "label": "Contact", "type": "url", "url": "/contact" }
+        {
+          "id": "contact",
+          "label": "Contact",
+          "type": "url",
+          "ref": null,
+          "url": "/contact",
+          "newTab": false,
+          "icon": null,
+          "children": []
+        }
       ]
     },
     {
       "id": "footer",
       "name": "Footer menu",
       "items": [
-        { "id": "f-inventory", "label": "Inventory", "type": "inventory", "ref": "inventory" },
-        { "id": "f-about", "label": "About", "type": "url", "url": "/about" },
-        { "id": "f-contact", "label": "Contact", "type": "url", "url": "/contact" }
+        {
+          "id": "f-inventory",
+          "label": "Inventory",
+          "type": "inventory",
+          "ref": "inventory",
+          "url": null,
+          "newTab": false,
+          "icon": null,
+          "children": []
+        },
+        {
+          "id": "f-about",
+          "label": "About",
+          "type": "url",
+          "ref": null,
+          "url": "/about",
+          "newTab": false,
+          "icon": null,
+          "children": []
+        },
+        {
+          "id": "f-contact",
+          "label": "Contact",
+          "type": "url",
+          "ref": null,
+          "url": "/contact",
+          "newTab": false,
+          "icon": null,
+          "children": []
+        }
       ]
     },
     {
       "id": "legal",
       "name": "Legal",
       "items": [
-        { "id": "privacy", "label": "Privacy", "type": "url", "url": "/privacy" },
-        { "id": "terms", "label": "Terms", "type": "url", "url": "/terms" }
+        {
+          "id": "privacy",
+          "label": "Privacy",
+          "type": "url",
+          "ref": null,
+          "url": "/privacy",
+          "newTab": false,
+          "icon": null,
+          "children": []
+        },
+        {
+          "id": "terms",
+          "label": "Terms",
+          "type": "url",
+          "ref": null,
+          "url": "/terms",
+          "newTab": false,
+          "icon": null,
+          "children": []
+        }
       ]
     }
   ]
