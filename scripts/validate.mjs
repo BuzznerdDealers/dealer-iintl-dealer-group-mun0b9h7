@@ -42,12 +42,9 @@ import {
   dataSource,
   isDataBinding,
   isLocationPage,
-  isStaffPage,
-  staffIndex,
   listMenus,
   locationIndex,
   parseComponentProps,
-  parseIcons,
   parseMenus,
   parseTemplate,
   parseWidgetDefinition,
@@ -139,20 +136,6 @@ if (!existsSync(tokensPath)) {
   if (error) fail('site/tokens.json', '', `not valid JSON — ${error}`);
   else if (!value?.colors?.accent) {
     note('site/tokens.json', 'no colors.accent — the starter palette will be used for anything unset');
-  }
-}
-
-/* -------------------------------------------------------------------- icons */
-
-// Optional. A site with no file keeps the storefront's own icons on /store.
-const iconsPath = join(SITE, 'icons.json');
-if (existsSync(iconsPath)) {
-  const { value, error } = readJson(iconsPath);
-  if (error) fail('site/icons.json', '', `not valid JSON — ${error}`);
-  else {
-    for (const problem of parseIcons(value).problems) {
-      fail('site/icons.json', problem.where, problem.message, 'Fix or remove that entry; the slot keeps the storefront’s own icon until it is valid.');
-    }
   }
 }
 
@@ -377,24 +360,6 @@ if (!existsSync(pagesPath)) {
         // apply — and the two ways of getting it wrong are both silent: a path
         // with no :slug writes every location over the same file, and a page
         // nobody has published yet emits nothing at all.
-        if (isStaffPage(page)) {
-          if (page?.path && !page.path.includes(SLUG_TOKEN)) {
-            fail(
-              'site/pages.json',
-              `${at}.path`,
-              `builds one page per team member but has no "${SLUG_TOKEN}" in "${page.path}", so every person would overwrite the same file`,
-              `Use a path like "/team/${SLUG_TOKEN}".`,
-            );
-          }
-          const doc = readJson(join(SITE, 'pages', page.dir ?? '', 'page.json')).value;
-          if (!staffIndex(doc).length) {
-            note(
-              'site/pages.json',
-              `"${page.slug}" builds one page per team member and has no team members baked into it yet, so it emits nothing. Publishing writes them in.`,
-            );
-          }
-          continue;
-        }
         if (isLocationPage(page)) {
           if (page?.path && !page.path.includes(SLUG_TOKEN)) {
             fail(

@@ -16,6 +16,7 @@
 // Run: node scripts/build.mjs  ->  dist/
 
 import { missingIdentity as missingAnalyticsIdentity } from '../renderer/analytics.mjs';
+import { parseIcons } from '../renderer/icons.mjs';
 import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -30,8 +31,6 @@ import {
   fontPreloads,
   fontsHref,
   parseDocument,
-  parseIcons,
-  iconsManifest,
   parseTemplates,
   registerCustomWidgets,
   renderDocument,
@@ -42,10 +41,6 @@ import {
   documentStyles,
   rooftopFrom,
   isLocationPage,
-  isStaffPage,
-  staffIndex,
-  staffPageNodes,
-  staffPath,
   locationIndex,
   locationOut,
   locationPageNodes,
@@ -73,6 +68,7 @@ const config = readJson(join(ROOT, 'dealer.config.json'));
 config.platformAnalytics = readJsonIf(join(ROOT, 'platform', 'analytics.json'), null);
 const tokens = readJson(join(SITE, 'tokens.json'));
 const menus = readJson(join(SITE, 'menus.json'));
+const icons = parseIcons(readJsonIf(join(SITE, 'icons.json'), null)).value;
 const pages = readJson(join(SITE, 'pages.json'));
 const assignments = readJsonIf(join(SITE, 'assignments.json'), { defaults: {}, rules: [] });
 
@@ -199,18 +195,6 @@ if (existsSync(scopeDir)) {
 const FONTS_HREF = fontsHref(tokens);
 const FONT_PRELOAD = fontPreloads(tokens);
 
-/* -------------------------------------------------------------------- icons */
-
-// The storefront's icons, mapped onto the brand's own (renderer/icons.mjs). Read
-// here and published in the manifest; nothing on a brand page uses it. An entry
-// that breaks a rule is dropped with a warning and that slot keeps the
-// storefront's character — `npm run validate` is where it fails outright.
-const iconsRaw = readJsonIf(join(SITE, 'icons.json'), null);
-for (const problem of parseIcons(iconsRaw).problems) {
-  warn(`icons.json ${problem.where || '(file)'} ${problem.message} — that entry is not published.`);
-}
-const ICONS = iconsManifest(iconsRaw);
-
 /* ------------------------------------------------------------------- chrome */
 
 const renderCtx = {
@@ -219,6 +203,7 @@ const renderCtx = {
   forms,
   buttons,
   menus,
+  icons,
   sections,
   // Menu items point at a page by slug rather than by address, so the manifest
   // has to be in context for a link to resolve.
@@ -229,8 +214,6 @@ const renderCtx = {
   // yet, and making it depend on that turned every unbaked item into a plain
   // heading.
   locationPagePath: locationPagePattern(pages),
-  // Where a team member's own page lives, so a card can link to it.
-  staffPagePath: pages.find(isStaffPage)?.path ?? null,
   warn,
 };
 
@@ -510,32 +493,6 @@ function locationPagePattern(entries) {
 function expandLocationPages(entries) {
   const out = [];
   for (const p of entries) {
-    if (isStaffPage(p)) {
-      // Same rule as a location: the people come from the page's own baked
-      // index, never fetched, and an unpublished repo emits nothing.
-      const document = readJsonIf(join(SITE, 'pages', p.dir, 'page.json'), {});
-      const people = staffIndex(document);
-      if (!people.length) {
-        warn(
-          `page "${p.slug}" builds one page per team member, and no team members have been published yet — no team pages emitted`,
-        );
-        continue;
-      }
-      for (const person of people) {
-        const path = staffPath(p.path, person.slug);
-        out.push({
-          ...p,
-          document,
-          person,
-          slug: `${p.slug}--${person.slug}`,
-          path,
-          out: locationOut(path),
-          title: fillTokens(p.title, person),
-          description: fillTokens(p.description, person),
-        });
-      }
-      continue;
-    }
     if (!isLocationPage(p)) {
       out.push(p);
       continue;
@@ -574,9 +531,7 @@ for (const p of expandLocationPages(pages)) {
   const dir = join(SITE, 'pages', p.dir);
   const nodes = p.location
     ? locationPageNodes(pageNodes(dir, p.slug), p.document, p.location.slug)
-    : p.person
-      ? staffPageNodes(pageNodes(dir, p.slug), p.document, p.person.slug)
-      : pageNodes(dir, p.slug);
+    : pageNodes(dir, p.slug);
   const css = readText(join(dir, 'style.css'));
 
   let pageJs = null;
@@ -810,9 +765,6 @@ write(
         defaultTitle: config.seo?.defaultTitle || null,
         favicon: config.favicon || null,
       },
-      // The storefront's icon slots mapped onto this site's icons (site/icons.json).
-      // Null when nothing is mapped, and the storefront then draws its own.
-      icons: ICONS,
     },
     null,
     2,

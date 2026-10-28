@@ -21,6 +21,7 @@
 
 import { esc, href, isExternal, join } from './html.mjs';
 import { locationPath } from './location-pages.mjs';
+import { isIconClass, isIconImageUrl } from './icons.mjs';
 
 /** Where a menu item can point. */
 export const MENU_ITEM_TYPES = ['page', 'post', 'inventory', 'location', 'url', 'label'];
@@ -90,6 +91,14 @@ function normaliseMenu(raw) {
   };
 }
 
+/** An item's own icon, replacing the site's `external` mapping: the same two shapes `site/icons.json` takes. */
+function normaliseIcon(raw) {
+  if (!isObject(raw)) return null;
+  if (isIconClass(raw.class)) return { class: raw.class };
+  if (isIconImageUrl(raw.src)) return { src: raw.src, tint: raw.tint !== false };
+  return null;
+}
+
 function normaliseItems(raw, depth) {
   const out = [];
   for (const item of Array.isArray(raw) ? raw : []) {
@@ -102,6 +111,7 @@ function normaliseItems(raw, depth) {
       ref: item.ref != null ? String(item.ref) : null,
       url: item.url != null ? String(item.url) : null,
       newTab: !!item.newTab,
+      icon: normaliseIcon(item.icon),
       // Depth is clamped on read rather than on write: a menu that arrived from
       // an import should still render, just flatter than it was drawn.
       children: depth + 1 < MAX_MENU_DEPTH ? normaliseItems(item.children, depth + 1) : [],
@@ -171,6 +181,26 @@ function destinationOf(item, ctx) {
   }
 }
 
+/** The globe drawn beside a submenu link that opens in a new tab, unless `site/icons.json` maps `external`. */
+const EXTERNAL_SVG =
+  '<svg class="bz-menu-icon__svg" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>';
+
+/** Same markup the storefront's `<SfIcon>` draws, so one mapping and one set of CSS rules serve both. */
+function externalIcon(ctx, own) {
+  const choice = own || (ctx.icons && ctx.icons.slots && ctx.icons.slots.external);
+  const base = 'bz-menu-icon sf-icon sf-icon--external';
+  if (choice && 'class' in choice) {
+    return `<i class="${base} sf-icon--class ${esc(choice.class)}" aria-hidden="true"></i>`;
+  }
+  if (choice && !choice.tint) {
+    return `<img class="${base} sf-icon--img" src="${esc(choice.src)}" alt="" aria-hidden="true" />`;
+  }
+  if (choice) {
+    return `<span class="${base} sf-icon--mask" style="--sf-icon-src:url(&quot;${esc(choice.src)}&quot;)" aria-hidden="true"></span>`;
+  }
+  return `<span class="${base}" aria-hidden="true">${EXTERNAL_SVG}</span>`;
+}
+
 function renderItem(item, menuId, ctx, depth) {
   if (!item || !item.label) return '';
   const children = Array.isArray(item.children) ? item.children.filter(Boolean) : [];
@@ -179,10 +209,10 @@ function renderItem(item, menuId, ctx, depth) {
 
   const label = url
     ? `<a href="${esc(href(url, ctx))}" data-bz-el="link" data-bz-intent="nav-${esc(menuId)}"${
-        external ? ' rel="noopener"' : ''
+        external || item.newTab ? ' rel="noopener"' : ''
       }${item.newTab ? ' target="_blank"' : ''}${
         ctx.currentPath && ctx.currentPath === url ? ' aria-current="page"' : ''
-      }>${esc(item.label)}</a>`
+      }>${esc(item.label)}${depth > 0 && item.newTab ? externalIcon(ctx, item.icon) : ''}</a>`
     : `<span class="bz-navlabel">${esc(item.label)}</span>`;
 
   if (!children.length) return `<li class="bz-navitem">${label}</li>`;

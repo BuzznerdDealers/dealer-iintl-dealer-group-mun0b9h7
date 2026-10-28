@@ -32,6 +32,7 @@ export const ICON_SLOTS = [
   { id: 'minus', label: 'Close', glyph: '−', where: 'An open question in a listing’s FAQ' },
   { id: 'arrow-left', label: 'Back arrow', glyph: '←', where: '“All categories” above the category cards' },
   { id: 'arrow-right', label: 'Arrow', glyph: '→', where: 'Between the dates of a booked rental' },
+  { id: 'external', label: 'New-tab link', glyph: '🌐', where: 'Beside a submenu link that opens in a new tab' },
 ];
 
 export const ICON_SLOT_IDS = ICON_SLOTS.map((s) => s.id);

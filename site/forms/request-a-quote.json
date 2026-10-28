@@ -3,7 +3,6 @@
   "name": "Request a quote",
   "status": "live",
   "system": true,
-  "pdpContext": true,
   "surfaces": ["pdp", "partsPdp", "page", "brand"],
   "intent": "get-quote",
   "submitLabel": "Request a quote",

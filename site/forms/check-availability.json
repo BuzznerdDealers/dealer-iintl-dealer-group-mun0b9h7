@@ -3,7 +3,6 @@
   "name": "Check availability",
   "status": "live",
   "system": true,
-  "pdpContext": true,
   "surfaces": ["pdp", "partsPdp", "page"],
   "intent": "check-availability",
   "submitLabel": "Check availability",

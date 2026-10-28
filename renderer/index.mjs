@@ -77,12 +77,6 @@
 // 4.14.1 — locations-map draws the OpenStreetMap embed from the snapshot, so
 // the Design canvas and a no-JS first paint show the map. Until now the box
 // was empty until widgets.js ran, which the editor never does.
-// 4.26.0 — team pages. A manifest entry declaring `forEach: "staff"` with `:slug`
-// in its path builds one page per public team member, the way `forEach:
-// "locations"` does per rooftop; the `staff` widget gains `staffSlug` (one
-// person as a profile) and its rows gain `slug`, `bio`, `locations`. Add, edit
-// or remove someone in Admin and the next publish does the same to their page.
-//
 // 4.14.0 — a rooftop page emits its own LocalBusiness. A page naming a
 // `locationSlug` in site/pages.json builds its structured data from that page's
 // own widget snapshots — address, geo, phone, per-department
@@ -169,23 +163,11 @@
 // nothing when there is none — never a generated street map, which would be a
 // different section wearing this one's clothes. A location also carries a `subtitle`,
 // the name it trades under, because `name` is the place and a card wants both.
-// 4.25.0 — the storefront's icons can be the brand's. `site/icons.json` maps each
-// place the /store pages draw a mark (`ICON_SLOTS`) onto a class from an icon
-// library the site loads, or onto an image, and the build publishes it in
-// `/partials/manifest.json` as `icons`. Unmapped slots keep the storefront's own
-// characters; a site with no file publishes no `icons` and nothing changes.
-export const RENDERER_VERSION = '4.26.0';
+export const RENDERER_VERSION = '4.24.0';
 
 export {
   LOCATION_SOURCE,
-  STAFF_SOURCE,
   SLUG_TOKEN,
-  applyStaffSlug,
-  isStaffPage,
-  staffIndex,
-  staffPageNodes,
-  staffPath,
-  staffSnapshots,
   applyLocationSlug,
   applyLocationSnapshots,
   fillTokens,
@@ -254,18 +236,6 @@ export {
   DEFAULT_TOKENS,
   TOKEN_GROUPS,
 } from './tokens.mjs';
-export {
-  ICONS_VERSION,
-  ICON_SLOTS,
-  ICON_SLOT_IDS,
-  MAX_ICON_STYLESHEETS,
-  emptyIcons,
-  iconsManifest,
-  isIconClass,
-  isIconImageUrl,
-  isIconUrl,
-  parseIcons,
-} from './icons.mjs';
 
 /* ------------------------------------------------------------- the document */
 

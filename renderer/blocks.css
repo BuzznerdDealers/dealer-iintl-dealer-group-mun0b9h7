@@ -474,15 +474,6 @@ a.bz-loc__c:hover { color: var(--accent); }
 .bz-person img, .bz-person .bz-photo { width: 96px; height: 96px; border-radius: var(--radius-chip); object-fit: cover; aspect-ratio: 1; }
 .bz-person__n { font: 700 var(--text-small) / 1.2 var(--font-heading); }
 .bz-person__t { font-size: var(--text-small); color: var(--muted); }
-.bz-person__l { font-size: var(--text-small); color: var(--muted); }
-a.bz-person__n { color: inherit; text-decoration: none; }
-a.bz-person__n:hover { text-decoration: underline; }
-.bz-profile { display: grid; grid-template-columns: minmax(0, 280px) 1fr; gap: var(--space-6); align-items: start; }
-.bz-profile__img, .bz-profile .bz-photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-chip); }
-.bz-profile__n { margin: 0; }
-.bz-profile__t, .bz-profile__l, .bz-profile__s { margin: var(--space-1) 0 0; color: var(--muted); }
-.bz-profile__b { margin: var(--space-4) 0; white-space: pre-line; }
-@media (max-width: 640px) { .bz-profile { grid-template-columns: 1fr; } }
 .bz-phones { display: flex; flex-direction: column; gap: var(--space-2); }
 .bz-phone { display: flex; justify-content: space-between; gap: var(--space-4); border-bottom: 1px solid var(--line); padding-block: var(--space-2); font-size: var(--text-small); }
 .bz-phone__l { color: var(--muted); }
@@ -504,6 +495,10 @@ a.bz-person__n:hover { text-decoration: underline; }
 .bz-navitem { position: relative; }
 .bz-navitem > a { text-decoration: none; color: inherit; font: 600 var(--text-small) / 1 var(--font-heading); }
 .bz-subnav { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.bz-menu-icon { display: inline-block; flex: none; width: 1em; height: 1em; margin-left: 0.4em; vertical-align: -0.125em; font-style: normal; line-height: 1; }
+.bz-menu-icon.sf-icon--mask { background-color: currentColor; -webkit-mask: var(--sf-icon-src) center / contain no-repeat; mask: var(--sf-icon-src) center / contain no-repeat; }
+.bz-menu-icon.sf-icon--img { max-width: none; object-fit: contain; }
+.bz-menu-icon__svg { display: block; }
 
 /* --------------------------------------------------------------- motion */
 
@@ -594,6 +589,8 @@ a.bz-person__n:hover { text-decoration: underline; }
 .bz-navitem--has-sub:focus-within > .bz-subnav,
 .bz-navitem--has-sub[data-open] > .bz-subnav { display: flex; }
 .bz-subnav .bz-navitem > a { color: var(--ink); }
+.bz-subnav .bz-navitem > a { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+.bz-subnav .bz-menu-icon { margin-left: auto; }
 .bz-menu--vertical .bz-subnav { position: static; display: flex; border: 0; padding: var(--space-2) 0 0 var(--space-3); background: none; box-shadow: none; }
 
 /* Mega nav: the same menu data, drawn as a full-width panel.
