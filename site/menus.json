@@ -41,9 +41,7 @@
               "ref": null,
               "url": "/about#team",
               "newTab": true,
-              "icon": {
-                "class": "fa-solid fa-globe"
-              },
+              "icon": null,
               "children": []
             },
             {
