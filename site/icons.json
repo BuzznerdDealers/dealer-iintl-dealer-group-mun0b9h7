@@ -2,9 +2,8 @@
   "version": 1,
   "stylesheets": [],
   "slots": {
-    "save": {
-      "src": "https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/star.svg",
-      "tint": false
+    "search": {
+      "src": "https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/star.svg"
     }
   }
 }
