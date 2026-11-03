@@ -1,9 +1,5 @@
 {
   "version": 1,
   "stylesheets": [],
-  "slots": {
-    "share": {
-      "src": "https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/star.svg"
-    }
-  }
+  "slots": {}
 }
