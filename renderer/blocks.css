@@ -755,6 +755,16 @@ a.bz-loc__c:hover { color: var(--accent); }
   .bz-bar__inner { position: relative; }
 }
 
+/* A link that opens in a new tab says so: a small external-link mark after its text, drawn in
+   the link's own colour. Only the renderer's own buttons and menu links carry it; a dealer's
+   custom HTML is untouched, and a site can drop it with `.bz-btn::after { content: none }`. */
+.bz-btn[target="_blank"]::after,
+.bz-navitem > a[target="_blank"]::after {
+  content: ""; display: inline-block; flex: none; width: 0.85em; height: 0.85em; margin-left: 0.4em;
+  background-color: currentColor; vertical-align: -0.05em;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
 /* ---------------------------------------------------------- cookie consent */
 /* Drawn by renderer/client/consent.js, only for a dealer with consent on.
  * Layout, positions, theme presets and components follow the BZNrd Consent

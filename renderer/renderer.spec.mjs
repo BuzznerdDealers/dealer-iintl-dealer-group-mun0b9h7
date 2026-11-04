@@ -3265,6 +3265,110 @@ test('every storefront slot id is a plain kebab-case word', () => {
   assert.equal(new Set(ICON_SLOT_IDS).size, ICON_SLOT_IDS.length);
 });
 
+/* ------------------------------------------------------- contact links */
+
+import { contactRuns, linkifyContacts, telHref } from './contact-links.mjs';
+
+test('a phone number becomes a tel: link of digits only, keeping its own formatting', () => {
+  assert.equal(telHref('(813) 621-1331'), 'tel:+18136211331');
+  assert.equal(telHref('+1 813 621 1331'), 'tel:+18136211331');
+  assert.equal(telHref('1-800-555-0199'), 'tel:+18005550199');
+
+  const html = linkifyContacts('<p>Call (813) 621-1331 today</p>');
+  assert.match(html, /<a href="tel:\+18136211331"[^>]*>\(813\) 621-1331<\/a>/);
+  assert.match(html, /^<p>Call <a /);
+  assert.match(html, /<\/a> today<\/p>$/);
+
+  for (const written of ['813-621-1331', '813.621.1331', '813 621 1331', '+1 813 621 1331', '+18136211331']) {
+    assert.match(linkifyContacts(`<p>${written}</p>`), /href="tel:\+18136211331"/, written);
+  }
+});
+
+test('an email address becomes a mailto: link, and a trailing full stop stays outside it', () => {
+  const html = linkifyContacts('<p>Write to sales@dealer-name.com.</p>');
+  assert.match(html, /<a href="mailto:sales@dealer-name\.com"[^>]*>sales@dealer-name\.com<\/a>\.<\/p>$/);
+});
+
+test('contact links are tagged for analytics like every other phone and email link', () => {
+  const html = linkifyContacts('<p>(813) 621-1331 a@b.com</p>');
+  assert.match(html, /data-bz-el="phone" data-bz-intent="call-dealer"/);
+  assert.match(html, /data-bz-el="link" data-bz-intent="email-dealer"/);
+});
+
+test('anything already linked is left exactly as it was', () => {
+  const linked =
+    '<p><a href="tel:+18136211331" class="x">(813) 621-1331</a> <a href="mailto:a@b.com">a@b.com</a></p>';
+  assert.equal(linkifyContacts(linked), linked);
+  // Markup inside a link does not end it.
+  const nested = '<a href="/x"><strong>(813) 621-1331</strong> a@b.com</a>';
+  assert.equal(linkifyContacts(nested), nested);
+});
+
+test('only text is linked: not attributes, scripts, styles, titles, buttons or comments', () => {
+  const untouched = [
+    '<img alt="sales@dealer.com" src="/a.jpg">',
+    '<p data-phone="813-621-1331">hi</p>',
+    '<script>var p="813-621-1331"; var e="a@b.com"</script>',
+    '<style>.a::after{content:"813-621-1331"}</style>',
+    '<title>a@b.com</title>',
+    '<button>Call 813-621-1331</button>',
+    '<textarea>a@b.com</textarea>',
+    '<!-- 813-621-1331 a@b.com -->',
+    '<script type="application/ld+json">{"telephone":"+18136211331","email":"a@b.com"}</script>',
+  ];
+  for (const html of untouched) assert.equal(linkifyContacts(html), html, html);
+});
+
+test('numbers that are not phone numbers are not linked', () => {
+  const plain = [
+    '<p>VIN 1HTMK3HSDZAPRXMN543149</p>',
+    '<p>Stock 196479 · $54,900 · 180,000 mi</p>',
+    '<p>Part A-123-456-7890</p>',
+    '<p>Call 123-456-7890</p>', // an area code never begins 0 or 1
+    '<p>2019-2021 models, 8136211331234</p>',
+    '<p>$813-621-1331</p>',
+  ];
+  for (const html of plain) assert.equal(linkifyContacts(html), html, html);
+});
+
+test('every contact in a block is linked, and a document with none comes back unchanged', () => {
+  const html = linkifyContacts('<p>Sales (813) 621-1331</p><p>Parts 813-555-0199</p><p>x@y.com</p>');
+  assert.equal((html.match(/<a /g) || []).length, 3);
+  assert.equal(linkifyContacts('<p>Nothing to see</p>'), '<p>Nothing to see</p>');
+  assert.equal(linkifyContacts(''), '');
+});
+
+test('contactRuns splits text into plain and contact runs for a caller that is not HTML', () => {
+  assert.deepEqual(contactRuns('Call 813-621-1331 or a@b.com!'), [
+    { text: 'Call ' },
+    { text: '813-621-1331', href: 'tel:+18136211331', kind: 'phone' },
+    { text: ' or ' },
+    { text: 'a@b.com', href: 'mailto:a@b.com', kind: 'email' },
+    { text: '!' },
+  ]);
+});
+
+test('the shell links the page body, the header and the footer', () => {
+  const html = renderShell({
+    config: withProviders(null),
+    fontsHref: '',
+    chrome: {
+      header: '<header><p>Call (813) 621-1331</p></header>',
+      footer: '<footer><p>sales@dealer.com</p></footer>',
+    },
+    title: 'T',
+    description: 'D',
+    canonical: 'https://example.com/',
+    bodyHtml: '<section><h2>Parts 813-555-0199</h2></section>',
+    storefrontPrefix: 'store',
+  });
+  assert.match(html, /<header><p>Call <a href="tel:\+18136211331"/);
+  assert.match(html, /<h2>Parts <a href="tel:\+18135550199"/);
+  assert.match(html, /<footer><p><a href="mailto:sales@dealer\.com"/);
+  // The head is not body text: the structured-data script keeps its raw values.
+  assert.equal(html.slice(0, html.indexOf('</head>')).includes('<a href="tel:'), false);
+});
+
 /* ------------------------------------------------------------ cookie consent */
 
 import vm from 'node:vm';

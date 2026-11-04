@@ -356,5 +356,6 @@ export {
 /* ----------------------------------------------------- shell, checks, edits */
 
 export { renderShell, businessJsonLd, analyticsTag } from './shell.mjs';
+export { linkifyContacts, contactRuns, telHref } from './contact-links.mjs';
 export { validateDocument, validateNode, validateTemplate, getDefinition } from './validate.mjs';
 export { applyOps } from './ops.mjs';

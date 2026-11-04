@@ -29,6 +29,7 @@ import {
   fontFaceCss,
   fontPreloads,
   fontsHref,
+  linkifyContacts,
   parseDocument,
   parseIcons,
   iconsManifest,
@@ -337,8 +338,10 @@ function chromeFor(target) {
     }
     chromeCache.set(key, {
       id: key,
-      header: renderDocument({ nodes: before }, renderCtx),
-      footer: renderDocument({ nodes: after }, renderCtx),
+      // Linked here as well as in `renderShell`: the storefront fetches these as
+      // /partials/header.html and footer.html, which never pass through the shell.
+      header: linkifyContacts(renderDocument({ nodes: before }, renderCtx)),
+      footer: linkifyContacts(renderDocument({ nodes: after }, renderCtx)),
       // A template's own script is part of its chrome — a sticky header is the
       // usual case — so the storefront has to load it alongside the markup it
       // enhances, or inventory pages get the header without the behaviour.
