@@ -495,10 +495,6 @@ a.bz-loc__c:hover { color: var(--accent); }
 .bz-navitem { position: relative; }
 .bz-navitem > a { text-decoration: none; color: inherit; font: 600 var(--text-small) / 1 var(--font-heading); }
 .bz-subnav { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
-.bz-menu-icon { display: inline-block; flex: none; width: 1em; height: 1em; margin-left: 0.4em; vertical-align: -0.125em; font-style: normal; line-height: 1; }
-.bz-menu-icon.sf-icon--mask { background-color: currentColor; -webkit-mask: var(--sf-icon-src) center / contain no-repeat; mask: var(--sf-icon-src) center / contain no-repeat; }
-.bz-menu-icon.sf-icon--img { max-width: none; object-fit: contain; }
-.bz-menu-icon__svg { display: block; }
 
 /* --------------------------------------------------------------- motion */
 
@@ -589,8 +585,6 @@ a.bz-loc__c:hover { color: var(--accent); }
 .bz-navitem--has-sub:focus-within > .bz-subnav,
 .bz-navitem--has-sub[data-open] > .bz-subnav { display: flex; }
 .bz-subnav .bz-navitem > a { color: var(--ink); }
-.bz-subnav .bz-navitem > a { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
-.bz-subnav .bz-menu-icon { margin-left: auto; }
 .bz-menu--vertical .bz-subnav { position: static; display: flex; border: 0; padding: var(--space-2) 0 0 var(--space-3); background: none; box-shadow: none; }
 
 /* Mega nav: the same menu data, drawn as a full-width panel.
