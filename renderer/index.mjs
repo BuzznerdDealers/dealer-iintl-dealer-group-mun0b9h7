@@ -185,6 +185,7 @@ export {
 } from './location-pages.mjs';
 export { isValidPageType, pageTypeOptions } from './analytics-vocab.mjs';
 export { analyticsConfig, analyticsHead, missingIdentity } from './analytics.mjs';
+export { consentConfig, consentHead, consentGateScript, consentCategoryOf, gateMarkup, CONSENT_MODES } from './consent.mjs';
 
 export {
   BEHAVIOURS,
@@ -355,5 +356,6 @@ export {
 /* ----------------------------------------------------- shell, checks, edits */
 
 export { renderShell, businessJsonLd, analyticsTag } from './shell.mjs';
+export { linkifyContacts, contactRuns, telHref } from './contact-links.mjs';
 export { validateDocument, validateNode, validateTemplate, getDefinition } from './validate.mjs';
 export { applyOps } from './ops.mjs';

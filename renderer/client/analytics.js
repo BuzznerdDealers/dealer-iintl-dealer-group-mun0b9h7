@@ -47,11 +47,23 @@
    * their jurisdiction. */
   var DEFAULT_CONSENT = true;
 
-  function consented() {
+  /* With consent on for this dealer, the head gate (renderer/consent.mjs)
+   * defines `bzConsent`, and every destination asks it about its own
+   * category: the platform's beacon and identity cookies are `analytics`, a
+   * provider is whatever its descriptor declared. Without it, the gate above
+   * is the whole answer, exactly as before consent existed. */
+  var CONSENT = window.bzConsent && typeof window.bzConsent.allowed === 'function' ? window.bzConsent : null;
+
+  function consented(category) {
+    if (CONSENT) return CONSENT.allowed(category || 'analytics');
     if (navigator.globalPrivacyControl === true) return false;
     var override = window.__BZ_CONSENT__;
     if (override === true || override === false) return override;
     return DEFAULT_CONSENT;
+  }
+
+  function providerAllowed(config) {
+    return !CONSENT || CONSENT.allowed(config ? config.consentCategory : null);
   }
 
   /* ------------------------------------------------------- provider adapters */
@@ -114,6 +126,7 @@
   }
 
   function fanOut(adapter, name, properties, index) {
+    if (!providerAllowed(adapter.__config)) return;
     /* The bootstrap already sent this vendor the first page view. Sending it
      * again here would count every visit twice on their side — the rule the old
      * single-vendor runtime stated in a comment, now an explicit flag, because
@@ -126,11 +139,16 @@
     }
   }
 
+  var loaded = {};
+
+  /* Called again whenever consent changes, so a provider the visitor allows
+   * mid-visit loads then, and is handed the replay like any late adapter. */
   function loadAdapters() {
     if (!CONFIG || !CONFIG.providers) return;
     for (var i = 0; i < CONFIG.providers.length; i++) {
       var provider = CONFIG.providers[i];
-      if (!provider.adapterUrl) continue;
+      if (!provider.adapterUrl || loaded[provider.id] || !providerAllowed(provider)) continue;
+      loaded[provider.id] = true;
       var script = document.createElement('script');
       script.src = provider.adapterUrl;
       script.async = true;
@@ -221,8 +239,14 @@
    * certification requirement attached should get its bytes out first, and ours
    * uses `sendBeacon`, which survives unload anyway.
    */
+  var beaconedPageView = false;
+
   function track(name, properties) {
-    if (!consented()) return;
+    /* Off entirely, and nothing is kept: the pre-consent gate behaves as it
+     * always did. With consent on, each destination is gated on its own
+     * category below, so allowing marketing alone still reaches a marketing
+     * provider without our beacon recording anything. */
+    if (!CONSENT && !consented()) return;
     var props = properties || {};
     var index = eventIndex++;
 
@@ -230,6 +254,13 @@
 
     if (replay.length < REPLAY_LIMIT) replay.push({ name: name, properties: props, index: index });
 
+    if (!consented('analytics')) return;
+    if (name === 'page_view') beaconedPageView = true;
+    beacon(name, props);
+  }
+
+  function beacon(name, props) {
+    identify();
     post({
       eventName: name,
       pageType: (CONFIG && CONFIG.pageType) || null,
@@ -256,10 +287,42 @@
 
   /* ------------------------------------------------------------ page views */
 
-  visitorId();
-  sessionId();
+  /* The visitor and session cookies are analytics cookies, so they are only
+   * written once analytics is allowed — on load for a dealer without consent
+   * on, and from the first beacon otherwise. */
+  var identified = false;
+  function identify() {
+    if (identified) return;
+    identified = true;
+    visitorId();
+    sessionId();
+  }
+
+  if (!CONSENT || consented('analytics')) identify();
 
   loadAdapters();
+
+  if (CONSENT) {
+    document.addEventListener('bz:consent', function (event) {
+      var detail = event.detail || {};
+      if (detail.withdrawn) {
+        /* The page reloads straight after this. Our identifiers go now, so a
+         * withdrawal is not a visitor id carried into the next visit. */
+        if (!consented('analytics')) {
+          writeCookie(VISITOR_KEY, '', -1);
+          writeCookie(SESSION_KEY, '', -1);
+        }
+        return;
+      }
+      loadAdapters();
+      /* The page view this visit already "had" was never recorded by us when
+       * analytics was off; recording it now is the visit being counted once. */
+      if (!beaconedPageView && consented('analytics')) {
+        beaconedPageView = true;
+        beacon('page_view', {});
+      }
+    });
+  }
 
   /* Index 0, which `fanOut` skips for any provider whose bootstrap already sent
    * its own page view from the head. Our beacon always goes. */
@@ -291,7 +354,7 @@
 
   var exitSent = false;
   function sendExit() {
-    if (exitSent) return;
+    if (exitSent || !consented('analytics')) return;
     exitSent = true;
     tick();
     post({
