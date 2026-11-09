@@ -17,5 +17,24 @@
       "utilityNav": null
     },
     "pageType": "Home"
+  },
+  {
+    "slug": "home-copy",
+    "title": "Home (Copy)",
+    "description": "New and used trucks, service and parts from a dealer you can trust.",
+    "path": "/home-copy",
+    "out": "home-copy/index.html",
+    "dir": "home-copy",
+    "status": "draft",
+    "seo": {
+      "ogImage": null,
+      "noindex": true
+    },
+    "templates": {
+      "header": null,
+      "footer": null,
+      "utilityNav": null
+    },
+    "pageType": "Home"
   }
 ]
