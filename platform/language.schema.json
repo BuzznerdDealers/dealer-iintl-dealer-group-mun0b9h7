@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://buzznerd.com/schemas/platform-language.json",
+  "title": "platform/language.json",
+  "description": "This dealer's language switch settings, baked by the platform on every publish. Platform-owned and regenerated wholesale. Absent, or enabled false, means no switch and no Google code: the build is identical to one made before the plugin existed.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Defaults to true when the file is present."
+    },
+    "languages": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z]{2,3}(-[a-z0-9]{2,8})?$" },
+      "description": "Language codes the switch offers. English is always offered first, whether listed or not. Defaults to [\"en\", \"es\"]."
+    }
+  }
+}

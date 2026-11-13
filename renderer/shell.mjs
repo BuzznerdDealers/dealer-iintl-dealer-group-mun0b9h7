@@ -5,6 +5,7 @@
 import { esc } from './html.mjs';
 import { analyticsHead } from './analytics.mjs';
 import { linkifyContacts } from './contact-links.mjs';
+import { languageTag } from './language.mjs';
 import { ACTIVATE, consentConfig, consentHead, gatedSrc, gateMarkup } from './consent.mjs';
 
 /** Drop keys with nothing in them, so a sparse record does not emit empty nodes. */
@@ -311,7 +312,7 @@ ${linkifyContacts(bodyHtml)}
 </main>${custom.beforeFooter ? `\n${custom.beforeFooter}` : ''}
 ${linkifyContacts(chrome.footer || '')}
 <script src="/scripts/chrome.js" defer></script>
-<script src="/scripts/widgets.js" defer></script>${consentConfig(config) ? '\n<script src="/scripts/consent.js" defer></script>' : ''}
+<script src="/scripts/widgets.js" defer></script>${consentConfig(config) ? '\n<script src="/scripts/consent.js" defer></script>' : ''}${languageTag(config)}
 <script src="/scripts/analytics.js" defer></script>${custom.hasJs ? `\n<script src="/scripts/custom.js" defer></script>` : ''}${scriptTags}${custom.bodyEnd ? `\n${custom.bodyEnd}` : ''}
 </body>
 </html>

@@ -49,6 +49,7 @@ import {
   locationPath,
   fillTokens,
   consentGateScript,
+  languageScript,
 } from '../renderer/index.mjs';
 
 const ROOT = process.cwd();
@@ -74,6 +75,11 @@ config.platformAnalytics = readJsonIf(join(ROOT, 'platform', 'analytics.json'), 
  * consent is off and the build is exactly what it was before consent existed;
  * see renderer/consent.mjs. */
 config.platformConsent = readJsonIf(join(ROOT, 'platform', 'consent.json'), null);
+
+/* This dealer's language switch settings, baked the same way. Absent means the
+ * plugin is off and the build is exactly what it was before it existed; see
+ * renderer/language.mjs. */
+config.platformLanguage = readJsonIf(join(ROOT, 'platform', 'language.json'), null);
 const tokens = readJson(join(SITE, 'tokens.json'));
 const menus = readJson(join(SITE, 'menus.json'));
 const pages = readJson(join(SITE, 'pages.json'));
@@ -388,6 +394,8 @@ const blocksCss = readText(join(RENDERER, 'blocks.css')) + (customCss ? `\n${cus
 const widgetsJs = readText(join(RENDERER, 'client', 'widgets.js'));
 const analyticsJs = readText(join(RENDERER, 'client', 'analytics.js'));
 const consentJs = readText(join(RENDERER, 'client', 'consent.js'));
+// This dealer's language switch (config + code), or '' with the plugin off.
+const languageJs = languageScript(config, readText(join(RENDERER, 'client', 'language.js')));
 
 /* ------------------------------------------------------------------ writing */
 
@@ -440,6 +448,7 @@ write('scripts/chrome.js', chromeJs);
 write('scripts/widgets.js', widgetsJs);
 write('scripts/analytics.js', analyticsJs);
 write('scripts/consent.js', consentJs);
+if (languageJs) write('scripts/language.js', languageJs);
 
 /* -------------------------------------------------------------------- pages */
 // status: published -> emitted, indexed, in sitemap + llms.txt
@@ -622,6 +631,9 @@ write('partials/consent.js', consentJs);
 // in the <head> of every /store/* page. Empty with consent off, so a storefront
 // that finds it empty mounts nothing.
 write('partials/consent-gate.js', consentGateScript(config));
+// The language switch, for /store/* to load through the manifest below. Not written
+// with the plugin off, so a dealer without it publishes exactly what it did before.
+if (languageJs) write('partials/language.js', languageJs);
 write('partials/reset.css', resetCss);
 write('partials/tokens.css', tokensCss);
 write('partials/fonts.txt', FONTS_HREF);
@@ -755,6 +767,7 @@ for (const route of storefrontRoutes) {
       scripts: [
         '/partials/chrome.js',
         '/partials/widgets.js',
+        ...(languageJs ? ['/partials/language.js'] : []),
         ...(CUSTOM.hasJs ? ['/scripts/custom.js'] : []),
         ...chrome.scripts,
       ],

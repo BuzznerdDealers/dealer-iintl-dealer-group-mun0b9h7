@@ -3861,3 +3861,39 @@ test('the banner runtime keeps the plugin hooks, API names and paragraphs', () =
     assert.ok(src.includes(hook), hook);
   }
 });
+
+// ---------------------------------------------------------- language plugin
+
+import { languageConfig, languageScript, languageTag } from './language.mjs';
+
+test('the language plugin is off unless the platform bakes it on', () => {
+  assert.equal(languageConfig({}), null);
+  assert.equal(languageConfig({ platformLanguage: { enabled: false } }), null);
+  assert.equal(languageScript({}, 'x'), '');
+  // Off means the page is byte-identical to one made before the plugin existed.
+  assert.equal(languageTag({}), '');
+  assert.equal(languageTag({ platformLanguage: { enabled: false } }), '');
+  assert.match(languageTag({ platformLanguage: {} }), /\/scripts\/language\.js/);
+});
+
+test('the language plugin keeps English first and drops codes it cannot use', () => {
+  assert.deepEqual(languageConfig({ platformLanguage: {} }).languages, ['en', 'es']);
+  const only = languageConfig({ platformLanguage: { languages: ['es', 'es', '<x>', 'it'] } });
+  assert.deepEqual(only.languages, ['en', 'es', 'it']);
+  assert.deepEqual(only.labels, { en: 'English', es: 'Español', it: 'IT' });
+});
+
+test('the language script carries the dealer config ahead of the client code', () => {
+  const js = languageScript({ platformLanguage: {} }, '/*client*/');
+  assert.match(js, /^window\.bzLanguage=\{"languages":\["en","es"\]/);
+  assert.ok(js.endsWith('/*client*/'));
+});
+
+test('language.js asks Google for nothing until a language is chosen', () => {
+  const src = readFileSync(new URL('./client/language.js', import.meta.url), 'utf8');
+  // The script is only ever created in startTranslator(), reached with a non-English cookie or a click.
+  assert.equal(src.split('translate_a/element.js').length - 1, 1);
+  assert.ok(src.includes("if (current !== 'en') startTranslator();"));
+  // Labels must survive translation.
+  assert.ok(src.includes("'translate', 'no'"));
+});
