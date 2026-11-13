@@ -29,10 +29,8 @@ import {
   fontFaceCss,
   fontPreloads,
   fontsHref,
-  linkifyContacts,
+  languageScript,
   parseDocument,
-  parseIcons,
-  iconsManifest,
   parseTemplates,
   registerCustomWidgets,
   renderDocument,
@@ -48,8 +46,6 @@ import {
   locationPageNodes,
   locationPath,
   fillTokens,
-  consentGateScript,
-  languageScript,
 } from '../renderer/index.mjs';
 
 const ROOT = process.cwd();
@@ -70,11 +66,6 @@ const config = readJson(join(ROOT, 'dealer.config.json'));
  * the builder's writable path set, so a dealer cannot edit or delete what a
  * provider needs from the Design screen. */
 config.platformAnalytics = readJsonIf(join(ROOT, 'platform', 'analytics.json'), null);
-
-/* This dealer's cookie consent settings, baked the same way. Absent means
- * consent is off and the build is exactly what it was before consent existed;
- * see renderer/consent.mjs. */
-config.platformConsent = readJsonIf(join(ROOT, 'platform', 'consent.json'), null);
 
 /* This dealer's language switch settings, baked the same way. Absent means the
  * plugin is off and the build is exactly what it was before it existed; see
@@ -208,18 +199,6 @@ if (existsSync(scopeDir)) {
 const FONTS_HREF = fontsHref(tokens);
 const FONT_PRELOAD = fontPreloads(tokens);
 
-/* -------------------------------------------------------------------- icons */
-
-// The storefront's icons, mapped onto the brand's own (renderer/icons.mjs). Read
-// here and published in the manifest; nothing on a brand page uses it. An entry
-// that breaks a rule is dropped with a warning and that slot keeps the
-// storefront's character — `npm run validate` is where it fails outright.
-const iconsRaw = readJsonIf(join(SITE, 'icons.json'), null);
-for (const problem of parseIcons(iconsRaw).problems) {
-  warn(`icons.json ${problem.where || '(file)'} ${problem.message} — that entry is not published.`);
-}
-const ICONS = iconsManifest(iconsRaw);
-
 /* ------------------------------------------------------------------- chrome */
 
 const renderCtx = {
@@ -344,10 +323,8 @@ function chromeFor(target) {
     }
     chromeCache.set(key, {
       id: key,
-      // Linked here as well as in `renderShell`: the storefront fetches these as
-      // /partials/header.html and footer.html, which never pass through the shell.
-      header: linkifyContacts(renderDocument({ nodes: before }, renderCtx)),
-      footer: linkifyContacts(renderDocument({ nodes: after }, renderCtx)),
+      header: renderDocument({ nodes: before }, renderCtx),
+      footer: renderDocument({ nodes: after }, renderCtx),
       // A template's own script is part of its chrome — a sticky header is the
       // usual case — so the storefront has to load it alongside the markup it
       // enhances, or inventory pages get the header without the behaviour.
@@ -393,7 +370,6 @@ const resetCss = readText(join(SITE, 'reset.css'));
 const blocksCss = readText(join(RENDERER, 'blocks.css')) + (customCss ? `\n${customCss}\n` : '');
 const widgetsJs = readText(join(RENDERER, 'client', 'widgets.js'));
 const analyticsJs = readText(join(RENDERER, 'client', 'analytics.js'));
-const consentJs = readText(join(RENDERER, 'client', 'consent.js'));
 // This dealer's language switch (config + code), or '' with the plugin off.
 const languageJs = languageScript(config, readText(join(RENDERER, 'client', 'language.js')));
 
@@ -447,7 +423,6 @@ write('styles/chrome.css', chromeCss);
 write('scripts/chrome.js', chromeJs);
 write('scripts/widgets.js', widgetsJs);
 write('scripts/analytics.js', analyticsJs);
-write('scripts/consent.js', consentJs);
 if (languageJs) write('scripts/language.js', languageJs);
 
 /* -------------------------------------------------------------------- pages */
@@ -625,12 +600,6 @@ write('partials/widgets.js', widgetsJs);
 // route and only needs the runtime here — one script, two mount points, so the
 // brand site and /store/* share a session rather than measuring two visits.
 write('partials/analytics.js', analyticsJs);
-// The consent banner, for the storefront to mount under /store/* the same way.
-write('partials/consent.js', consentJs);
-// This dealer's consent gate (config + code), for the storefront to run first
-// in the <head> of every /store/* page. Empty with consent off, so a storefront
-// that finds it empty mounts nothing.
-write('partials/consent-gate.js', consentGateScript(config));
 // The language switch, for /store/* to load through the manifest below. Not written
 // with the plugin off, so a dealer without it publishes exactly what it did before.
 if (languageJs) write('partials/language.js', languageJs);
@@ -806,9 +775,6 @@ write(
         defaultTitle: config.seo?.defaultTitle || null,
         favicon: config.favicon || null,
       },
-      // The storefront's icon slots mapped onto this site's icons (site/icons.json).
-      // Null when nothing is mapped, and the storefront then draws its own.
-      icons: ICONS,
     },
     null,
     2,

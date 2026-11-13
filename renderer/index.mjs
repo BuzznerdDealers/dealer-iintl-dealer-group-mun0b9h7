@@ -163,11 +163,6 @@
 // nothing when there is none — never a generated street map, which would be a
 // different section wearing this one's clothes. A location also carries a `subtitle`,
 // the name it trades under, because `name` is the place and a card wants both.
-// 4.25.0 — the storefront's icons can be the brand's. `site/icons.json` maps each
-// place the /store pages draw a mark (`ICON_SLOTS`) onto a class from an icon
-// library the site loads, or onto an image, and the build publishes it in
-// `/partials/manifest.json` as `icons`. Unmapped slots keep the storefront's own
-// characters; a site with no file publishes no `icons` and nothing changes.
 export const RENDERER_VERSION = '4.26.0';
 
 export {
@@ -186,7 +181,6 @@ export {
 export { isValidPageType, pageTypeOptions } from './analytics-vocab.mjs';
 export { analyticsConfig, analyticsHead, missingIdentity } from './analytics.mjs';
 export { languageConfig, languageScript, languageTag, LANGUAGE_LABELS } from './language.mjs';
-export { consentConfig, consentHead, consentGateScript, consentCategoryOf, gateMarkup, CONSENT_MODES } from './consent.mjs';
 
 export {
   BEHAVIOURS,
@@ -243,18 +237,6 @@ export {
   DEFAULT_TOKENS,
   TOKEN_GROUPS,
 } from './tokens.mjs';
-export {
-  ICONS_VERSION,
-  ICON_SLOTS,
-  ICON_SLOT_IDS,
-  MAX_ICON_STYLESHEETS,
-  emptyIcons,
-  iconsManifest,
-  isIconClass,
-  isIconImageUrl,
-  isIconUrl,
-  parseIcons,
-} from './icons.mjs';
 
 /* ------------------------------------------------------------- the document */
 
@@ -357,6 +339,5 @@ export {
 /* ----------------------------------------------------- shell, checks, edits */
 
 export { renderShell, businessJsonLd, analyticsTag } from './shell.mjs';
-export { linkifyContacts, contactRuns, telHref } from './contact-links.mjs';
 export { validateDocument, validateNode, validateTemplate, getDefinition } from './validate.mjs';
 export { applyOps } from './ops.mjs';

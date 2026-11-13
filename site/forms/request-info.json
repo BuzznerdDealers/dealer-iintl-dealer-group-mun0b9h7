@@ -3,7 +3,6 @@
   "name": "Request info",
   "status": "live",
   "system": true,
-  "pdpContext": true,
   "surfaces": ["pdp", "partsPdp", "page", "blog"],
   "intent": "request-info",
   "submitLabel": "Send request",
