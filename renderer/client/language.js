@@ -146,17 +146,27 @@
     document.body.appendChild(wrap);
   }
 
+  var wrap = null;
+  var current = 'en';
+
+  /** Put the switch in the header if it is not there. Safe to call again: it only acts when the switch is missing. */
+  function ensure() {
+    if (!wrap) return;
+    if (wrap.isConnected) return;
+    place(wrap);
+  }
+
   function init() {
-    if (document.querySelector('[data-bz-language]')) return;
+    if (wrap) return;
     var style = document.createElement('style');
     style.setAttribute('data-bz-language-style', '');
     style.textContent = STYLE;
     document.head.appendChild(style);
 
-    var wrap = build();
+    wrap = build();
     place(wrap);
 
-    var current = readLanguage();
+    current = readLanguage();
     // A returning visitor keeps their language: translate straight away.
     if (current !== 'en') startTranslator();
 
@@ -183,12 +193,42 @@
     });
   }
 
+  /* The storefront (/store/*) is a React app that hydrates after this script has run. Touching
+   * the page before then — inserting the switch, or translating — is a hydration mismatch, so
+   * the storefront sets `window.bzLanguageHold` and clears it, firing `bz:storefront-ready`,
+   * once it has hydrated. A brand page sets nothing and starts at once. If the signal never
+   * comes (hydration failed) the switch starts anyway after a while: the page is static by
+   * then, and a visitor must not be left without a way to change language. */
+  var HOLD_LIMIT_MS = 8000;
+
+  function start() {
+    init();
+    ensure();
+  }
+
+  function boot() {
+    if (window.bzLanguageHold) {
+      var done = false;
+      var go = function () {
+        if (done) return;
+        done = true;
+        start();
+      };
+      document.addEventListener('bz:storefront-ready', go, { once: true });
+      window.setTimeout(go, HOLD_LIMIT_MS);
+    } else if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start);
+    } else {
+      start();
+    }
+  }
+
   window.BuzzNerd = window.BuzzNerd || {};
   window.BuzzNerd.language = readLanguage;
+  // A navigation to a page with another chrome replaces the header's HTML, switch included.
+  window.BuzzNerd.initLanguage = function () {
+    if (wrap) ensure();
+  };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  boot();
 })();

@@ -3245,3 +3245,15 @@ test('language.js asks Google for nothing until a language is chosen', () => {
   // Labels must survive translation.
   assert.ok(src.includes("'translate', 'no'"));
 });
+
+test('language.js waits for the storefront to hydrate, and never waits forever', () => {
+  const src = readFileSync(new URL('./client/language.js', import.meta.url), 'utf8');
+  // The storefront holds the switch until React has hydrated, and tells it when.
+  assert.ok(src.includes('window.bzLanguageHold'));
+  assert.ok(src.includes("'bz:storefront-ready'"));
+  // A page whose hydration failed still gets its switch.
+  assert.ok(src.includes('window.setTimeout(go, HOLD_LIMIT_MS)'));
+  // A navigation that replaces the header puts the switch back, without duplicating it.
+  assert.ok(src.includes('window.BuzzNerd.initLanguage'));
+  assert.ok(src.includes('if (wrap.isConnected) return;'));
+});
