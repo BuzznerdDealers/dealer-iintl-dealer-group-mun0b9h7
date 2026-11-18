@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "id": "post-article",
+      "type": "section",
+      "props": {
+        "paddingY": 8
+      },
+      "children": [
+        {
+          "id": "post-article-row",
+          "type": "row",
+          "props": {},
+          "children": [
+            {
+              "id": "post-article-col",
+              "type": "column",
+              "props": {
+                "span": 12
+              },
+              "children": [
+                {
+                  "id": "post-article-w",
+                  "type": "widget",
+                  "props": {
+                    "widget": "post-article",
+                    "config": {
+                      "showImage": true,
+                      "showAuthor": true
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

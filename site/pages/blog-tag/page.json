@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "id": "tag",
+      "type": "section",
+      "props": {
+        "paddingY": 8
+      },
+      "children": [
+        {
+          "id": "tag-row",
+          "type": "row",
+          "props": {},
+          "children": [
+            {
+              "id": "tag-col",
+              "type": "column",
+              "props": {
+                "span": 12
+              },
+              "children": [
+                {
+                  "id": "tag-feed",
+                  "type": "widget",
+                  "props": {
+                    "widget": "post-feed",
+                    "config": {
+                      "heading": "Posts tagged {tag}",
+                      "tagSource": "url",
+                      "tags": [],
+                      "excludeTags": [],
+                      "sort": "newest",
+                      "limit": 0,
+                      "layout": "cards",
+                      "emptyMessage": "No posts tagged {tag}."
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

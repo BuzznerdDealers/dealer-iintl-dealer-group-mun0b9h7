@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "id": "blog",
+      "type": "section",
+      "props": {
+        "paddingY": 8
+      },
+      "children": [
+        {
+          "id": "blog-row",
+          "type": "row",
+          "props": {},
+          "children": [
+            {
+              "id": "blog-col",
+              "type": "column",
+              "props": {
+                "span": 12
+              },
+              "children": [
+                {
+                  "id": "blog-h",
+                  "type": "heading",
+                  "props": {
+                    "text": "News & updates",
+                    "headingLevel": 1
+                  }
+                },
+                {
+                  "id": "blog-feed",
+                  "type": "widget",
+                  "props": {
+                    "widget": "post-feed",
+                    "config": {
+                      "heading": "",
+                      "tagSource": "chosen",
+                      "tags": [],
+                      "excludeTags": [],
+                      "sort": "newest",
+                      "limit": 0,
+                      "layout": "cards"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
