@@ -3,7 +3,6 @@
 // the same markup the published page gets, rather than approximating it.
 
 import { esc } from './html.mjs';
-import { languageTag } from './language.mjs';
 import { analyticsHead } from './analytics.mjs';
 
 /** Drop keys with nothing in them, so a sparse record does not emit empty nodes. */
@@ -290,7 +289,7 @@ ${bodyHtml}
 </main>${custom.beforeFooter ? `\n${custom.beforeFooter}` : ''}
 ${chrome.footer || ''}
 <script src="/scripts/chrome.js" defer></script>
-<script src="/scripts/widgets.js" defer></script>${languageTag(config)}
+<script src="/scripts/widgets.js" defer></script>
 <script src="/scripts/analytics.js" defer></script>${custom.hasJs ? `\n<script src="/scripts/custom.js" defer></script>` : ''}${scriptTags}${custom.bodyEnd ? `\n${custom.bodyEnd}` : ''}
 </body>
 </html>

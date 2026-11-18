@@ -29,8 +29,9 @@ import {
   fontFaceCss,
   fontPreloads,
   fontsHref,
-  languageScript,
   parseDocument,
+  parseIcons,
+  iconsManifest,
   parseTemplates,
   registerCustomWidgets,
   renderDocument,
@@ -66,11 +67,6 @@ const config = readJson(join(ROOT, 'dealer.config.json'));
  * the builder's writable path set, so a dealer cannot edit or delete what a
  * provider needs from the Design screen. */
 config.platformAnalytics = readJsonIf(join(ROOT, 'platform', 'analytics.json'), null);
-
-/* This dealer's language switch settings, baked the same way. Absent means the
- * plugin is off and the build is exactly what it was before it existed; see
- * renderer/language.mjs. */
-config.platformLanguage = readJsonIf(join(ROOT, 'platform', 'language.json'), null);
 const tokens = readJson(join(SITE, 'tokens.json'));
 const menus = readJson(join(SITE, 'menus.json'));
 const pages = readJson(join(SITE, 'pages.json'));
@@ -198,6 +194,18 @@ if (existsSync(scopeDir)) {
 
 const FONTS_HREF = fontsHref(tokens);
 const FONT_PRELOAD = fontPreloads(tokens);
+
+/* -------------------------------------------------------------------- icons */
+
+// The storefront's icons, mapped onto the brand's own (renderer/icons.mjs). Read
+// here and published in the manifest; nothing on a brand page uses it. An entry
+// that breaks a rule is dropped with a warning and that slot keeps the
+// storefront's character — `npm run validate` is where it fails outright.
+const iconsRaw = readJsonIf(join(SITE, 'icons.json'), null);
+for (const problem of parseIcons(iconsRaw).problems) {
+  warn(`icons.json ${problem.where || '(file)'} ${problem.message} — that entry is not published.`);
+}
+const ICONS = iconsManifest(iconsRaw);
 
 /* ------------------------------------------------------------------- chrome */
 
@@ -370,8 +378,6 @@ const resetCss = readText(join(SITE, 'reset.css'));
 const blocksCss = readText(join(RENDERER, 'blocks.css')) + (customCss ? `\n${customCss}\n` : '');
 const widgetsJs = readText(join(RENDERER, 'client', 'widgets.js'));
 const analyticsJs = readText(join(RENDERER, 'client', 'analytics.js'));
-// This dealer's language switch (config + code), or '' with the plugin off.
-const languageJs = languageScript(config, readText(join(RENDERER, 'client', 'language.js')));
 
 /* ------------------------------------------------------------------ writing */
 
@@ -423,7 +429,6 @@ write('styles/chrome.css', chromeCss);
 write('scripts/chrome.js', chromeJs);
 write('scripts/widgets.js', widgetsJs);
 write('scripts/analytics.js', analyticsJs);
-if (languageJs) write('scripts/language.js', languageJs);
 
 /* -------------------------------------------------------------------- pages */
 // status: published -> emitted, indexed, in sitemap + llms.txt
@@ -600,9 +605,6 @@ write('partials/widgets.js', widgetsJs);
 // route and only needs the runtime here — one script, two mount points, so the
 // brand site and /store/* share a session rather than measuring two visits.
 write('partials/analytics.js', analyticsJs);
-// The language switch, for /store/* to load through the manifest below. Not written
-// with the plugin off, so a dealer without it publishes exactly what it did before.
-if (languageJs) write('partials/language.js', languageJs);
 write('partials/reset.css', resetCss);
 write('partials/tokens.css', tokensCss);
 write('partials/fonts.txt', FONTS_HREF);
@@ -736,7 +738,6 @@ for (const route of storefrontRoutes) {
       scripts: [
         '/partials/chrome.js',
         '/partials/widgets.js',
-        ...(languageJs ? ['/partials/language.js'] : []),
         ...(CUSTOM.hasJs ? ['/scripts/custom.js'] : []),
         ...chrome.scripts,
       ],
@@ -775,6 +776,9 @@ write(
         defaultTitle: config.seo?.defaultTitle || null,
         favicon: config.favicon || null,
       },
+      // The storefront's icon slots mapped onto this site's icons (site/icons.json).
+      // Null when nothing is mapped, and the storefront then draws its own.
+      icons: ICONS,
     },
     null,
     2,

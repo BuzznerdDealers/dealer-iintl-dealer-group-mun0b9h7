@@ -60,6 +60,7 @@ import {
   validateDocument,
   validateTemplate,
 } from './index.mjs';
+import { ICON_SLOT_IDS, iconsManifest, parseIcons } from './index.mjs';
 
 import { defaultConfirmation } from './forms.mjs';
 
@@ -3210,50 +3211,56 @@ test('a form submission and a behaviour event do not share one emit function', (
   assert.match(src, /function emitOn\(/);
 });
 
-// ---------------------------------------------------------- language plugin
+/* -------------------------------------------------------------------- icons */
 
-import { languageConfig, languageScript, languageTag } from './language.mjs';
-
-test('the language plugin is off unless the platform bakes it on', () => {
-  assert.equal(languageConfig({}), null);
-  assert.equal(languageConfig({ platformLanguage: { enabled: false } }), null);
-  assert.equal(languageScript({}, 'x'), '');
-  // Off means the page is byte-identical to one made before the plugin existed.
-  assert.equal(languageTag({}), '');
-  assert.equal(languageTag({ platformLanguage: { enabled: false } }), '');
-  assert.match(languageTag({ platformLanguage: {} }), /\/scripts\/language\.js/);
+test('icons.json maps storefront slots onto a class or an image', () => {
+  const { value, problems } = parseIcons({
+    version: 1,
+    stylesheets: ['https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'],
+    slots: {
+      search: { class: 'fa-solid fa-magnifying-glass' },
+      save: { src: 'https://vendure.buzznerdrv.com/assets/source/38/heart.svg' },
+      close: { src: 'https://vendure.buzznerdrv.com/assets/source/e2/x.png', tint: false },
+    },
+  });
+  assert.deepEqual(problems, []);
+  assert.deepEqual(value.slots, {
+    search: { class: 'fa-solid fa-magnifying-glass' },
+    save: { src: 'https://vendure.buzznerdrv.com/assets/source/38/heart.svg', tint: true },
+    close: { src: 'https://vendure.buzznerdrv.com/assets/source/e2/x.png', tint: false },
+  });
+  assert.equal(value.stylesheets.length, 1);
 });
 
-test('the language plugin keeps English first and drops codes it cannot use', () => {
-  assert.deepEqual(languageConfig({ platformLanguage: {} }).languages, ['en', 'es']);
-  const only = languageConfig({ platformLanguage: { languages: ['es', 'es', '<x>', 'it'] } });
-  assert.deepEqual(only.languages, ['en', 'es', 'it']);
-  assert.deepEqual(only.labels, { en: 'English', es: 'Español', it: 'IT' });
+test('icons.json drops anything that could break out of a class, a url() or an attribute', () => {
+  const { value, problems } = parseIcons({
+    stylesheets: ['http://insecure.example/icons.css', 'javascript:alert(1)'],
+    slots: {
+      search: { class: 'fa"><script>' },
+      save: { src: 'https://x.example/a.svg") , url("https://evil.example/b.svg' },
+      saved: { src: 'http://x.example/a.svg' },
+      share: { src: 'https://x.example/not-an-image.js' },
+      next: { class: 'a', src: 'https://x.example/a.svg' },
+      prev: {},
+      'not-a-slot': { class: 'x' },
+    },
+  });
+  assert.deepEqual(value.slots, {});
+  assert.deepEqual(value.stylesheets, []);
+  assert.equal(problems.length, 9);
+  assert.ok(problems.some((p) => p.where === 'slots.not-a-slot'));
 });
 
-test('the language script carries the dealer config ahead of the client code', () => {
-  const js = languageScript({ platformLanguage: {} }, '/*client*/');
-  assert.match(js, /^window\.bzLanguage=\{"languages":\["en","es"\]/);
-  assert.ok(js.endsWith('/*client*/'));
+test('a site that maps nothing publishes no icons, so /store is unchanged', () => {
+  assert.equal(iconsManifest(null), null);
+  assert.equal(iconsManifest({ stylesheets: ['https://a.example/icons.css'], slots: {} }), null);
+  assert.deepEqual(iconsManifest({ slots: { 'arrow-left': { class: 'icon-back' } } }), {
+    stylesheets: [],
+    slots: { 'arrow-left': { class: 'icon-back' } },
+  });
 });
 
-test('language.js asks Google for nothing until a language is chosen', () => {
-  const src = readFileSync(new URL('./client/language.js', import.meta.url), 'utf8');
-  // The script is only ever created in startTranslator(), reached with a non-English cookie or a click.
-  assert.equal(src.split('translate_a/element.js').length - 1, 1);
-  assert.ok(src.includes("if (current !== 'en') startTranslator();"));
-  // Labels must survive translation.
-  assert.ok(src.includes("'translate', 'no'"));
-});
-
-test('language.js waits for the storefront to hydrate, and never waits forever', () => {
-  const src = readFileSync(new URL('./client/language.js', import.meta.url), 'utf8');
-  // The storefront holds the switch until React has hydrated, and tells it when.
-  assert.ok(src.includes('window.bzLanguageHold'));
-  assert.ok(src.includes("'bz:storefront-ready'"));
-  // A page whose hydration failed still gets its switch.
-  assert.ok(src.includes('window.setTimeout(go, HOLD_LIMIT_MS)'));
-  // A navigation that replaces the header puts the switch back, without duplicating it.
-  assert.ok(src.includes('window.BuzzNerd.initLanguage'));
-  assert.ok(src.includes('if (wrap.isConnected) return;'));
+test('every storefront slot id is a plain kebab-case word', () => {
+  for (const id of ICON_SLOT_IDS) assert.match(id, /^[a-z]+(-[a-z]+)*$/);
+  assert.equal(new Set(ICON_SLOT_IDS).size, ICON_SLOT_IDS.length);
 });
