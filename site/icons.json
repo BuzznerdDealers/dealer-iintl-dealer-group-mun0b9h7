@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "stylesheets": [],
+  "slots": {
+    "photo-next": {
+      "class": "fa-solid fa-star"
+    }
+  }
+}
