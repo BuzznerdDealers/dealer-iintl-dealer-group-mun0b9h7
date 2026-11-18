@@ -41,6 +41,30 @@
                       "sort": "newest",
                       "limit": 0,
                       "layout": "cards"
+                    },
+                    "snapshot": {
+                      "heading": "",
+                      "tagLabels": [],
+                      "total": 1,
+                      "page": 1,
+                      "pageCount": 1,
+                      "viewAllHref": null,
+                      "posts": [
+                        {
+                          "slug": "test",
+                          "href": "/blog/test",
+                          "title": "test",
+                          "excerpt": "",
+                          "date": "2026-11-18",
+                          "image": null,
+                          "tags": [
+                            {
+                              "label": "test",
+                              "href": "/blog/tag/test"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   }
                 }

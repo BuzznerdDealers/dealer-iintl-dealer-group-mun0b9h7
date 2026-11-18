@@ -130,6 +130,15 @@
                       "sort": "newest",
                       "limit": 3,
                       "layout": "cards"
+                    },
+                    "snapshot": {
+                      "heading": "More posts like this",
+                      "tagLabels": [],
+                      "total": 0,
+                      "page": 1,
+                      "pageCount": 1,
+                      "viewAllHref": null,
+                      "posts": []
                     }
                   }
                 }

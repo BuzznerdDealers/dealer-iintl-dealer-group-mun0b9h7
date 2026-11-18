@@ -34,6 +34,15 @@
                       "limit": 0,
                       "layout": "cards",
                       "emptyMessage": "No posts tagged {tag}."
+                    },
+                    "snapshot": {
+                      "heading": "Posts tagged",
+                      "tagLabels": [],
+                      "total": 0,
+                      "page": 1,
+                      "pageCount": 1,
+                      "viewAllHref": null,
+                      "posts": []
                     }
                   }
                 }
