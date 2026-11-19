@@ -32,20 +32,6 @@ export const ICON_SLOTS = [
   { id: 'minus', label: 'Close', glyph: '−', where: 'An open question in a listing’s FAQ' },
   { id: 'arrow-left', label: 'Back arrow', glyph: '←', where: '“All categories” above the category cards' },
   { id: 'arrow-right', label: 'Arrow', glyph: '→', where: 'Between the dates of a booked rental' },
-  { id: 'location', label: 'Location pin', glyph: '⌖', where: 'The pin beside a location on a card and on a listing' },
-  { id: 'user', label: 'Sign in', glyph: '☺', where: 'The person on the Sign in button' },
-  { id: 'account', label: 'My account', glyph: '☺', where: 'My account in the account menu' },
-  { id: 'settings', label: 'Profile & settings', glyph: '⚙', where: 'Profile & settings in the account menu' },
-  { id: 'quote', label: 'Quotes', glyph: '✎', where: 'Quotes in the account menu' },
-  { id: 'orders', label: 'Orders', glyph: '▤', where: 'Orders in the account menu' },
-  { id: 'fleet', label: 'Fleet account', glyph: '⛟', where: 'Fleet account in the account menu' },
-  { id: 'signout', label: 'Sign out', glyph: '⎋', where: 'Sign out in the account menu' },
-  { id: 'caret-down', label: 'Account menu arrow', glyph: '▾', where: 'The arrow beside the visitor’s name' },
-  { id: 'print', label: 'Print', glyph: '⎙', where: 'Print / PDF on a listing' },
-  { id: 'sparkle', label: 'AI overview', glyph: '✦', where: 'AI overview on a listing' },
-  { id: 'chevron-down', label: 'Dropdown arrow', glyph: '⌄', where: 'The Sort, product type and filter dropdowns' },
-  { id: 'photo-prev', label: 'Previous photo', glyph: '‹', where: 'The photo slider on a card and a listing’s gallery' },
-  { id: 'photo-next', label: 'Next photo', glyph: '›', where: 'The photo slider on a card and a listing’s gallery' },
 ];
 
 export const ICON_SLOT_IDS = ICON_SLOTS.map((s) => s.id);
