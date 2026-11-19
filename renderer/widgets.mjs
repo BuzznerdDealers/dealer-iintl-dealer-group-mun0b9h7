@@ -28,6 +28,7 @@ function shell(widget, config, inner, opts = {}) {
     'data-bz-config': JSON.stringify(config || {}),
     'data-bz-hydrate': opts.hydrate === false ? null : true,
     'data-bz-region': 'widget',
+    ...(opts.attrs || {}),
   })}>${inner}</div>`;
 }
 
@@ -530,7 +531,7 @@ function listingCard(prefix, listing) {
       ? `<dl class="bz-card__facts">${join(
           facts.map(
             (f) =>
-              `<div><dt>${esc(f.label)}</dt><dd>${esc(f.value)}</dd></div>`,
+              `<div${String(f.value).length > 24 ? ' class="bz-fact--wide"' : ''}><dt>${esc(f.label)}</dt><dd>${esc(f.value)}</dd></div>`,
           ),
           '',
         )}</dl>`
@@ -541,19 +542,27 @@ function listingCard(prefix, listing) {
 function inventoryCarousel(config, snapshot, ctx) {
   const prefix = (ctx && ctx.storefrontPrefix) || 'store';
   const items = (snapshot && snapshot.listings) || [];
+  // `layout` is a block setting: "grid" (the default) or "carousel". A carousel is the
+  // platform's own behaviour — the same arrows, dots and keyboard support as any other rail —
+  // so the list stays in flow, and a plain row of cards, until widgets.js binds it.
+  const rail = config.layout === 'carousel';
+  const controls = rail
+    ? `<div class="bz-rail-controls"><button type="button" class="bz-rail-btn" data-bz-part="prev" aria-label="Previous units">&#8592;</button><div data-bz-part="dots"></div><button type="button" class="bz-rail-btn" data-bz-part="next" aria-label="Next units">&#8594;</button></div>`
+    : '';
   return shell(
     'inventory-carousel',
     config,
     `${config.heading ? `<p class="bz-widget__h">${esc(config.heading)}</p>` : ''}${
       items.length
-        ? `<ul class="bz-grid bz-grid--4 bz-bare"${TRACK}>${join(
+        ? `<ul class="${rail ? 'bz-rail bz-bare' : 'bz-grid bz-grid--4 bz-bare'}"${TRACK}>${join(
             items.map((l) => listingCard(prefix, l)),
             '',
-          )}</ul>`
+          )}</ul>${controls}`
         : '<p class="bz-widget__empty">Live inventory loads here.</p>'
     }<p><a class="bz-btn bz-btn--secondary" href="/${esc(prefix)}"${attrs(
       tagAttrs('cta', 'browse-inventory'),
     )}>Browse all inventory</a></p>`,
+    rail ? { class: 'bz-widget--rail', attrs: { 'data-bz-behavior': 'carousel' } } : {},
   );
 }
 

@@ -30,8 +30,6 @@ import {
   fontPreloads,
   fontsHref,
   parseDocument,
-  parseIcons,
-  iconsManifest,
   parseTemplates,
   registerCustomWidgets,
   renderDocument,
@@ -194,18 +192,6 @@ if (existsSync(scopeDir)) {
 
 const FONTS_HREF = fontsHref(tokens);
 const FONT_PRELOAD = fontPreloads(tokens);
-
-/* -------------------------------------------------------------------- icons */
-
-// The storefront's icons, mapped onto the brand's own (renderer/icons.mjs). Read
-// here and published in the manifest; nothing on a brand page uses it. An entry
-// that breaks a rule is dropped with a warning and that slot keeps the
-// storefront's character — `npm run validate` is where it fails outright.
-const iconsRaw = readJsonIf(join(SITE, 'icons.json'), null);
-for (const problem of parseIcons(iconsRaw).problems) {
-  warn(`icons.json ${problem.where || '(file)'} ${problem.message} — that entry is not published.`);
-}
-const ICONS = iconsManifest(iconsRaw);
 
 /* ------------------------------------------------------------------- chrome */
 
@@ -776,9 +762,6 @@ write(
         defaultTitle: config.seo?.defaultTitle || null,
         favicon: config.favicon || null,
       },
-      // The storefront's icon slots mapped onto this site's icons (site/icons.json).
-      // Null when nothing is mapped, and the storefront then draws its own.
-      icons: ICONS,
     },
     null,
     2,

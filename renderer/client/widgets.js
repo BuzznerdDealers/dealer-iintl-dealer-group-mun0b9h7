@@ -100,10 +100,21 @@
 
   function renderListings(node, listings) {
     var list = node.querySelector('ul');
-    if (!list || !listings || !listings.length) return;
+    if (!list || !listings) return;
+    if (!listings.length) {
+      // The server only answers with nothing when the dealer has no unit a buyer may see
+      // (it already falls back from Featured to the latest). Leaving the committed snapshot
+      // up would keep showing units that have since sold, so the section steps aside.
+      node.style.display = 'none';
+      return;
+    }
+    node.style.display = '';
     list.textContent = '';
     listings.forEach(function (l) {
       var li = document.createElement('li');
+      // The carousel behaviour finds its slides by this part. The first paint carries it;
+      // a redraw that drops it leaves a rail with nothing to move.
+      li.setAttribute('data-bz-part', 'slide');
       var a = el('a', 'bz-card');
       a.href = listingHref(l);
       a.setAttribute('data-bz-el', 'link');
@@ -113,9 +124,14 @@
         img.src = l.image.src;
         img.alt = l.image.alt || l.title || '';
         img.loading = 'lazy';
+        img.decoding = 'async';
         img.width = l.image.width || 600;
         img.height = l.image.height || 400;
         a.appendChild(img);
+      } else {
+        var blank = el('div', 'bz-photo bz-photo--empty', 'Photo');
+        blank.setAttribute('aria-hidden', 'true');
+        a.appendChild(blank);
       }
       var body = el('div', 'bz-card__body');
       body.appendChild(el('span', 'bz-card__t', l.title));
@@ -124,6 +140,8 @@
         var dl = el('dl', 'bz-card__facts');
         l.facts.slice(0, 3).forEach(function (f) {
           var wrap = document.createElement('div');
+          // A long value (an engine description) takes the whole row, as in the first paint.
+          if (String(f.value).length > 24) wrap.className = 'bz-fact--wide';
           wrap.appendChild(el('dt', '', f.label));
           wrap.appendChild(el('dd', '', f.value));
           dl.appendChild(wrap);

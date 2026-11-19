@@ -344,6 +344,33 @@ a.bz-quick:hover .bz-quick__t { color: var(--accent-dark); }
 .bz-card__facts dt { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
 .bz-card__facts dd { margin: 0.1rem 0 0; font-size: 0.82rem; font-weight: 700; color: var(--ink); }
 a.bz-card:hover { border-color: var(--muted); }
+
+/* Listing cards in a row are one size. Photo, title and price sit at the same height on every
+   card whatever a unit carries (no photo, no price, two facts or three), and the card fills its
+   cell so a short one does not leave a ragged bottom edge. */
+.bz-widget--inventory-carousel .bz-grid > li,
+.bz-widget--inventory-carousel .bz-rail > li { display: flex; }
+.bz-widget--inventory-carousel a.bz-card { display: flex; flex-direction: column; width: 100%; height: 100%; }
+.bz-widget--inventory-carousel .bz-card img,
+.bz-widget--inventory-carousel .bz-card .bz-photo { aspect-ratio: 3 / 2; height: auto; object-fit: cover; flex: none; }
+.bz-widget--inventory-carousel .bz-card__body { flex: 1; }
+.bz-widget--inventory-carousel .bz-card__t { min-height: 2.6em; }
+.bz-widget--inventory-carousel .bz-card__facts { margin-top: auto; padding-top: var(--space-2); }
+.bz-widget--inventory-carousel .bz-card__facts dd { overflow-wrap: anywhere; }
+.bz-card__facts .bz-fact--wide { grid-column: 1 / -1; }
+
+/* The carousel layout of the Featured Inventory block. In flow (a wrapping row) until the
+   behaviour binds, then the shared scroll-snap rail above takes over. */
+.bz-rail { display: flex; flex-wrap: wrap; gap: var(--space-5); margin: 0; padding: 0; list-style: none; }
+.bz-rail > li { flex: 1 1 14rem; min-width: 0; }
+[data-bz-track].bz-rail { flex-wrap: nowrap; }
+[data-bz-track].bz-rail > li { flex: 0 0 var(--bz-slide, 280px); }
+.bz-rail-controls { display: flex; align-items: center; justify-content: center; gap: var(--space-3); margin: var(--space-3) 0; }
+.bz-rail-btn {
+  width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--card); color: var(--ink); font-size: 1.1rem; line-height: 1; cursor: pointer;
+}
+.bz-rail-btn:hover:not(:disabled) { border-color: var(--muted); }
 .bz-searchbar__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
 .bz-chip {
   display: inline-flex; align-items: center; min-height: 36px;

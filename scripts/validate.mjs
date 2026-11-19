@@ -45,7 +45,6 @@ import {
   listMenus,
   locationIndex,
   parseComponentProps,
-  parseIcons,
   parseMenus,
   parseTemplate,
   parseWidgetDefinition,
@@ -137,20 +136,6 @@ if (!existsSync(tokensPath)) {
   if (error) fail('site/tokens.json', '', `not valid JSON — ${error}`);
   else if (!value?.colors?.accent) {
     note('site/tokens.json', 'no colors.accent — the starter palette will be used for anything unset');
-  }
-}
-
-/* -------------------------------------------------------------------- icons */
-
-// Optional. A site with no file keeps the storefront's own icons on /store.
-const iconsPath = join(SITE, 'icons.json');
-if (existsSync(iconsPath)) {
-  const { value, error } = readJson(iconsPath);
-  if (error) fail('site/icons.json', '', `not valid JSON — ${error}`);
-  else {
-    for (const problem of parseIcons(value).problems) {
-      fail('site/icons.json', problem.where, problem.message, 'Fix or remove that entry; the slot keeps the storefront’s own icon until it is valid.');
-    }
   }
 }
 
