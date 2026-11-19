@@ -64,18 +64,44 @@
         "snapshot": {
           "listings": [
             {
-              "slug": "1-2024-international-emv",
-              "href": "products/1-2024-international-emv",
-              "title": "2024 INTERNATIONAL EMV",
-              "price": "$0",
+              "slug": "1-2027-international-hv",
+              "href": "products/1-2027-international-hv",
+              "title": "2027 INTERNATIONAL HV",
+              "price": null,
               "facts": [
                 {
                   "label": "Make",
                   "value": "INTERNATIONAL"
                 },
                 {
+                  "label": "Year",
+                  "value": "2027"
+                },
+                {
                   "label": "Model",
-                  "value": "EMV"
+                  "value": "HV"
+                }
+              ],
+              "image": {
+                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/preview/00/dms-11058314718__02__preview.jpg",
+                "alt": "2027 INTERNATIONAL HV",
+                "width": 600,
+                "height": 400
+              }
+            },
+            {
+              "slug": "1-2024-hyundai-composite-8",
+              "href": "products/1-2024-hyundai-composite-8",
+              "title": "2024 HYUNDAI COMPOSITE",
+              "price": null,
+              "facts": [
+                {
+                  "label": "Make",
+                  "value": "HYUNDAI"
+                },
+                {
+                  "label": "Model",
+                  "value": "COMPOSITE"
                 },
                 {
                   "label": "Year",
@@ -83,17 +109,69 @@
                 }
               ],
               "image": {
-                "src": "preview/24/dms-8043066049__06__preview.jpg",
-                "alt": "2024 INTERNATIONAL EMV",
+                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/preview/62/dms-11045395577__06__preview.jpg",
+                "alt": "2024 HYUNDAI COMPOSITE",
                 "width": 600,
                 "height": 400
               }
             },
             {
-              "slug": "1-2025-hyundai",
-              "href": "products/1-2025-hyundai",
-              "title": "2025 HYUNDAI",
-              "price": "$0",
+              "slug": "1-2025-capacity-tj5000-dot-2",
+              "href": "products/1-2025-capacity-tj5000-dot-2",
+              "title": "2025 CAPACITY TJ5000 DOT",
+              "price": null,
+              "facts": [
+                {
+                  "label": "Make",
+                  "value": "CAPACITY"
+                },
+                {
+                  "label": "Model",
+                  "value": "TJ5000 DOT"
+                },
+                {
+                  "label": "Year",
+                  "value": "2025"
+                }
+              ],
+              "image": {
+                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/preview/0e/dms-11044973867__06__preview.jpg",
+                "alt": "2025 CAPACITY TJ5000 DOT",
+                "width": 600,
+                "height": 400
+              }
+            },
+            {
+              "slug": "1-2025-capacity-tj5000-dot",
+              "href": "products/1-2025-capacity-tj5000-dot",
+              "title": "2025 CAPACITY TJ5000 DOT",
+              "price": null,
+              "facts": [
+                {
+                  "label": "Make",
+                  "value": "CAPACITY"
+                },
+                {
+                  "label": "Model",
+                  "value": "TJ5000 DOT"
+                },
+                {
+                  "label": "Year",
+                  "value": "2025"
+                }
+              ],
+              "image": {
+                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/preview/b3/dms-11044832091__05__preview.jpg",
+                "alt": "2025 CAPACITY TJ5000 DOT",
+                "width": 600,
+                "height": 400
+              }
+            },
+            {
+              "slug": "1-2026-hyundai-vr2530152-as-7",
+              "href": "products/1-2026-hyundai-vr2530152-as-7",
+              "title": "2026 HYUNDAI VR2530152-AS",
+              "price": null,
               "facts": [
                 {
                   "label": "Make",
@@ -101,172 +179,94 @@
                 },
                 {
                   "label": "Year",
-                  "value": "2025"
+                  "value": "2026"
                 },
                 {
                   "label": "VIN",
-                  "value": "3H3V402K8SJ403205"
+                  "value": "3H3V532KXTJ496213"
                 }
               ],
               "image": {
-                "src": "preview/ec/dms-9070598747__05__preview.jpg",
-                "alt": "2025 HYUNDAI",
+                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/preview/30/dms-11041497731__05__preview.jpg",
+                "alt": "2026 HYUNDAI VR2530152-AS",
                 "width": 600,
                 "height": 400
               }
             },
             {
-              "slug": "1-2024-kenworth-t880",
-              "href": "products/1-2024-kenworth-t880",
-              "title": "2024 KENWORTH T880",
-              "price": "$0",
-              "facts": [
-                {
-                  "label": "Year",
-                  "value": "2024"
-                },
-                {
-                  "label": "Make",
-                  "value": "KENWORTH"
-                },
-                {
-                  "label": "Model",
-                  "value": "T880"
-                }
-              ],
-              "image": {
-                "src": "preview/5d/dms-10002942656__03__preview.jpg",
-                "alt": "2024 KENWORTH T880",
-                "width": 600,
-                "height": 400
-              }
-            },
-            {
-              "slug": "1-2026-international-lt",
-              "href": "products/1-2026-international-lt",
-              "title": "2026 INTERNATIONAL LT",
-              "price": "$0",
+              "slug": "1-2026-hyundai-vr2530152-as-6",
+              "href": "products/1-2026-hyundai-vr2530152-as-6",
+              "title": "2026 HYUNDAI VR2530152-AS",
+              "price": null,
               "facts": [
                 {
                   "label": "Make",
-                  "value": "INTERNATIONAL"
-                },
-                {
-                  "label": "Model",
-                  "value": "LT"
+                  "value": "HYUNDAI"
                 },
                 {
                   "label": "Year",
                   "value": "2026"
+                },
+                {
+                  "label": "VIN",
+                  "value": "3H3V532K9TJ496204"
                 }
               ],
               "image": {
-                "src": "preview/94/dms-11009572643__08__preview.jpg",
-                "alt": "2026 INTERNATIONAL LT",
+                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/preview/b0/dms-11044382741__05__preview.jpg",
+                "alt": "2026 HYUNDAI VR2530152-AS",
                 "width": 600,
                 "height": 400
               }
             },
             {
-              "slug": "1-2026-international-lt-2",
-              "href": "products/1-2026-international-lt-2",
-              "title": "2026 INTERNATIONAL LT",
-              "price": "$0",
+              "slug": "1-2026-hyundai-vr2530152-as-5",
+              "href": "products/1-2026-hyundai-vr2530152-as-5",
+              "title": "2026 HYUNDAI VR2530152-AS",
+              "price": null,
               "facts": [
                 {
                   "label": "Make",
-                  "value": "INTERNATIONAL"
-                },
-                {
-                  "label": "Model",
-                  "value": "LT"
+                  "value": "HYUNDAI"
                 },
                 {
                   "label": "Year",
                   "value": "2026"
+                },
+                {
+                  "label": "Model",
+                  "value": "VR2530152-AS"
                 }
               ],
               "image": {
-                "src": "preview/5e/dms-11009586039__05__preview.jpg",
-                "alt": "2026 INTERNATIONAL LT",
+                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/preview/6a/dms-11041624412__06__preview.jpg",
+                "alt": "2026 HYUNDAI VR2530152-AS",
                 "width": 600,
                 "height": 400
               }
             },
             {
-              "slug": "1-2026-international-lt-3",
-              "href": "products/1-2026-international-lt-3",
-              "title": "2026 INTERNATIONAL LT",
-              "price": "$0",
+              "slug": "1-2026-hyundai-vr2530152-as-4",
+              "href": "products/1-2026-hyundai-vr2530152-as-4",
+              "title": "2026 HYUNDAI VR2530152-AS",
+              "price": null,
               "facts": [
                 {
                   "label": "Make",
-                  "value": "INTERNATIONAL"
-                },
-                {
-                  "label": "Model",
-                  "value": "LT"
+                  "value": "HYUNDAI"
                 },
                 {
                   "label": "Year",
                   "value": "2026"
+                },
+                {
+                  "label": "Model",
+                  "value": "VR2530152-AS"
                 }
               ],
               "image": {
-                "src": "preview/31/dms-11009595792__05__preview.jpg",
-                "alt": "2026 INTERNATIONAL LT",
-                "width": 600,
-                "height": 400
-              }
-            },
-            {
-              "slug": "1-test",
-              "href": "products/1-test",
-              "title": "Test",
-              "price": "$0",
-              "facts": [
-                {
-                  "label": "Year",
-                  "value": "2025"
-                },
-                {
-                  "label": "Availability",
-                  "value": "For sale"
-                },
-                {
-                  "label": "Condition",
-                  "value": "used"
-                }
-              ],
-              "image": {
-                "src": "preview/66/1__05__preview.jpg",
-                "alt": "Test",
-                "width": 600,
-                "height": 400
-              }
-            },
-            {
-              "slug": "1-2023-kenworth-t680",
-              "href": "products/1-2023-kenworth-t680",
-              "title": "2023 Kenworth T680",
-              "price": "$0",
-              "facts": [
-                {
-                  "label": "Year",
-                  "value": "2016"
-                },
-                {
-                  "label": "Make",
-                  "value": "KENWORTH"
-                },
-                {
-                  "label": "Availability",
-                  "value": "For sale"
-                }
-              ],
-              "image": {
-                "src": "preview/a1/1__06__preview.jpg",
-                "alt": "2023 Kenworth T680",
+                "src": "https://bznrd-vendure-dev.s3.us-west-2.amazonaws.com/assets/preview/1a/dms-11041622495__08__preview.jpg",
+                "alt": "2026 HYUNDAI VR2530152-AS",
                 "width": 600,
                 "height": 400
               }
